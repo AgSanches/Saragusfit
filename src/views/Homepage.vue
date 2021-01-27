@@ -2,6 +2,7 @@
   <div>
     <HeaderComponent></HeaderComponent>
     <MissionAndVisionComponent></MissionAndVisionComponent>
+    <AboutUsComponent></AboutUsComponent>
   </div>
 </template>
 
@@ -9,12 +10,14 @@
 
 import HeaderComponent from "../components/home/HeaderComponent";
 import MissionAndVisionComponent from "../components/home/MissionAndVisionComponent";
+import AboutUsComponent from "../components/home/AboutUsComponent";
 
 export default {
   name: "Homepage",
   components: {
     HeaderComponent,
-    MissionAndVisionComponent
+    MissionAndVisionComponent,
+    AboutUsComponent
   }
 };
 </script>

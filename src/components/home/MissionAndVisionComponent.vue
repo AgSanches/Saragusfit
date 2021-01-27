@@ -75,7 +75,6 @@ export default {
 }
 
 .our-mision-and-vision {
-
   .separate {
     height: 9.5rem;
     clear: both;
