@@ -113,7 +113,6 @@ export default {
 <style scoped lang="scss">
 .about-us {
   margin-top: 2rem;
-  width: 75vw;
   display: block;
   position: relative;
   z-index: 2;

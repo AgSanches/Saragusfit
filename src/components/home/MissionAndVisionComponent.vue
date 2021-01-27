@@ -75,6 +75,8 @@ export default {
 }
 
 .our-mision-and-vision {
+  animation: float 6s ease-in-out infinite;
+
   .separate {
     height: 9.5rem;
     clear: both;
@@ -130,7 +132,7 @@ export default {
     .reflejos {
       pointer-events: none;
       position: absolute;
-      top: 0px;
+      top: 0;
       width: 300px;
       height: 100%;
       z-index: 0;
@@ -147,6 +149,18 @@ export default {
     .segundo {
       animation-direction: reverse;
     }
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }
 </style>
