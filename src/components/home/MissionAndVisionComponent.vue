@@ -1,6 +1,6 @@
 <template>
   <div class="our-mision-and-vision">
-    <div class="separate-2"></div>
+    <div class="separate"></div>
     <div class="container">
       <div class="row align-items-end p-3">
         <div class="mission" data-aos="fade-left" data-aos-duration="1500">
@@ -46,6 +46,10 @@ export default {
   .our-mision-and-vision {
     margin-top: 5rem;
     min-height: 26rem;
+
+    .separate {
+      height: 4rem;
+    }
   }
 }
 
@@ -71,6 +75,13 @@ export default {
 }
 
 .our-mision-and-vision {
+
+  .separate {
+    height: 9.5rem;
+    clear: both;
+  }
+
+  height: 32rem;
   background: linear-gradient(
     45deg,
     rgba(222, 147, 193, 1) 45%,
