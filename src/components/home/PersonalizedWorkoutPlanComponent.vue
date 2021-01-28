@@ -9,7 +9,7 @@
       data-aos-duration="1500"
     >
       <h3 class="personalized-workout-plan-title font-weight-bold text-primary">
-        Workout Plan
+        The Personalized Workout Plan
       </h3>
 
       <div class="personalized-workout-plan-addition">
@@ -124,23 +124,24 @@ export default {
           position: relative;
           content: "";
           border-bottom: 3px solid #de93c1;
+          width: 2rem;
         }
 
         &:nth-child(1) {
           &::after {
-            animation: width-change 5s infinite linear;
+            animation: width-change 6s infinite linear;
           }
         }
 
         &:nth-child(2) {
           &::after {
-            animation: width-change 6s infinite linear 2s;
+            animation: width-change 7s infinite linear;
           }
         }
 
         &:nth-child(3) {
           &::after {
-            animation: width-change 7s infinite linear 4s;
+            animation: width-change 8s infinite linear;
           }
         }
       }

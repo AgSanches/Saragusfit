@@ -45,10 +45,10 @@ export default {
     );
     transform: translateY(-15px) !important;
 
-      .section-content, .section-title {
-          color: white !important;
-      }
-
+    .section-content,
+    .section-title {
+      color: white !important;
+    }
   }
 }
 </style>
