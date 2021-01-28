@@ -29,8 +29,7 @@ export default {
 
 <style scoped lang="scss">
 .about-us,
-.personal-information
-{
+.personal-information {
   width: 75vw;
 }
 </style>
