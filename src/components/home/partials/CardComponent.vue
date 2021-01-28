@@ -1,10 +1,15 @@
 <template>
-  <div class="card-coach" :style="{ 'background-image': `url(${image})` }">
-    <div class="card-info mx-auto">
-      <h4 class="coach-name mx-auto">{{ coach.name }}</h4>
-      <p class="content px-2">
-        {{ coach.description }}
-      </p>
+  <div
+    class="card-coach d-flex justify-content-center align-items-center"
+    :style="{ 'background-image': `url(${image})` }"
+  >
+    <div
+      class="gradient-coach d-flex justify-content-center align-items-centers"
+    >
+      <p class="coach-description">{{ coach.description }}</p>
+    </div>
+    <div class="coach-name bg-primary">
+      <h3 class="name">{{ coach.name }}</h3>
     </div>
   </div>
 </template>
@@ -20,36 +25,52 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.gradient-coach {
+  background: linear-gradient(
+    45deg,
+    rgba(222, 147, 193, 0.85) 50%,
+    rgba(25, 79, 146, 0.6) 100%
+  );
+
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+
+  transition: opacity 1.5s;
+
+  .coach-description {
+    margin: auto;
+    padding: 1rem;
+    color: white;
+  }
+}
+
 .card-coach {
-  height: 45rem;
+  height: 35rem;
   width: 100%;
   background-size: cover;
   background-position: center;
   position: relative;
+  overflow: hidden;
 
-  .card-info {
-    width: 85%;
-    background: rgba(222, 147, 193, 0.95);
-    height: 11rem;
-    position: absolute;
-    bottom: -8rem;
-    left: 0;
-    right: 0;
-
-    .coach-name {
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      background-color: #353333;
-      width: 75%;
-      transform: translateY(-25px);
-      font-size: 2rem;
-      margin-bottom: 0;
+  &:hover {
+    .gradient-coach {
+      opacity: 1;
     }
+  }
 
-    .content {
-      margin-top: -1.2rem;
+  .coach-name {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0.7rem;
+    border-top-left-radius: 15px;
+
+    .name {
+      font-size: 1.25rem;
       color: white;
+      font-weight: bold;
     }
   }
 }
