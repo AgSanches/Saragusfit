@@ -4,6 +4,7 @@
     <MissionAndVisionComponent></MissionAndVisionComponent>
     <AboutUsComponent></AboutUsComponent>
     <PersonalCardsSectionComponent></PersonalCardsSectionComponent>
+    <PersonalizedWorkoutPlanComponent></PersonalizedWorkoutPlanComponent>
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import HeaderComponent from "../components/home/HeaderComponent";
 import MissionAndVisionComponent from "../components/home/MissionAndVisionComponent";
 import AboutUsComponent from "../components/home/AboutUsComponent";
 import PersonalCardsSectionComponent from "../components/home/PersonalCardsSectionComponent";
+import PersonalizedWorkoutPlanComponent from "../components/home/PersonalizedWorkoutPlanComponent";
 
 export default {
   name: "Homepage",
@@ -19,14 +21,16 @@ export default {
     HeaderComponent,
     MissionAndVisionComponent,
     AboutUsComponent,
-    PersonalCardsSectionComponent
+    PersonalCardsSectionComponent,
+    PersonalizedWorkoutPlanComponent
   }
 };
 </script>
 
 <style scoped lang="scss">
 .about-us,
-.personal-information {
+.personal-information
+{
   width: 75vw;
 }
 </style>
