@@ -147,6 +147,13 @@ export default {
     .approach {
       margin-bottom: 0.5rem;
 
+      &:hover {
+        .check {
+          animation-name: rotate;
+          animation-duration: 1s;
+        }
+      }
+
       .check {
         padding: 0.3rem;
         width: 24px;
@@ -157,6 +164,15 @@ export default {
         display: inline;
       }
     }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(360deg);
   }
 }
 </style>
