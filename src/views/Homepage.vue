@@ -4,6 +4,7 @@
     <MissionAndVisionComponent></MissionAndVisionComponent>
     <AboutUsComponent></AboutUsComponent>
     <PersonalCardsSectionComponent></PersonalCardsSectionComponent>
+    <div style="margin-top: 200rem"></div>
   </div>
 </template>
 

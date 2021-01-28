@@ -4,9 +4,14 @@
       class="personal-information mx-auto row justify-content-center align-items-center"
     >
       <div
-        class="col-12 col-md-4 p-2 mx-md-3"
+        class="col-12 col-md-4 col-xl-3 p-2 mx-md-3"
         v-for="(coach, idx) in coachs"
         :key="idx"
+        data-aos="fade-down"
+        data-aos-easing="linear"
+        data-aos-duration="2000"
+        data-aos-anchor-placement="top-bottom"
+        :data-aos-delay="200 * idx"
       >
         <CardComponent
           :coach="coach.coach"

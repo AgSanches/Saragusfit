@@ -79,7 +79,7 @@
       </div>
 
       <div
-        class="image-wrapper col-12 col-md-4"
+        class="image-wrapper col-12 col-md-4 d-flex align-items-center"
         data-aos="zoom-in"
         data-aos-duration="1000"
         data-aos-delay="100"

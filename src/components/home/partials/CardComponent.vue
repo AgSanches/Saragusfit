@@ -28,12 +28,13 @@ export default {
   position: relative;
 
   .card-info {
-    width: 75%;
-    background: rgba(222, 147, 193, 0.85);
-    height: 12rem;
+    width: 85%;
+    background: rgba(222, 147, 193, 0.95);
+    height: 11rem;
     position: absolute;
     bottom: -8rem;
-    left: 5rem;
+    left: 0;
+    right: 0;
 
     .coach-name {
       color: white;
@@ -47,6 +48,8 @@ export default {
     }
 
     .content {
+      margin-top: -1.2rem;
+      color: white;
     }
   }
 }
