@@ -6,6 +6,7 @@
     <PersonalCardsSectionComponent></PersonalCardsSectionComponent>
     <PersonalizedWorkoutPlanComponent></PersonalizedWorkoutPlanComponent>
     <TheProccessComponent></TheProccessComponent>
+    <GetYoursNowComponent></GetYoursNowComponent>
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import AboutUsComponent from "../components/home/AboutUsComponent";
 import PersonalCardsSectionComponent from "../components/home/PersonalCardsSectionComponent";
 import PersonalizedWorkoutPlanComponent from "../components/home/PersonalizedWorkoutPlanComponent";
 import TheProccessComponent from "../components/home/TheProccessComponent";
+import GetYoursNowComponent from "../components/home/GetYoursNowComponent";
 
 export default {
   name: "Homepage",
@@ -25,7 +27,8 @@ export default {
     AboutUsComponent,
     PersonalCardsSectionComponent,
     PersonalizedWorkoutPlanComponent,
-    TheProccessComponent
+    TheProccessComponent,
+    GetYoursNowComponent
   }
 };
 </script>
