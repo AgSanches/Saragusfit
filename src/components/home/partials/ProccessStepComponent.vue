@@ -7,8 +7,6 @@
         <p class="text">{{ step.content }}</p>
       </div>
     </div>
-    <div class="separator"></div>
-    <div class="cirle mx-auto"></div>
   </div>
 </template>
 
@@ -24,17 +22,7 @@ export default {
 <style scoped lang="scss">
 .step-wrapper {
   position: relative;
-}
-
-.separator {
-  height: 5rem;
-}
-
-.cirle {
-  width: 5rem;
-  height: 5rem;
-  background-color: #de93c1;
-  border-radius: 50%;
+  margin-top: 1rem;
 }
 
 .step {
@@ -69,6 +57,9 @@ export default {
     .content {
       opacity: 1;
     }
+  }
+
+  &::after {
   }
 }
 </style>
