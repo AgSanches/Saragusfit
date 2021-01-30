@@ -21,6 +21,8 @@
               <SuccessStoriesChangeComponent
                 :image="review.images[0]"
                 text="Before"
+                data-aos="zoom-in"
+                data-aos-duration="1000"
               ></SuccessStoriesChangeComponent>
             </div>
 
@@ -28,10 +30,13 @@
               <SuccessStoriesChangeComponent
                 :image="review.images[1]"
                 text="After"
+                data-aos="zoom-in"
+                data-aos-duration="1000"
+                data-aos-delay="150"
               ></SuccessStoriesChangeComponent>
             </div>
           </div>
-          <div class="col-12 col-md-5 col-xl-4 mt-2 mt-md-0">
+          <div class="col-12 col-md-5 col-xl-4 mt-2 mt-md-0" data-aos="fade-up-left" data-aos-duration="1500">
             <p class="change-content text-white">
               {{ review.text }}
             </p>
