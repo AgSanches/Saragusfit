@@ -1,5 +1,27 @@
 <template>
-  <section id="footer" class="footer"></section>
+  <section
+    id="footer"
+    class="footer d-flex justify-content-center align-items-center"
+  >
+    <div class="content">
+      <div
+        class="social-media d-flex justify-content-center align-items-center"
+      >
+        <div class="link">
+          <a href="https://www.instagram.com/saragusfit/" target="_blank">
+            <img src="../../assets/icons/instagram.png" alt="Instagram logo" class="logo"/>
+          </a>
+        </div>
+        <div class="link">
+          <a href="https://www.instagram.com/saragusfit/" target="_blank">
+            <img src="../../assets/icons/facebook.png" alt="Facebook logo" class="logo" />
+          </a>
+        </div>
+      </div>
+      <div class="links"></div>
+      <div class="copy"></div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -34,5 +56,22 @@ export default {
     rgba(222, 147, 193, 1) 45%,
     rgba(25, 79, 146, 1) 100%
   );
+
+
+
+  .content {
+    .social-media {
+      .link {
+        border-radius: 50%;
+        padding: 1rem;
+
+        .logo {
+          width: 40px;
+        }
+
+      }
+    }
+  }
+
 }
 </style>

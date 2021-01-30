@@ -5,6 +5,7 @@
     <AboutUsComponent></AboutUsComponent>
     <PersonalCardsSectionComponent></PersonalCardsSectionComponent>
     <PersonalizedWorkoutPlanComponent></PersonalizedWorkoutPlanComponent>
+    <TheProccessComponent></TheProccessComponent>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import MissionAndVisionComponent from "../components/home/MissionAndVisionCompon
 import AboutUsComponent from "../components/home/AboutUsComponent";
 import PersonalCardsSectionComponent from "../components/home/PersonalCardsSectionComponent";
 import PersonalizedWorkoutPlanComponent from "../components/home/PersonalizedWorkoutPlanComponent";
+import TheProccessComponent from "../components/home/TheProccessComponent";
 
 export default {
   name: "Homepage",
@@ -22,7 +24,8 @@ export default {
     MissionAndVisionComponent,
     AboutUsComponent,
     PersonalCardsSectionComponent,
-    PersonalizedWorkoutPlanComponent
+    PersonalizedWorkoutPlanComponent,
+    TheProccessComponent
   }
 };
 </script>
