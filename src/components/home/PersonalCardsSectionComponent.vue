@@ -34,7 +34,7 @@ export default {
     return {
       coachs: [
         {
-          image: require("../../assets/home/saragusfit-photo-sara-test.jpeg"),
+          image: require("../../assets/home/saragusfit-photo-sara.jpeg"),
           coach: {
             name: "Sara",
             description:
