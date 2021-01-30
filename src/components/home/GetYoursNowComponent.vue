@@ -3,7 +3,11 @@
     <TitleComponent title="GET YOURS NOW"></TitleComponent>
 
     <div class="services row justify-content-center align-items-center mt-3">
-      <div class="col-11 col-md-4 p-1 mx-5" v-for="(plan, idx) in plans" :key="idx">
+      <div
+        class="col-11 col-md-4 col-xl-3 p-1 mx-5"
+        v-for="(plan, idx) in plans"
+        :key="idx"
+      >
         <PlanComponent
           :plan="plan"
           data-aos="fade-up"
@@ -51,6 +55,5 @@ export default {
 .get-yours-now {
   margin-top: 3rem;
   width: 95vw;
-
 }
 </style>

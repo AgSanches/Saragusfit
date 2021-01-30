@@ -7,6 +7,7 @@
     <PersonalizedWorkoutPlanComponent></PersonalizedWorkoutPlanComponent>
     <TheProccessComponent></TheProccessComponent>
     <GetYoursNowComponent></GetYoursNowComponent>
+    <SuccessStoriesComponent></SuccessStoriesComponent>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import PersonalCardsSectionComponent from "../components/home/PersonalCardsSecti
 import PersonalizedWorkoutPlanComponent from "../components/home/PersonalizedWorkoutPlanComponent";
 import TheProccessComponent from "../components/home/TheProccessComponent";
 import GetYoursNowComponent from "../components/home/GetYoursNowComponent";
+import SuccessStoriesComponent from "../components/home/SuccessStoriesComponent";
 
 export default {
   name: "Homepage",
@@ -28,7 +30,8 @@ export default {
     PersonalCardsSectionComponent,
     PersonalizedWorkoutPlanComponent,
     TheProccessComponent,
-    GetYoursNowComponent
+    GetYoursNowComponent,
+    SuccessStoriesComponent
   }
 };
 </script>

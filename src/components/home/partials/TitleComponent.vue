@@ -5,7 +5,7 @@
     data-aos-duration="1500"
   >
     <div class="line mr-2"></div>
-    <h3 class="title font-weight-bold">{{title}}</h3>
+    <h3 class="title font-weight-bold">{{ title }}</h3>
     <div class="line ml-2"></div>
   </div>
 </template>
