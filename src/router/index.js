@@ -18,7 +18,7 @@ const routes = [
         component: InConstructionLayout
       },
       {
-        path: "saragusfit",
+        path: "oli",
         name: "BaseLayout",
         component: BaseLayout,
         children: [

@@ -118,6 +118,14 @@ export default {
   }
 }
 
+.change-content {
+  font-size: 1.2rem;
+}
+
+.change-user {
+  font-size: 1.2rem;
+}
+
 @keyframes reflejo {
   0% {
     transform: translateX(40vw) skewX(20deg);
@@ -145,7 +153,7 @@ export default {
   background-size: cover;
 
   @media screen and (max-width: 599px) {
-    height: 35rem;
+    height: 37rem;
   }
 
   height: 45rem;
