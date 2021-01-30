@@ -1,7 +1,7 @@
 <template>
   <div id="success-stories" class="success-stories">
     <div class="overlay overlay-black"></div>
-    <div class="wrapper-reflejos">
+    <div class="wrapper-reflejos" data-aos="zoom-in" data-aos-duration="2000">
       <div class="reflejos"></div>
       <div class="reflejos segundo"></div>
     </div>
