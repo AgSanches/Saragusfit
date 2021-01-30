@@ -1,6 +1,8 @@
 <template>
   <div
     class="the-title-wrapper d-flex justify-content-center align-items-center"
+    data-aos="zoom-in"
+    data-aos-duration="1500"
   >
     <div class="line mr-2"></div>
     <h3 class="title font-weight-bold">{{title}}</h3>

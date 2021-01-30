@@ -1,5 +1,5 @@
 <template>
-  <div class="plan text-center rainbow">
+  <div class="plan text-center rainbow d-flex flex-column align-items-center justify-content-center">
     <h5 class="plan-title text-primary font-weight-bold">
       {{ plan.name }}
     </h5>
@@ -50,41 +50,43 @@ export default {
   }
 }
 
-.rainbow {
-  position: relative;
-  z-index: 0;
-  border-radius: 10px;
-  overflow: hidden;
-  padding: 1rem;
+@media screen and (min-width: 599px) {
+  .rainbow {
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 1rem;
 
-  &::before {
-    content: "";
-    position: absolute;
-    z-index: -2;
-    left: -50%;
-    top: -50%;
-    width: 200%;
-    height: 200%;
-    background-color: #399953;
-    background-repeat: no-repeat;
-    background-size: 50% 50%, 50% 50%;
-    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-    background-image: linear-gradient(#de93c1, #de93c1),
-      linear-gradient(#194f92, #194f92), linear-gradient(#de93c1, #de93c1),
-      linear-gradient(#194f92, #194f92);
-    animation: rotate 10s linear infinite;
-  }
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #399953;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#fff, #de93c1),
+        linear-gradient(#de93c1, #fff), linear-gradient(#fff, #de93c1),
+        linear-gradient(#fff, #de93c1);
+      animation: rotate 10s linear infinite;
+    }
 
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 6px;
-    top: 6px;
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);
-    background: white;
-    border-radius: 5px;
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+    }
   }
 }
 
@@ -95,6 +97,7 @@ export default {
   box-shadow: 0px 10px 5px 10px rgba(140, 140, 140, 0.5);
   cursor: pointer;
   transition: all 1s;
+  margin-bottom: 1.5rem;
 
   animation: border 2s infinite;
 
