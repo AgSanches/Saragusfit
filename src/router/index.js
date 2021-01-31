@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import App from "../App.vue";
 
 import BaseLayout from "../layouts/BaseLayout.vue";
@@ -17,7 +17,7 @@ const routes = [
         component: BaseLayout,
         children: [
           {
-            path: "",
+            path: "/",
             name: "Homepage",
             component: Homepage
           }
@@ -28,7 +28,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 });
 

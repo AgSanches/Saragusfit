@@ -9,6 +9,7 @@
     <GetYoursNowComponent></GetYoursNowComponent>
     <SuccessStoriesComponent></SuccessStoriesComponent>
     <WhatsappComponent></WhatsappComponent>
+    <TopUpButtonComponent></TopUpButtonComponent>
   </div>
 </template>
 
@@ -22,6 +23,7 @@ import TheProccessComponent from "../components/home/TheProccessComponent";
 import GetYoursNowComponent from "../components/home/GetYoursNowComponent";
 import SuccessStoriesComponent from "../components/home/SuccessStoriesComponent";
 import WhatsappComponent from "../components/general/WhatsappComponent";
+import TopUpButtonComponent from "../components/general/TopUpButtonComponent";
 
 export default {
   name: "Homepage",
@@ -34,7 +36,8 @@ export default {
     TheProccessComponent,
     GetYoursNowComponent,
     SuccessStoriesComponent,
-    WhatsappComponent
+    WhatsappComponent,
+    TopUpButtonComponent
   }
 };
 </script>

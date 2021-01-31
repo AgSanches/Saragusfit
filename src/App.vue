@@ -78,6 +78,10 @@ html {
   background: #555;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @import "styles/fonts";
 @import "~bootstrap/scss/bootstrap";
 </style>
