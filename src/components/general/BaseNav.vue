@@ -20,9 +20,9 @@
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active" v-for="(link, idx) in links" :key="idx">
-          <router-link class="nav-link" :to="link.to">
+          <a class="nav-link" :href="link.to">
             {{ link.name }}
-          </router-link>
+          </a>
         </li>
       </ul>
     </div>

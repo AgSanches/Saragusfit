@@ -24,15 +24,23 @@ export default {
       links: [
         {
           name: "Home",
-          to: ""
+          to: "/"
         },
         {
           name: "About us",
-          to: ""
+          to: "#about-us"
         },
         {
           name: "What we offer",
-          to: ""
+          to: "#personalized-workout-plan"
+        },
+        {
+          name: "Start now",
+          to: "#get-yours-now"
+        },
+        {
+          name: "Success Stories",
+          to: "#success-stories"
         }
       ]
     };
