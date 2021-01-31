@@ -8,6 +8,7 @@
     <TheProccessComponent></TheProccessComponent>
     <GetYoursNowComponent></GetYoursNowComponent>
     <SuccessStoriesComponent></SuccessStoriesComponent>
+    <WhatsappComponent></WhatsappComponent>
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import PersonalizedWorkoutPlanComponent from "../components/home/PersonalizedWor
 import TheProccessComponent from "../components/home/TheProccessComponent";
 import GetYoursNowComponent from "../components/home/GetYoursNowComponent";
 import SuccessStoriesComponent from "../components/home/SuccessStoriesComponent";
+import WhatsappComponent from "../components/general/WhatsappComponent";
 
 export default {
   name: "Homepage",
@@ -31,7 +33,8 @@ export default {
     PersonalizedWorkoutPlanComponent,
     TheProccessComponent,
     GetYoursNowComponent,
-    SuccessStoriesComponent
+    SuccessStoriesComponent,
+    WhatsappComponent
   }
 };
 </script>
