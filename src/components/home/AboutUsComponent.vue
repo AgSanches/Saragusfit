@@ -165,6 +165,10 @@ export default {
   background-image: url("../../assets/home/saragusfit_winter_sports_2.jpg");
   background-size: cover;
   background-position: center;
+
+  @media screen and (max-width: 599px) {
+    min-height: 25rem;
+  }
 }
 
 @keyframes rotate {
