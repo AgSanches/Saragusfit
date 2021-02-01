@@ -8,6 +8,7 @@
     <TheProccessComponent></TheProccessComponent>
     <GetYoursNowComponent></GetYoursNowComponent>
     <SuccessStoriesComponent></SuccessStoriesComponent>
+    <SocialMediaComponent></SocialMediaComponent>
     <WhatsappComponent></WhatsappComponent>
     <TopUpButtonComponent></TopUpButtonComponent>
   </div>
@@ -24,6 +25,7 @@ import GetYoursNowComponent from "../components/home/GetYoursNowComponent";
 import SuccessStoriesComponent from "../components/home/SuccessStoriesComponent";
 import WhatsappComponent from "../components/general/WhatsappComponent";
 import TopUpButtonComponent from "../components/general/TopUpButtonComponent";
+import SocialMediaComponent from "../components/home/SocialMediaComponent";
 
 export default {
   name: "Homepage",
@@ -37,7 +39,8 @@ export default {
     GetYoursNowComponent,
     SuccessStoriesComponent,
     WhatsappComponent,
-    TopUpButtonComponent
+    TopUpButtonComponent,
+    SocialMediaComponent
   }
 };
 </script>

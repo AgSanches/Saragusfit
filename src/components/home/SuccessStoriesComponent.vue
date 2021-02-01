@@ -13,48 +13,50 @@
         </p>
       </div>
       <div class="row justify-content-center align-items-center">
-        <div
-          class="col-12 row align-items-center justify-content-center "
-          v-for="(review, idx) in reviews"
-          :key="idx"
-        >
-          <div
-            class="col-12 col-md-7 col-xl-5 row justify-content-center align-items-center"
+        <swiper :slides-per-view="1" effect="cube" :lazy="true">
+          <swiper-slide
+            v-for="(review, idx) in reviews"
+            :key="idx"
+            class="col-12 d-flex align-items-center justify-content-center success-stories-swiper"
           >
-            <div class="col-6 p-1">
-              <SuccessStoriesChangeComponent
-                :image="review.images[0]"
-                text="Before"
-                data-aos="zoom-in"
-                data-aos-duration="1000"
-              ></SuccessStoriesChangeComponent>
-            </div>
-
-            <div class="col-6 p-1 after-change">
-              <SuccessStoriesChangeComponent
-                :image="review.images[1]"
-                text="After"
-                data-aos="zoom-in"
-                data-aos-duration="1000"
-                data-aos-delay="150"
-              ></SuccessStoriesChangeComponent>
-            </div>
-          </div>
-          <div
-            class="col-12 col-md-5 col-xl-4 mt-2 mt-md-0"
-            data-aos="fade-up-left"
-            data-aos-duration="1500"
-          >
-            <p class="change-content text-white">
-              {{ review.text }}
-            </p>
-            <p
-              class="change-user text-center font-italic text-primary font-weight-bold"
+            <div
+              class="col-12 col-md-7 col-xl-5 row justify-content-center align-items-center"
             >
-              {{ review.user }}
-            </p>
-          </div>
-        </div>
+              <div class="col-6 p-1">
+                <SuccessStoriesChangeComponent
+                  :image="review.images[0]"
+                  text="Before"
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                ></SuccessStoriesChangeComponent>
+              </div>
+
+              <div class="col-6 p-1 after-change">
+                <SuccessStoriesChangeComponent
+                  :image="review.images[1]"
+                  text="After"
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-delay="150"
+                ></SuccessStoriesChangeComponent>
+              </div>
+            </div>
+            <div
+              class="col-12 col-md-5 col-xl-4 mt-2 mt-md-0"
+              data-aos="fade-up-left"
+              data-aos-duration="1500"
+            >
+              <p class="change-content text-white">
+                {{ review.text }}
+              </p>
+              <p
+                class="change-user text-center font-italic text-primary font-weight-bold"
+              >
+                {{ review.user }}
+              </p>
+            </div>
+          </swiper-slide>
+        </swiper>
       </div>
     </div>
   </div>
@@ -62,15 +64,44 @@
 
 <script>
 import SuccessStoriesChangeComponent from "./partials/SuccessStorieChangeComponent";
+import SwiperCore, { EffectFade, Lazy } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/vue";
+
+// Import Swiper styles
+import "swiper/swiper.scss";
+import "swiper/components/effect-cube/effect-cube.min.css";
+import "swiper/components/lazy/lazy.min.css";
+
+SwiperCore.use([EffectFade, Lazy]);
 
 export default {
   name: "SuccessStoriesComponent",
   components: {
-    SuccessStoriesChangeComponent
+    SuccessStoriesChangeComponent,
+    Swiper,
+    SwiperSlide
   },
   data: () => {
     return {
       reviews: [
+        {
+          text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dolor mauris, tincidunt nec finibus ut, eleifend a diam. Nulla facilisi. Ut mollis, velit quis efficitur",
+          user: "Amina Augusto",
+          images: [
+            require("../../assets/home/saragusfit-photo-sara.jpeg"),
+            require("../../assets/home/saragusfit-photo-agustina.jpeg")
+          ]
+        },
+        {
+          text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dolor mauris, tincidunt nec finibus ut, eleifend a diam. Nulla facilisi. Ut mollis, velit quis efficitur",
+          user: "Amina Augusto",
+          images: [
+            require("../../assets/home/saragusfit-photo-sara.jpeg"),
+            require("../../assets/home/saragusfit-photo-agustina.jpeg")
+          ]
+        },
         {
           text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dolor mauris, tincidunt nec finibus ut, eleifend a diam. Nulla facilisi. Ut mollis, velit quis efficitur",
@@ -87,7 +118,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.wrapper-reflejos {
+
+  .wrapper-reflejos {
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -187,5 +219,9 @@ export default {
       transform: translateY(35px);
     }
   }
+}
+
+.success-stories-swiper {
+  min-height: 30rem;
 }
 </style>

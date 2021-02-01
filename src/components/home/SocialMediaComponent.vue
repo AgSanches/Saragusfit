@@ -1,22 +1,24 @@
 <template>
-  <div class="social-media">
+  <div class="social-media mt-4">
     <TitleComponent title="FOLLOW US"></TitleComponent>
-
-    <vue-instagram></vue-instagram>
   </div>
 </template>
 
 <script>
-import VueInstagram from "vue-instagram";
 import TitleComponent from "./partials/TitleComponent";
+import apiToken from "../../repository/instagramCredentials.js";
 
 export default {
   name: "SocialMediaComponent",
+  data: () => {
+    return {
+      tokenInstagram: apiToken
+    };
+  },
   components: {
-    VueInstagram,
     TitleComponent
   }
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>
