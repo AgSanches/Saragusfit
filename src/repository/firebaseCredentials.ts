@@ -11,6 +11,7 @@ const firebaseConfig = {
   appId: "1:1070936397680:web:3197a2ce50be0441"
 };
 
+firebase.analytics();
 firebase.initializeApp(firebaseConfig);
 
 // export utils/refs

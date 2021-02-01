@@ -3,33 +3,44 @@
     <BaseNav :links="links"></BaseNav>
     <TheSidebar :links="links"></TheSidebar>
     <router-view></router-view>
+    <TheFooter></TheFooter>
   </div>
 </template>
 
 <script>
 import BaseNav from "../components/general/BaseNav.vue";
 import TheSidebar from "../components/general/TheSidebar.vue";
+import TheFooter from "../components/general/TheFooter";
 
 export default {
   name: "BaseLayout",
   components: {
     BaseNav,
-    TheSidebar
+    TheSidebar,
+    TheFooter
   },
   data: () => {
     return {
       links: [
         {
           name: "Home",
-          to: ""
+          to: "/"
         },
         {
           name: "About us",
-          to: ""
+          to: "#about-us"
         },
         {
           name: "What we offer",
-          to: ""
+          to: "#personalized-workout-plan"
+        },
+        {
+          name: "Start now",
+          to: "#get-yours-now"
+        },
+        {
+          name: "Success Stories",
+          to: "#success-stories"
         }
       ]
     };

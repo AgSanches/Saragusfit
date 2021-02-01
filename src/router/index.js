@@ -1,8 +1,7 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import App from "../App.vue";
 
 import BaseLayout from "../layouts/BaseLayout.vue";
-import InConstructionLayout from "../layouts/InConstructionLayout.vue";
 
 import Homepage from "../views/Homepage.vue";
 
@@ -14,16 +13,11 @@ const routes = [
     children: [
       {
         path: "/",
-        name: "InConstructionLayout",
-        component: InConstructionLayout
-      },
-      {
-        path: "saragusfit",
         name: "BaseLayout",
         component: BaseLayout,
         children: [
           {
-            path: "",
+            path: "/",
             name: "Homepage",
             component: Homepage
           }
@@ -34,7 +28,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 });
 
