@@ -81,15 +81,9 @@
       <div
         class="image-wrapper col-12 col-md-4 d-flex align-items-center mt-2 mt-md-0"
         data-aos="zoom-in"
-        data-aos-duration="1000"
+        data-aos-duration="1500"
         data-aos-delay="100"
-      >
-        <img
-          class="image w-100"
-          src="../../assets/home/saragusfit_winter_sports.jpg"
-          alt="Image about us winter sports"
-        />
-      </div>
+      ></div>
     </div>
   </section>
 </template>
@@ -165,6 +159,12 @@ export default {
       }
     }
   }
+}
+
+.image-wrapper {
+  background-image: url("../../assets/home/saragusfit_winter_sports_2.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 @keyframes rotate {

@@ -1,5 +1,9 @@
 <template>
-  <div id="success-stories" class="success-stories">
+  <div
+    id="success-stories"
+    class="success-stories"
+    :style="`background-image: url('${getImageBackground}')`"
+  >
     <div class="overlay overlay-black"></div>
     <div class="wrapper-reflejos" data-aos="zoom-in" data-aos-duration="2000">
       <div class="reflejos"></div>
@@ -13,47 +17,57 @@
         </p>
       </div>
       <div class="row justify-content-center align-items-center">
-        <swiper :slides-per-view="1" effect="cube" :lazy="true">
+        <swiper
+          :slides-per-view="1"
+          effect="coverflow"
+          :lazy="true"
+          :pagination="{ clickable: true }"
+          :loop="true"
+        >
           <swiper-slide
             v-for="(review, idx) in reviews"
             :key="idx"
-            class="col-12 d-flex align-items-center justify-content-center success-stories-swiper"
+            class="success-stories-swiper"
           >
             <div
-              class="col-12 col-md-7 col-xl-5 row justify-content-center align-items-center"
+              class="col-12 row align-items-center justify-content-center mx-auto"
             >
-              <div class="col-6 p-1">
-                <SuccessStoriesChangeComponent
-                  :image="review.images[0]"
-                  text="Before"
-                  data-aos="zoom-in"
-                  data-aos-duration="1000"
-                ></SuccessStoriesChangeComponent>
-              </div>
-
-              <div class="col-6 p-1 after-change">
-                <SuccessStoriesChangeComponent
-                  :image="review.images[1]"
-                  text="After"
-                  data-aos="zoom-in"
-                  data-aos-duration="1000"
-                  data-aos-delay="150"
-                ></SuccessStoriesChangeComponent>
-              </div>
-            </div>
-            <div
-              class="col-12 col-md-5 col-xl-4 mt-2 mt-md-0"
-              data-aos="fade-up-left"
-              data-aos-duration="1500"
-            >
-              <p class="change-content text-white">
-                {{ review.text }}
-              </p>
-              <p
-                class="change-user text-center font-italic text-primary font-weight-bold"
+              <div
+                class="col-12 col-md-7 col-xl-5 row justify-content-center align-items-center"
               >
-                {{ review.user }}
-              </p>
+                <div class="col-6 p-1">
+                  <SuccessStoriesChangeComponent
+                    :image="review.images[0]"
+                    text="Before"
+                    data-aos="zoom-in"
+                    data-aos-duration="1000"
+                  ></SuccessStoriesChangeComponent>
+                </div>
+
+                <div class="col-6 p-1 after-change">
+                  <SuccessStoriesChangeComponent
+                    :image="review.images[1]"
+                    text="After"
+                    data-aos="zoom-in"
+                    data-aos-duration="1000"
+                    data-aos-delay="150"
+                  ></SuccessStoriesChangeComponent>
+                </div>
+              </div>
+              <div
+                class="col-12 col-md-5 col-xl-4 mt-2 mt-md-0"
+                data-aos="fade-up-left"
+                data-aos-duration="1500"
+              >
+                <p class="change-content text-white">
+                  {{ review.text }}
+                </p>
+                <p
+                  class="change-user text-center font-italic text-primary font-weight-bold"
+                >
+                  {{ review.user }}
+                </p>
+              </div>
             </div>
           </swiper-slide>
         </swiper>
@@ -64,15 +78,15 @@
 
 <script>
 import SuccessStoriesChangeComponent from "./partials/SuccessStorieChangeComponent";
-import SwiperCore, { EffectFade, Lazy } from "swiper";
+import SwiperCore, { EffectCoverflow, Lazy } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 // Import Swiper styles
 import "swiper/swiper.scss";
-import "swiper/components/effect-cube/effect-cube.min.css";
-import "swiper/components/lazy/lazy.min.css";
+import "swiper/components/effect-coverflow/effect-coverflow.scss";
+import "swiper/components/lazy/lazy.scss";
 
-SwiperCore.use([EffectFade, Lazy]);
+SwiperCore.use([EffectCoverflow, Lazy]);
 
 export default {
   name: "SuccessStoriesComponent",
@@ -86,7 +100,7 @@ export default {
       reviews: [
         {
           text:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dolor mauris, tincidunt nec finibus ut, eleifend a diam. Nulla facilisi. Ut mollis, velit quis efficitur",
+            "Mira, pues antes iba Rx, ahora estoy cogiendo el RXXX ni tan mal",
           user: "Amina Augusto",
           images: [
             require("../../assets/home/saragusfit-photo-sara.jpeg"),
@@ -95,7 +109,7 @@ export default {
         },
         {
           text:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dolor mauris, tincidunt nec finibus ut, eleifend a diam. Nulla facilisi. Ut mollis, velit quis efficitur",
+            "Al principio no partía los 90 grados en sentadilla, ahora voy mejor la verdad",
           user: "Amina Augusto",
           images: [
             require("../../assets/home/saragusfit-photo-sara.jpeg"),
@@ -103,23 +117,33 @@ export default {
           ]
         },
         {
-          text:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dolor mauris, tincidunt nec finibus ut, eleifend a diam. Nulla facilisi. Ut mollis, velit quis efficitur",
+          text: "Paz descanse el entreno",
           user: "Amina Augusto",
           images: [
             require("../../assets/home/saragusfit-photo-sara.jpeg"),
             require("../../assets/home/saragusfit-photo-agustina.jpeg")
           ]
         }
-      ]
+      ],
+      windowWidth: window.innerWidth
     };
+  },
+  computed: {
+    getImageBackground() {
+      const isMobile = this.windowWidth < 599;
+
+      if (isMobile) {
+        return require("../../assets/home/saragusfit-success-stories-mobile.jpg");
+      }
+
+      return require("../../assets/home/saragusfit-success-stories.jpg");
+    }
   }
 };
 </script>
 
 <style scoped lang="scss">
-
-  .wrapper-reflejos {
+.wrapper-reflejos {
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -180,12 +204,11 @@ export default {
 }
 
 .success-stories {
-  background-image: url("../../assets/home/saragusfit-success-stories.jpg");
   width: 100vw;
   background-size: cover;
 
   @media screen and (max-width: 599px) {
-    height: 37rem;
+    height: 34rem;
   }
 
   height: 45rem;
@@ -221,7 +244,9 @@ export default {
   }
 }
 
-.success-stories-swiper {
-  min-height: 30rem;
+@media screen and (min-width: 599px) {
+  .success-stories-swiper {
+    min-height: 30rem;
+  }
 }
 </style>

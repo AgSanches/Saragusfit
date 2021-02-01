@@ -7,9 +7,12 @@
       <div class="logo-wrapper">
         <img src="../../assets/logo.png" alt="Logo Saragusfit" class="logo" />
       </div>
-      <h1 class="page-title text-center mt-1 text-white font-weight-bold">
-        Saragusfit
-      </h1>
+      <div class="typewriter">
+        <h1 class="page-title text-center mt-1 text-white font-weight-bold">
+          Saragusfit
+        </h1>
+      </div>
+
       <div class="dumbells d-flex justify-content-center">
         <div
           class="wrapper d-flex justify-content-center align-items-center"
@@ -34,7 +37,7 @@ export default {
   methods: {
     ...mapMutations("general", ["setLoadingFalse"]),
     setTimeOutLoader() {
-      setTimeout(this.setLoadingFalse, 1000);
+      setTimeout(this.setLoadingFalse, 2000);
     }
   }
 };
@@ -63,7 +66,7 @@ export default {
       background-color: white;
       margin: 0.75rem;
       animation-name: scaleIn;
-      animation-duration: 0.7s;
+      animation-duration: 1.5s;
       transform: scale(0);
 
       &:nth-child(1) {
@@ -119,6 +122,36 @@ export default {
   }
   100% {
     transform: scale(0);
+  }
+}
+
+.typewriter h1 {
+  overflow: hidden;
+  border-right: 0.15em solid #de93c1;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 1.5s steps(20, end), blink-caret 0.75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #de93c1;
   }
 }
 </style>
