@@ -9,6 +9,7 @@
           src="../assets/logo.png"
           alt="Instagram logo"
           class="logo-saragusfit"
+          width="100"
         />
       </div>
       <h1 class="title">Saragusfit</h1>

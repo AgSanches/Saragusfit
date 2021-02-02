@@ -3,26 +3,22 @@
     <div class="separate"></div>
     <div class="container">
       <div class="row align-items-end p-3">
-        <div class="mission" data-aos="fade-left" data-aos-duration="1500">
+        <div class="mission col-12" data-aos="fade-left" data-aos-duration="1500">
           <h2 class="title">OUR MISSION</h2>
           <p class="content">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
-            eligendi error esse iusto mollitia, quam sapiente ut. Et,
-            perferendis ut.
+            Promote physical activity & an active lifestyle to achieve your fitness goal.
           </p>
         </div>
 
         <div
-          class="vision"
+          class="vision col-12 text-right"
           data-aos="fade-right"
           data-aos-duration="1500"
           data-aos-delay="100"
         >
           <h2 class="title">OUR VISION</h2>
           <p class="content">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
-            eligendi error esse iusto mollitia, quam sapiente ut. Et,
-            perferendis ut.
+            Be and make people happy and confident.
           </p>
         </div>
       </div>
@@ -63,6 +59,7 @@ export default {
   .content {
     color: #e9ecef;
     padding-left: 1rem;
+    font-size: 1.25rem;
   }
 }
 

@@ -38,7 +38,7 @@ export default {
           coach: {
             name: "Sara",
             description:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ornare est finibus justo pharetra molestie. Etiam vel suscipit odio. Sed rutrum dui eros, at pulvinar",
+              "Every little bit helps, and all of the bits really add up. I want to help you achieve your fitness goals and make you feel good and empowered! Because this is a beautiful journey in which you are the narrator and where you will see amazing changes in the short and long term.",
             instagram_link: "",
             facebook_link: "",
             image_description: "Image of Sara"

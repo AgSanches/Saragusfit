@@ -9,13 +9,12 @@
       data-aos-duration="1500"
     >
       <h3 class="personalized-workout-plan-title font-weight-bold text-primary">
-        The Personalized Workout Plan
+        Your Personalized Workout Plan
       </h3>
 
       <div class="personalized-workout-plan-addition">
         <p class="personalized-workout-plan-subtitle">
-          We are going to guide you through the process, applying positive
-          psychology, identifying your strengths and cultivating them.
+          We will guide you through the process, applying positive psychology, identifying your strengths, and cultivating them.
         </p>
 
         <p class="personalized-workout-plan-client-goals-title">
@@ -62,9 +61,9 @@ export default {
           aos: "fade-down-right"
         },
         {
-          title: "The Coaching process",
+          title: "Coaching",
           text:
-            "When clients learn to bring their strength to a challenge, it helps them tap into their intrinsic motivations and can help them improve performance and find more satisfaction in the task accomplishment.",
+            "We apply positive psychology, identifying your strengths and cultivating them. When clients learn to bring their power to a challenge, it helps them tap into their intrinsic motivations and improve performance and find more satisfaction in the task accomplishment.\n",
           image: require("../../assets/icons/coach.png"),
           aos: "fade-down-left"
         },

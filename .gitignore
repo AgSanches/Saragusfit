@@ -26,3 +26,4 @@ pnpm-debug.log*
 *.sln
 *.sw?
 /src/repository/firebaseCredentials.ts
+/src/repository/firebaseCredentials.ts

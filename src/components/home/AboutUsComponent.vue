@@ -10,8 +10,10 @@
           <p class="content" data-aos="fade-up" data-aos-duration="1000">
             The brand
             <span class="font-weight-bold text-primary">SARAGUSFIT</span>
-            stemmed from the combination of our names, Sara and Agustina. We
-            started
+            stemmed from the combination of our names, Sara and Agustina.
+          </p>
+          <p class="content" data-aos="fade-up" data-aos-duration="1000">
+            We started
             <span class="font-weight-bold text-primary">SARAGUSFIT</span> almost
             two years ago as a way for us to take our passion and fitness
             knowledge and turn it into something that would help others. We are

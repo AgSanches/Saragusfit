@@ -1,6 +1,7 @@
 <template>
   <div class="social-media mt-4">
     <TitleComponent title="FOLLOW US"></TitleComponent>
+
   </div>
 </template>
 
