@@ -11,7 +11,7 @@
           <a
             href="https://www.instagram.com/saragusfit/"
             target="_blank"
-            rel="”nofollow”"
+            rel="noopener noreferrer"
           >
             <img
               src="../../assets/icons/instagram.png"
@@ -24,7 +24,7 @@
           <a
             href="https://www.facebook.com/saragusfit/?ref=page_internal"
             target="_blank"
-            rel="”nofollow”"
+            rel="noopener noreferrer"
           >
             <img
               src="../../assets/icons/facebook.png"
@@ -37,7 +37,7 @@
           <a
             href="mailto:saragusfit@gmail.com"
             target="_blank"
-            rel="”nofollow”"
+            rel="noopener noreferrer"
           >
             <img
               src="../../assets/icons/email.png"

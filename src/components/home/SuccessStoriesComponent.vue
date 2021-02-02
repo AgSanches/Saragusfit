@@ -11,7 +11,7 @@
     </div>
     <div class="content mx-auto">
       <div class="success-stories-title text-center">
-        <h6 class="title font-weight-bold">Success Stories</h6>
+        <h5 class="title font-weight-bold">Success Stories</h5>
         <p class="subtitle font-italic">
           We don’t just sell, we’re beloved too.
         </p>
@@ -23,6 +23,7 @@
           :lazy="true"
           :pagination="{ clickable: true }"
           :loop="true"
+          navigation
         >
           <swiper-slide
             v-for="(review, idx) in reviews"
@@ -78,15 +79,22 @@
 
 <script>
 import SuccessStoriesChangeComponent from "./partials/SuccessStorieChangeComponent";
-import SwiperCore, { EffectCoverflow, Lazy } from "swiper";
+import SwiperCore, {
+  EffectCoverflow,
+  Lazy,
+  Navigation,
+  Pagination
+} from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 // Import Swiper styles
 import "swiper/swiper.scss";
 import "swiper/components/effect-coverflow/effect-coverflow.scss";
 import "swiper/components/lazy/lazy.scss";
+import "swiper/components/navigation/navigation.scss";
+import "swiper/components/pagination/pagination.scss";
 
-SwiperCore.use([EffectCoverflow, Lazy]);
+SwiperCore.use([EffectCoverflow, Lazy, Navigation, Pagination]);
 
 export default {
   name: "SuccessStoriesComponent",

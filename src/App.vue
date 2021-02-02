@@ -82,6 +82,16 @@ html {
   scroll-behavior: smooth;
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+  color: $primary !important;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: $primary !important;
+}
+
 @import "styles/fonts";
 @import "~bootstrap/scss/bootstrap";
 </style>

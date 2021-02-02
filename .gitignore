@@ -1,6 +1,10 @@
+
 .DS_Store
 node_modules
 /dist
+
+src/repository/firebaseCredentials.ts
+src/repository/instagramCredentials.js
 
 
 # local env files

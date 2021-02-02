@@ -1,8 +1,8 @@
 <template>
   <div class="plan text-center rainbow d-flex flex-column align-items-center justify-content-center">
-    <h5 class="plan-title text-primary font-weight-bold">
+    <h4 class="plan-title text-primary font-weight-bold">
       {{ plan.name }}
-    </h5>
+    </h4>
 
     <img
       :src="plan.icon"
