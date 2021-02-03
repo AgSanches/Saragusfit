@@ -171,6 +171,11 @@ export default {
   @media screen and (max-width: 599px) {
     min-height: 25rem;
   }
+
+  @media screen and (min-width: 1920px) {
+    max-width: 350px;
+    margin: 0 auto;
+  }
 }
 
 @keyframes rotate {

@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import "firebase/analytics";
 
 // firebase init - add your own config here
 const firebaseConfig = {

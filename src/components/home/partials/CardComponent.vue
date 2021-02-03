@@ -54,6 +54,11 @@ export default {
   position: relative;
   overflow: hidden;
 
+  @media screen and (min-width: 1440px) {
+    max-width: 27rem;
+    margin: 0 auto;
+  }
+
   &:hover {
     .gradient-coach {
       opacity: 1;

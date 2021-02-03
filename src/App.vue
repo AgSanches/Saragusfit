@@ -92,7 +92,6 @@ html {
   background: $primary !important;
 }
 
-
 @import "styles/fonts";
 @import "~bootstrap/scss/bootstrap";
 </style>

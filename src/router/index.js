@@ -15,7 +15,7 @@ const routes = [
       {
         path: "/",
         name: "InConstructionLayout",
-        component: InConstructionLayout,
+        component: InConstructionLayout
       },
       {
         path: "/oli",

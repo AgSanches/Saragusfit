@@ -2,6 +2,7 @@
   <div class="get-yours-now mx-auto" id="get-yours-now">
     <TitleComponent title="GET YOURS NOW"></TitleComponent>
 
+    <ModalStartNowPlanComponent></ModalStartNowPlanComponent>
     <div class="services row justify-content-center align-items-center mt-3">
       <div
         class="col-11 col-md-4 col-xl-3 p-1 mx-5"
@@ -21,12 +22,14 @@
 <script>
 import TitleComponent from "./partials/TitleComponent";
 import PlanComponent from "./partials/PlanComponent";
+import ModalStartNowPlanComponent from "./partials/ModalStartNowPlanComponent";
 
 export default {
   name: "GetYoursNowComponent",
   components: {
     TitleComponent,
-    PlanComponent
+    PlanComponent,
+    ModalStartNowPlanComponent
   },
   data: () => {
     return {

@@ -23,7 +23,13 @@
           :lazy="true"
           :pagination="{ clickable: true }"
           :loop="true"
-          navigation
+          :navigation="isMobile"
+          :autoplay="{
+            delay: 4000
+          }"
+          :keyboard="{
+            enabled: true
+          }"
         >
           <swiper-slide
             v-for="(review, idx) in reviews"
@@ -83,7 +89,9 @@ import SwiperCore, {
   EffectCoverflow,
   Lazy,
   Navigation,
-  Pagination
+  Pagination,
+  Autoplay,
+  Keyboard
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 
@@ -94,7 +102,14 @@ import "swiper/components/lazy/lazy.scss";
 import "swiper/components/navigation/navigation.scss";
 import "swiper/components/pagination/pagination.scss";
 
-SwiperCore.use([EffectCoverflow, Lazy, Navigation, Pagination]);
+SwiperCore.use([
+  EffectCoverflow,
+  Lazy,
+  Navigation,
+  Pagination,
+  Autoplay,
+  Keyboard
+]);
 
 export default {
   name: "SuccessStoriesComponent",
@@ -108,7 +123,7 @@ export default {
       reviews: [
         {
           text:
-            "Mira, pues antes iba Rx, ahora estoy cogiendo el RXXX ni tan mal",
+            "SARAGUSFIT workouts are so much fun! The music, the environment, and the girls are the perfect combinations to get my body moving without complaints!",
           user: "Amina Augusto",
           images: [
             require("../../assets/home/saragusfit-photo-sara.jpeg"),
@@ -117,16 +132,26 @@ export default {
         },
         {
           text:
-            "Al principio no partía los 90 grados en sentadilla, ahora voy mejor la verdad",
-          user: "Amina Augusto",
+            "SARAGUSFIT workouts are more than just simply exercises! It's a safe place to work on yourself, improve your confidence and become more disciplined! They are such a fun and challenging part of the day!!!",
+          user: "Andres Giraldo",
           images: [
             require("../../assets/home/saragusfit-photo-sara.jpeg"),
             require("../../assets/home/saragusfit-photo-agustina.jpeg")
           ]
         },
         {
-          text: "Paz descanse el entreno",
-          user: "Amina Augusto",
+          text:
+            "An amazing duo, if they can motivate me, they can motivate ANYONE!",
+          user: "Carlotta Peverada",
+          images: [
+            require("../../assets/home/saragusfit-photo-sara.jpeg"),
+            require("../../assets/home/saragusfit-photo-agustina.jpeg")
+          ]
+        },
+        {
+          text:
+            "My experience with SARAGUSFIT training sessions was overall amazing. I usually find working out very difficult, and I lose motivation very fast, but SARAGUSFIT workouts helped me find the joy and fun in working out. Their routines are very dynamic, easy, and effective to do, and the time went so fast! Always with a smile and good energy, I recommend everyone to give it a go!",
+          user: "Natalia Angelucci",
           images: [
             require("../../assets/home/saragusfit-photo-sara.jpeg"),
             require("../../assets/home/saragusfit-photo-agustina.jpeg")
@@ -146,6 +171,9 @@ export default {
 
       return require("../../assets/home/saragusfit-success-stories.jpg");
     }
+  },
+  isMobile() {
+    return this.windowWidth < 599;
   }
 };
 </script>
@@ -183,7 +211,7 @@ export default {
 }
 
 .change-content {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .change-user {
@@ -216,10 +244,10 @@ export default {
   background-size: cover;
 
   @media screen and (max-width: 599px) {
-    height: 34rem;
+    min-height: 34rem;
   }
 
-  height: 45rem;
+  min-height: 45rem;
   position: relative;
   margin-top: 2.5rem;
 

@@ -1,5 +1,7 @@
 <template>
-  <div class="plan text-center rainbow d-flex flex-column align-items-center justify-content-center">
+  <div
+    class="plan text-center rainbow d-flex flex-column align-items-center justify-content-center"
+  >
     <h4 class="plan-title text-primary font-weight-bold">
       {{ plan.name }}
     </h4>
@@ -30,6 +32,8 @@
 </template>
 
 <script>
+import $ from "jquery";
+
 export default {
   name: "PlanComponent",
   props: {
@@ -37,7 +41,7 @@ export default {
   },
   methods: {
     startNowPlan() {
-      alert("Sara es una novatilla");
+      $("#modalStartNowPlanComponent").modal("show");
     }
   }
 };
@@ -98,6 +102,11 @@ export default {
   cursor: pointer;
   transition: all 1s;
   margin-bottom: 1.5rem;
+
+  @media screen and (min-width: 1440px) {
+    max-width: 20rem;
+    margin: 0 auto;
+  }
 
   animation: border 2s infinite;
 
