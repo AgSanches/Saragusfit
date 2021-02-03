@@ -44,7 +44,6 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-
                   <img
                     src="../../../assets/icons/facebook.png"
                     alt="Facebook logo"
@@ -82,11 +81,7 @@
                   />
                 </a>
               </div>
-              <div
-                class="link"
-                data-aos="fade-up"
-                data-aos-duration="1200"
-              >
+              <div class="link" data-aos="fade-up" data-aos-duration="1200">
                 <span class="whatsapp-name">Sara</span>
                 <a
                   href="https://wa.link/d5hqif"

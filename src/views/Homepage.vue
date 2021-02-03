@@ -11,6 +11,7 @@
     <SocialMediaComponent></SocialMediaComponent>
     <WhatsappComponent></WhatsappComponent>
     <TopUpButtonComponent></TopUpButtonComponent>
+    <FreeWorkoutPlanComponent></FreeWorkoutPlanComponent>
   </div>
 </template>
 
@@ -26,6 +27,7 @@ import SuccessStoriesComponent from "../components/home/SuccessStoriesComponent"
 import WhatsappComponent from "../components/general/WhatsappComponent";
 import TopUpButtonComponent from "../components/general/TopUpButtonComponent";
 import SocialMediaComponent from "../components/home/SocialMediaComponent";
+import FreeWorkoutPlanComponent from "../components/home/FreeWorkoutPlanComponent";
 
 export default {
   name: "Homepage",
@@ -40,7 +42,8 @@ export default {
     SuccessStoriesComponent,
     WhatsappComponent,
     TopUpButtonComponent,
-    SocialMediaComponent
+    SocialMediaComponent,
+    FreeWorkoutPlanComponent
   }
 };
 </script>

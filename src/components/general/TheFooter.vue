@@ -82,18 +82,18 @@ export default {
     left: 0;
     top: 0;
     width: 100vw;
-    height: 12.43055vw;
+    height: 11.43055vw;
     background-image: url("../../assets/svg/wave-banner-footer.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     transform-style: preserve-3d;
     transform: translateY(-50%) translateZ(2px) scaleY(0.5) rotate(180deg);
+    z-index: 10;
   }
 
   position: relative;
   min-height: 15rem;
-  margin-top: 7rem;
   background: linear-gradient(
     45deg,
     rgba(222, 147, 193, 1) 45%,
