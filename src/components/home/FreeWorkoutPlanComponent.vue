@@ -18,11 +18,7 @@
         >
       </div>
       <div class="text-wrapper text-white">
-        <p
-          class="text mx-auto"
-          data-aos="fade-up"
-          data-aos-duration="1200"
-        >
+        <p class="text mx-auto" data-aos="fade-up" data-aos-duration="1200">
           Join our fitness challenges, and let us help you achieve your fitness
           goals and improve your performance in no time.
         </p>
