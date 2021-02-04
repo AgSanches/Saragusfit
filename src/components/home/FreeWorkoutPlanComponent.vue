@@ -1,6 +1,6 @@
 <template>
   <div
-    class="free-workout-plan row justify-content-center align-items-center"
+    class="free-workout-plan row justify-content-center align-items-center mx-0"
     id="free-workout-plan"
   >
     <div class="overlay overlay-black"></div>
@@ -19,7 +19,7 @@
       </div>
       <div class="text-wrapper text-white">
         <p
-          class="text w-50 mx-auto"
+          class="text mx-auto"
           data-aos="fade-up"
           data-aos-duration="1200"
         >
@@ -49,6 +49,11 @@ export default {
 .free-workout-plan {
   width: 100vw;
   height: 20rem;
+
+  @media screen and (max-width: 599px) {
+    height: 23rem;
+  }
+
   background-size: cover;
   background-position: center;
   background-image: url("../../assets/home/saragusfit-free-workout.jpg");
