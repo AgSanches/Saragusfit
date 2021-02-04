@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @scroll="handleScroll()">
     <HeaderComponent></HeaderComponent>
     <MissionAndVisionComponent></MissionAndVisionComponent>
     <AboutUsComponent></AboutUsComponent>
@@ -8,7 +8,7 @@
     <TheProccessComponent></TheProccessComponent>
     <GetYoursNowComponent></GetYoursNowComponent>
     <SuccessStoriesComponent></SuccessStoriesComponent>
-    <SocialMediaComponent></SocialMediaComponent>
+    <SocialMediaComponent v-if="showSocialMedia"></SocialMediaComponent>
     <WhatsappComponent></WhatsappComponent>
     <TopUpButtonComponent></TopUpButtonComponent>
     <FreeWorkoutPlanComponent></FreeWorkoutPlanComponent>
@@ -44,6 +44,22 @@ export default {
     TopUpButtonComponent,
     SocialMediaComponent,
     FreeWorkoutPlanComponent
+  },
+  data: () => {
+    return {
+      showSocialMedia: false
+    };
+  },
+  created() {
+    document.addEventListener("scroll", this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      if (!this.showSocialMedia && window.scrollY > 500) {
+        this.showSocialMedia = true;
+        document.removeEventListener("scroll", this.handleScroll);
+      }
+    }
   }
 };
 </script>

@@ -4,7 +4,7 @@
     :space-between="50"
     :loop="true"
     :autoplay="{
-      delay: 4000
+      delay: 2000
     }"
   >
     <swiper-slide v-for="(post, idx) in instagramPosts" :key="idx">

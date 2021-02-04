@@ -1,5 +1,13 @@
 <template>
-  <swiper :slides-per-view="1" :space-between="50" :loop="true" effect="cube">
+  <swiper
+    :slides-per-view="1"
+    :space-between="50"
+    :loop="true"
+    effect="cube"
+    :autoplay="{
+      delay: 2000
+    }"
+  >
     <swiper-slide
       v-for="(post, idx) in instagramPosts"
       :key="idx"
@@ -11,11 +19,11 @@
 </template>
 
 <script>
-import SwiperCore, { EffectCube } from "swiper";
+import SwiperCore, { EffectCube, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import SocialMediaCardComponent from "./SocialMediaCardComponent";
 
-SwiperCore.use([EffectCube]);
+SwiperCore.use([EffectCube, Autoplay]);
 // Import Swiper styles
 import "swiper/swiper.scss";
 import "swiper/components/effect-cube/effect-cube.min.css";
