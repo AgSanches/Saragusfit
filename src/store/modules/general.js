@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default {
   namespaced: true,
   state: {
@@ -12,5 +14,20 @@ export default {
       state.isLoadingPage = false;
     }
   },
-  actions: {}
+  actions: {
+    fetchInstagramPost(state, { apiToken, fields }) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(
+            `https://graph.instagram.com/me/media?access_token=${apiToken}&fields=${fields}`
+          )
+          .then(response => {
+            resolve({ data: response.data });
+          })
+          .catch(error => {
+            reject({ error });
+          });
+      });
+    }
+  }
 };

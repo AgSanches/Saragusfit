@@ -2,10 +2,7 @@
   <div
     class="change bg-white d-flex flex-column align-items-end justify-content-end"
   >
-    <div
-      class="img-wrapper mx-auto swiper-lazy"
-      :data-background="image"
-    >
+    <div class="img-wrapper mx-auto swiper-lazy" :data-background="image">
       <div class="swiper-lazy-preloader"></div>
     </div>
 

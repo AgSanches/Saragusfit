@@ -54,7 +54,7 @@ export default {
   background-position: center;
   background-image: url("../../assets/home/saragusfit-free-workout.jpg");
   position: relative;
-  margin-top: 5rem;
+  margin-top: 2rem;
 
   .content {
     position: relative;
