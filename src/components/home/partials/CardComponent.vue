@@ -6,7 +6,12 @@
     <div
       class="gradient-coach d-flex justify-content-center align-items-centers"
     >
-      <p class="coach-description">{{ coach.description }}</p>
+      <p class="coach-description">
+        <span class="d-block pb-2 font-weight-bold">
+          {{ coach.subtitle }}
+        </span>
+        {{ coach.description }}
+      </p>
     </div>
     <div class="coach-name bg-primary">
       <h3 class="name">{{ coach.name }}</h3>

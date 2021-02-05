@@ -14,7 +14,10 @@
 
       <div class="personalized-workout-plan-addition">
         <p class="personalized-workout-plan-subtitle">
-          We will guide you through the process, applying positive psychology, identifying your strengths, and cultivating them.
+          It is not simply a workout plan. We will guide you to stick to new
+          behavioral changes and habits contributing to achieving your goals. It
+          is a learning process with ups and downs, where we will facilitate the
+          path to a consistent wellness journey.
         </p>
 
         <p class="personalized-workout-plan-client-goals-title">
@@ -63,7 +66,7 @@ export default {
         {
           title: "Coaching",
           text:
-            "We apply positive psychology, identifying your strengths and cultivating them. When clients learn to bring their power to a challenge, it helps them tap into their intrinsic motivations and improve performance and find more satisfaction in the task accomplishment.\n",
+            "We are going to guide you through the process. We apply positive psychology, identifying your strengths and cultivating them. When clients learn to bring their power to a challenge, it helps them tap into their intrinsic motivations and improve performance and find more satisfaction in the task accomplishment.",
           image: require("../../assets/icons/coach.png"),
           aos: "fade-down-left"
         },
@@ -75,9 +78,9 @@ export default {
           aos: "fade-up-right"
         },
         {
-          title: "HELP",
+          title: "Community",
           text:
-            "Have a question? Scroll down and message through any of our socials, and we will get back to you as soon as possible!",
+            "Join our telegram group for more exclusive content! Tips from our own experience & get to know the journey of other members! Sharing is caring.",
           image: require("../../assets/icons/information.png"),
           aos: "fade-up-left"
         }

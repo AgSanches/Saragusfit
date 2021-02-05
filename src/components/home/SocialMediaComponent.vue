@@ -2,7 +2,7 @@
   <div class="social-media mt-4">
     <TitleComponent title="FOLLOW US"></TitleComponent>
 
-    <div class="container mt-3">
+    <div class="container mt-3" data-aos="zoom-in" data-aos-duration="1500">
       <div v-if="isMobile">
         <transition name="fade">
           <SocialMediaPostMobileComponent
@@ -21,6 +21,10 @@
         </transition>
       </div>
     </div>
+
+    <div class="social-links">
+      <SocialMediaLinksComponent></SocialMediaLinksComponent>
+    </div>
   </div>
 </template>
 
@@ -28,6 +32,7 @@
 import TitleComponent from "./partials/TitleComponent";
 import SocialMediaPostMobileComponent from "./partials/SocialMediaPostMobileComponent";
 import SocialMediaPostsDesktopComponent from "./partials/SocialMediaPostsDesktopComponent";
+import SocialMediaLinksComponent from "./partials/SocialMediaLinksComponent";
 import apiTokenInstagram from "../../repository/instagramCredentials.js";
 import { mapActions } from "vuex";
 
@@ -36,7 +41,8 @@ export default {
   components: {
     TitleComponent,
     SocialMediaPostMobileComponent,
-    SocialMediaPostsDesktopComponent
+    SocialMediaPostsDesktopComponent,
+    SocialMediaLinksComponent
   },
   data: () => {
     return {
@@ -82,5 +88,11 @@ export default {
 <style scoped lang="scss">
 .swiper-wrapper {
   margin-bottom: 2rem;
+}
+
+.social-links {
+  height: 18rem;
+  margin-top: 2rem;
+  position: relative;
 }
 </style>

@@ -50,10 +50,6 @@
 
       <div class="pages d-flex justify-content-around text-white">
         <router-link to="" class="footer-link">
-          Terms of Use
-        </router-link>
-        |
-        <router-link to="" class="footer-link">
           Cookies
         </router-link>
       </div>

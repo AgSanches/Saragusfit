@@ -12,7 +12,7 @@
         <a
           class="whatsapp whatsapp-sara d-flex justify-content-center align-items-center"
           v-if="showWhatsapp"
-          href="https://wa.link/d5hqif"
+          href="https://wa.link/4elvg4"
           target="_blank"
           rel="noreferrer"
         >
@@ -26,7 +26,7 @@
         <a
           class="whatsapp whatsapp-agus d-flex justify-content-center align-items-center"
           v-if="showWhatsapp"
-          href="https://wa.link/qb3xrh"
+          href="https://wa.link/t5ug6i"
           target="_blank"
           rel="noreferrer"
         >

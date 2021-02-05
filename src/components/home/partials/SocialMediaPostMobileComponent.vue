@@ -5,7 +5,7 @@
     :loop="true"
     effect="cube"
     :autoplay="{
-      delay: 2000
+      delay: 5000
     }"
   >
     <swiper-slide

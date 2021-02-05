@@ -13,13 +13,7 @@
             stemmed from the combination of our names, Sara and Agustina.
           </p>
           <p class="content" data-aos="fade-up" data-aos-duration="1000">
-            We started
-            <span class="font-weight-bold text-primary">SARAGUSFIT</span> almost
-            two years ago as a way for us to take our passion and fitness
-            knowledge and turn it into something that would help others. We are
-            certified personal trainers and sports professionals with bachelor's
-            degrees in Sports Studies from Hanze University, Groningen, The
-            Netherlands.
+            We started almost two years ago as a way for us to take our passion and fitness knowledge and turn it into something that would help others. We are certified personal trainers and sports professionals with bachelor's degrees in Sports Studies from Hanze University, Groningen, The Netherlands.
           </p>
           <p
             class="content"
@@ -164,9 +158,10 @@ export default {
 }
 
 .image-wrapper {
-  background-image: url("../../assets/home/saragusfit_winter_sports_2.jpg");
-  background-size: cover;
+  background-image: url("../../assets/home/saragusfit_winter_sports_3.jpg");
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
 
   @media screen and (max-width: 599px) {
     min-height: 25rem;

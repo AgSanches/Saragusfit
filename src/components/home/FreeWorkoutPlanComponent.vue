@@ -22,14 +22,16 @@
           Join our fitness challenges, and let us help you achieve your fitness
           goals and improve your performance in no time.
         </p>
-        <button
+        <a
+          href="/files/saragusfit-free-workout.pdf"
+          download=""
           class="btn btn-gradient"
           data-aos="fade-up"
           data-aos-duration="1200"
           data-aos-delay="500"
         >
           FREE WORKOUT
-        </button>
+        </a>
       </div>
     </div>
   </div>

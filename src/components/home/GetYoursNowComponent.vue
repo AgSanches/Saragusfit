@@ -40,13 +40,6 @@ export default {
           subtitle: "First ten clients",
           price: 5,
           isOffer: true
-        },
-        {
-          name: "Ganarle a Sara",
-          icon: require("../../assets/icons/dumbell-plan.png"),
-          subtitle: "¿Quién podrá?",
-          price: 999,
-          isOffer: false
         }
       ]
     };

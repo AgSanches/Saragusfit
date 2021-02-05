@@ -37,8 +37,10 @@ export default {
           image: require("../../assets/home/saragusfit-photo-sara.jpeg"),
           coach: {
             name: "Sara",
+            subtitle:
+              "Every little bit helps, and all of the bits really add up.",
             description:
-              "Every little bit helps, and all of the bits really add up. I want to help you achieve your fitness goals and make you feel good and empowered! Because this is a beautiful journey in which you are the narrator and where you will see amazing changes in the short and long term.",
+              "I want to help you achieve your fitness goals and make you feel good and empowered! Because this is a beautiful journey in which you are the narrator and where you will see amazing changes in the short and long term.",
             instagram_link: "",
             facebook_link: "",
             image_description: "Image of Sara"
@@ -48,8 +50,10 @@ export default {
           image: require("../../assets/home/saragusfit-photo-agustina.jpeg"),
           coach: {
             name: "Agustina",
+            subtitle:
+              "I want to help you achieve your goals and live a happy, healthy, and active life!",
             description:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ornare est finibus justo pharetra molestie. Etiam vel suscipit odio. Sed rutrum dui eros, at pulvinar",
+              "Accompanying you through your journey, serving as a guide, a safe space to talk, and, most importantly, supporting you each step of the way to becoming who you want to be!",
             instagram_link: "",
             facebook_link: "",
             image_description: "Image of Agustina"
