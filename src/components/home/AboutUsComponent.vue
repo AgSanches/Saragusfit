@@ -13,7 +13,11 @@
             stemmed from the combination of our names, Sara and Agustina.
           </p>
           <p class="content" data-aos="fade-up" data-aos-duration="1000">
-            We started almost two years ago as a way for us to take our passion and fitness knowledge and turn it into something that would help others. We are certified personal trainers and sports professionals with bachelor's degrees in Sports Studies from Hanze University, Groningen, The Netherlands.
+            We started almost two years ago as a way for us to take our passion
+            and fitness knowledge and turn it into something that would help
+            others. We are certified personal trainers and sports professionals
+            with bachelor's degrees in Sports Studies from Hanze University,
+            Groningen, The Netherlands.
           </p>
           <p
             class="content"
