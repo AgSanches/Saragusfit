@@ -11,16 +11,13 @@
     <div class="content mx-auto text-center">
       <div class="title pb-3" data-aos="fade-down" data-aos-duration="1500">
         <h3 class="text-primary font-weight-bold mb-0 ">
-          FITNESS CHALLENGES
+          {{ content.title }}
         </h3>
-        <small class="font-italic text-white"
-          >Complimentary service and completely FREE.</small
-        >
+        <small class="font-italic text-white">{{ content.subtitle }}</small>
       </div>
       <div class="text-wrapper text-white">
         <p class="text mx-auto" data-aos="fade-up" data-aos-duration="1200">
-          Join our fitness challenges, and let us help you achieve your fitness
-          goals and improve your performance in no time.
+          {{content.text}}
         </p>
         <a
           href="/files/saragusfit-free-workout.pdf"
@@ -30,7 +27,7 @@
           data-aos-duration="1200"
           data-aos-delay="500"
         >
-          FREE WORKOUT
+          {{content.button}}
         </a>
       </div>
     </div>
@@ -38,8 +35,30 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  name: "FreeWorkoutPlanComponent"
+  name: "FreeWorkoutPlanComponent",
+  data: () => {
+    return {
+      doc: "fitnessChallenge",
+      content: {
+        title: "FITNESS CHALLENGES",
+        subtitle: "Complimentary service and completely FREE.",
+        text:
+          "Join our fitness challenges, and let us help you achieve your fitness goals and improve your performance in no time.",
+        button: "FREE WORKOUT"
+      }
+    };
+  },
+  methods: {
+    ...mapActions("home", ["getText"])
+  },
+  created() {
+    this.getText(this.doc).then(response => {
+      this.content = response;
+    });
+  }
 };
 </script>
 
