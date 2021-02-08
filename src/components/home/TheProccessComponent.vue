@@ -18,6 +18,8 @@
 import StepsDesktopComponent from "./partials/StepsDesktopComponent";
 import StepMobileComponent from "./partials/StepsMobileComponent";
 import TitleComponent from "./partials/TitleComponent";
+import { mapActions } from "vuex";
+import content from "../../texts/theProccessText";
 
 export default {
   name: "TheProccessComponent",
@@ -28,52 +30,10 @@ export default {
   },
   data: () => {
     return {
-      stepsUpper: [
-        {
-          day: 0,
-          name: "The Intake Interview",
-          content: "Intake interview.",
-          isDown: false,
-          aosMobile: "fade-right",
-          aosDesktop: "fade-down-right"
-        },
-        {
-          day: 7,
-          name: "First Impression",
-          content: "Feedback on first-week training. Any doubts or questions?",
-          isDown: false,
-          aosMobile: "fade-right",
-          aosDesktop: "fade-down"
-        },
-        {
-          day: 30,
-          name: "The Grand Finale",
-          content:
-            "Take final measurements, customer review, and plan feedback as a whole. Goal reached? + visual representation of your progress.",
-          isDown: false,
-          aosMobile: "fade-right",
-          aosDesktop: "fade-down-left"
-        }
-      ],
-      stepsDown: [
-        {
-          day: 1,
-          name: "First Day Of Training",
-          content: "First Day Of Training.",
-          isDown: true,
-          aosMobile: "fade-right",
-          aosDesktop: "fade-up-right"
-        },
-        {
-          day: 15,
-          name: "Half-way Point",
-          content: "Feedback, the general feeling, positives, and negatives.",
-          isDown: true,
-          aosMobile: "fade-right",
-          aosDesktop: "fade-up-left"
-        }
-      ],
-      windowWidth: window.innerWidth
+      stepsUpper: content.stepsUpper,
+      stepsDown: content.stepsDown,
+      windowWidth: window.innerWidth,
+      doc: "theProccess"
     };
   },
   computed: {
@@ -81,7 +41,15 @@ export default {
       return this.windowWidth < 599;
     }
   },
-  watch: {}
+  methods: {
+    ...mapActions("home", ["getText"])
+  },
+  created() {
+    this.getText(this.doc).then(content => {
+      this.stepsUpper = content.stepsUpper;
+      this.stepsDown = content.stepsDown;
+    });
+  }
 };
 </script>
 
