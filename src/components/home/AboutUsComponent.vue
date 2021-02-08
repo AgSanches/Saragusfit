@@ -10,8 +10,8 @@
           <p
             class="content"
             data-aos="fade-up"
-            data-aos-duration="1000"
-            :data-aos-delay="idx * 25"
+            data-aos-duration="1500"
+            :data-aos-delay="idx * 100"
             v-for="(paragraph, idx) in pageContent.paragraphs"
             :key="idx"
           >
