@@ -2,6 +2,7 @@
   <div
     class="card-coach d-flex justify-content-center align-items-center"
     :style="{ 'background-image': `url(${image})` }"
+    v-if="coach"
   >
     <div
       class="gradient-coach d-flex justify-content-center align-items-centers"
@@ -23,8 +24,11 @@
 export default {
   name: "CardComponent",
   props: {
-    image: String,
-    coach: Object
+    coach: Object,
+    image: String
+  },
+  created() {
+    console.log(this.coach)
   }
 };
 </script>
