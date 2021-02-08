@@ -7,7 +7,7 @@
     </h4>
 
     <img
-      :src="plan.icon"
+      :src="image"
       alt="Icon of a plan"
       class="plan-icon d-block mx-auto"
     />
@@ -37,7 +37,8 @@ import $ from "jquery";
 export default {
   name: "PlanComponent",
   props: {
-    plan: Object
+    plan: Object,
+    image: String
   },
   methods: {
     startNowPlan() {

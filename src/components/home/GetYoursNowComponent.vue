@@ -10,6 +10,7 @@
         :key="idx"
       >
         <PlanComponent
+          :image="image"
           :plan="plan"
           data-aos="fade-up"
           data-aos-duration="1000"
@@ -23,6 +24,7 @@
 import TitleComponent from "./partials/TitleComponent";
 import PlanComponent from "./partials/PlanComponent";
 import ModalStartNowPlanComponent from "./partials/ModalStartNowPlanComponent";
+import { mapActions } from "vuex";
 
 export default {
   name: "GetYoursNowComponent",
@@ -33,6 +35,8 @@ export default {
   },
   data: () => {
     return {
+      doc: "plansSection",
+      image: require("../../assets/icons/dumbell-plan.png"),
       plans: [
         {
           name: "Personalized Workout Plan",
@@ -43,6 +47,14 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    ...mapActions("home", ["getText"])
+  },
+  created() {
+    this.getText(this.doc).then(response => {
+      this.plans = response.plans;
+    });
   }
 };
 </script>
