@@ -44,7 +44,7 @@
               >
                 <div class="col-6 p-1">
                   <SuccessStoriesChangeComponent
-                    :image="review.images[0]"
+                    :image="images[0]"
                     text="Before"
                     data-aos="zoom-in"
                     data-aos-duration="1000"
@@ -53,7 +53,7 @@
 
                 <div class="col-6 p-1 after-change">
                   <SuccessStoriesChangeComponent
-                    :image="review.images[1]"
+                    :image="images[1]"
                     text="After"
                     data-aos="zoom-in"
                     data-aos-duration="1000"
@@ -94,6 +94,8 @@ import SwiperCore, {
   Keyboard
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { mapActions } from "vuex";
+import content from "../../texts/successStoriesText";
 
 // Import Swiper styles
 import "swiper/swiper.scss";
@@ -120,45 +122,13 @@ export default {
   },
   data: () => {
     return {
-      reviews: [
-        {
-          text:
-            "SARAGUSFIT workouts are so much fun! The music, the environment, and the girls are the perfect combinations to get my body moving without complaints!",
-          user: "Amina Augusto",
-          images: [
-            require("../../assets/home/saragusfit-photo-sara.jpeg"),
-            require("../../assets/home/saragusfit-photo-agustina.jpeg")
-          ]
-        },
-        {
-          text:
-            "SARAGUSFIT workouts are more than just simply exercises! It's a safe place to work on yourself, improve your confidence and become more disciplined! They are such a fun and challenging part of the day!!!",
-          user: "Andres Giraldo",
-          images: [
-            require("../../assets/home/saragusfit-photo-sara.jpeg"),
-            require("../../assets/home/saragusfit-photo-agustina.jpeg")
-          ]
-        },
-        {
-          text:
-            "An amazing duo, if they can motivate me, they can motivate ANYONE!",
-          user: "Carlotta Peverada",
-          images: [
-            require("../../assets/home/saragusfit-photo-sara.jpeg"),
-            require("../../assets/home/saragusfit-photo-agustina.jpeg")
-          ]
-        },
-        {
-          text:
-            "My experience with SARAGUSFIT training sessions was overall amazing. I usually find working out very difficult, and I lose motivation very fast, but SARAGUSFIT workouts helped me find the joy and fun in working out. Their routines are very dynamic, easy, and effective to do, and the time went so fast! Always with a smile and good energy, I recommend everyone to give it a go!",
-          user: "Natalia Angelucci",
-          images: [
-            require("../../assets/home/saragusfit-photo-sara.jpeg"),
-            require("../../assets/home/saragusfit-photo-agustina.jpeg")
-          ]
-        }
+      reviews: content,
+      windowWidth: window.innerWidth,
+      images: [
+        require("../../assets/home/saragusfit-photo-sara.jpeg"),
+        require("../../assets/home/saragusfit-photo-agustina.jpeg")
       ],
-      windowWidth: window.innerWidth
+      doc: "successStories"
     };
   },
   computed: {
@@ -174,6 +144,14 @@ export default {
   },
   isMobile() {
     return this.windowWidth < 599;
+  },
+  methods: {
+    ...mapActions("home", ["getText"])
+  },
+  created() {
+    this.getText(this.doc).then(response => {
+      this.reviews = response.opinions;
+    });
   }
 };
 </script>
