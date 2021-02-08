@@ -1,11 +1,7 @@
 <template>
   <nav>
     <ul>
-      <li
-        data-aos="fade-down"
-        data-aos-duration="1500"
-        data-aos-delay="200"
-      >
+      <li data-aos="fade-down" data-aos-duration="1500" data-aos-delay="200">
         <a
           href="https://www.instagram.com/saragusfit/"
           target="_blank"
@@ -20,11 +16,7 @@
           </span>
         </a>
       </li>
-      <li
-              data-aos="fade-down"
-              data-aos-duration="1700"
-              data-aos-delay="300"
-      >
+      <li data-aos="fade-down" data-aos-duration="1700" data-aos-delay="300">
         <a
           href="https://www.facebook.com/saragusfit/?ref=page_internal"
           target="_blank"
@@ -39,11 +31,7 @@
           </span>
         </a>
       </li>
-      <li
-              data-aos="fade-down"
-              data-aos-duration="1800"
-              data-aos-delay="400"
-      >
+      <li data-aos="fade-down" data-aos-duration="1800" data-aos-delay="400">
         <a
           href="https://www.tiktok.com/@saragusfit?_d=secCgYIASAHKAESMgowylu1z2QlxceZwgwRDyneND4Aqcd5Gv4Yb48LBR6ASvFZDpcdHwtJKYEKX04uZ5lwGgA%3D&language=es&sec_uid=MS4wLjABAAAAbAouE6knZpzJkYw6oZoT3iAyZe8SCWHR07uKoM5VxBVJm7_AMUOBQ_CMGzOJzqsG&sec_user_id=MS4wLjABAAAAbAouE6knZpzJkYw6oZoT3iAyZe8SCWHR07uKoM5VxBVJm7_AMUOBQ_CMGzOJzqsG&share_author_id=6912013444297163778&share_link_id=7791508D-C162-4C61-814C-37C53DDE9490&tt_from=whatsapp&u_code=dg9800e46592l7&user_id=6912013444297163778&utm_campaign=client_share&utm_medium=ios&utm_source=whatsapp&source=h5_m"
           target="_blank"
@@ -200,8 +188,8 @@ li:nth-of-type(2):hover span {
 }
 
 li:nth-of-type(3):hover span {
-  background-color: #EE1D52;
-  background-image: linear-gradient(270deg, #69C9D0, #EE1D52);
+  background-color: #ee1d52;
+  background-image: linear-gradient(270deg, #69c9d0, #ee1d52);
   background-size: 400% 400%;
   animation: gradient 6s ease infinite;
 }

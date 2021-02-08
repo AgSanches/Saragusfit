@@ -1,17 +1,27 @@
 <template>
   <div id="app">
     <PreloaderComponent></PreloaderComponent>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
 <script>
 import PreloaderComponent from "./components/general/PreloaderComponent.vue";
+import { mapMutations } from "vuex";
+import firebase from "firebase";
 
 export default {
   name: "App",
   components: {
     PreloaderComponent
+  },
+  methods: {
+    ...mapMutations("login", ["changeUser"])
+  },
+  created() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.changeUser(user);
+    });
   }
 };
 </script>

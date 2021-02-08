@@ -1,7 +1,3 @@
-import firebase from "firebase";
-import "firebase/analytics";
-import "firebase/remote-config";
-
 // firebase init - add your own config here
 const firebaseConfig = {
   apiKey: "AIzaSyC7FbyTfr7mpDFxMX4vmBADpKmLwURHfYY",
@@ -13,8 +9,5 @@ const firebaseConfig = {
   appId: "1:1070936397680:web:3197a2ce50be0441"
 };
 
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-
 // export utils/refs
-export {};
+export default firebaseConfig;

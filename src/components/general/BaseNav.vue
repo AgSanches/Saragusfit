@@ -4,10 +4,7 @@
       <img src="../../assets/logo.png" alt="Logo Saragusfit" class="logo" />
     </router-link>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-    >
+    <button class="navbar-toggler" type="button">
       <img
         src="../../assets/icons/dumbell.png"
         alt="hamburguer-button"
@@ -20,7 +17,16 @@
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active" v-for="(link, idx) in links" :key="idx">
-          <a class="nav-link" :href="link.to">
+          <a v-if="!link.user" class="nav-link" :href="link.to">
+            {{ link.name }}
+          </a>
+          <a
+            v-else
+            class="nav-link"
+            :href="link.to"
+            @click="emitSignOut"
+            :class="{ 'd-none': !user }"
+          >
             {{ link.name }}
           </a>
         </li>
@@ -30,7 +36,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "BaseNav",
@@ -38,10 +44,21 @@ export default {
     links: Array
   },
   methods: {
-    ...mapMutations("general", ["toggleNav"])
+    ...mapMutations("general", ["toggleNav"]),
+    ...mapActions("login", ["signOutSession"]),
+    emitSignOut() {
+      this.signOutSession()
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   },
   computed: {
-    ...mapState("general", ["isOpenNav"])
+    ...mapState("general", ["isOpenNav"]),
+    ...mapState("login", ["user"])
   }
 };
 </script>

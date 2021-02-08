@@ -3,9 +3,18 @@
     <nav class="sidebar bg-primary" v-if="isOpenNav">
       <ul class="navbar-list">
         <li class="navbar-item" v-for="(link, idx) in links" :key="idx">
-          <router-link class="navbar-link" :to="link.to">
+          <a v-if="!link.user" class="nav-link" :href="link.to">
             {{ link.name }}
-          </router-link>
+          </a>
+          <a
+            v-else
+            class="nav-link"
+            :href="link.to"
+            @click="emitSignOut"
+            :class="{ 'd-none': !user }"
+          >
+            {{ link.name }}
+          </a>
         </li>
       </ul>
     </nav>
@@ -13,7 +22,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 
 export default {
   name: "TheSidebar",
@@ -24,7 +33,17 @@ export default {
     ...mapState("general", ["isOpenNav"])
   },
   methods: {
-    ...mapMutations("general", ["toggleNav"])
+    ...mapMutations("general", ["toggleNav"]),
+    ...mapActions("login", ["signOutSession"]),
+    emitSignOut() {
+      this.signOutSession()
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 };
 </script>

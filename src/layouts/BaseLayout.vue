@@ -11,6 +11,7 @@
 import BaseNav from "../components/general/BaseNav.vue";
 import TheSidebar from "../components/general/TheSidebar.vue";
 import TheFooter from "../components/general/TheFooter";
+import { mapState } from "vuex";
 
 export default {
   name: "BaseLayout",
@@ -41,9 +42,17 @@ export default {
         {
           name: "Success Stories",
           to: "#success-stories"
+        },
+        {
+          name: "Sign Out",
+          to: "#signout",
+          user: true
         }
       ]
     };
+  },
+  computed: {
+    ...mapState("login", ["user"])
   }
 };
 </script>

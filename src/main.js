@@ -4,6 +4,14 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 
+import firebase from "firebase";
+import "firebase/analytics";
+import "firebase/remote-config";
+import firebaseConfig from "./repository/firebaseCredentials";
+
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
 import "bootstrap";
 import "animate.css";
 
