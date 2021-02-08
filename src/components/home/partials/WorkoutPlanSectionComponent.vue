@@ -1,7 +1,7 @@
 <template>
   <div class="section" :data-aos="content.aos" data-aos-duration="1500">
     <img
-      :src="content.image"
+      :src="image"
       :alt="`Image of ${content.title}`"
       class="section-image"
     />
@@ -16,7 +16,8 @@
 export default {
   name: "WorkoutPlanSectionComponent",
   props: {
-    content: Object
+    content: Object,
+    image: String
   }
 };
 </script>

@@ -25,9 +25,13 @@
         </p>
 
         <ul class="personalized-workout-plan-client-goals-list">
-          <li class="client-goal">Get toned</li>
-          <li class="client-goal delay-1">Lose weight</li>
-          <li class="client-goal delay-2">Build muscle</li>
+          <li
+            class="client-goal"
+            v-for="(goal, idx) in pageContent.goals"
+            :key="idx"
+          >
+            {{ goal }}
+          </li>
         </ul>
       </div>
     </div>
@@ -35,11 +39,12 @@
     <div class="col-12 col-md-8 row justify-content-center align-items-center">
       <div
         class="col-12 col-md-6 p-1"
-        v-for="(content, idx) in sections"
+        v-for="(content, idx) in pageContent.sections"
         :key="idx"
       >
         <WorkoutPlanSectionComponent
           :content="content"
+          :image="images[idx]"
         ></WorkoutPlanSectionComponent>
       </div>
     </div>
@@ -48,6 +53,9 @@
 
 <script>
 import WorkoutPlanSectionComponent from "./partials/WorkoutPlanSectionComponent";
+import content from "../../texts/personalizedWorkoutPlanTexts";
+import { mapActions } from "vuex";
+
 export default {
   name: "PersonalizedWorkoutPlanComponent",
   components: {
@@ -55,37 +63,23 @@ export default {
   },
   data: () => {
     return {
-      sections: [
-        {
-          title: "The Plan",
-          text:
-            "We will conduct an intake interview to get to know you and define your goals, needs, and workout preferences. With this information, we will create a 1 month training program.",
-          image: require("../../assets/icons/dumbbells.png"),
-          aos: "fade-down-right"
-        },
-        {
-          title: "Coaching",
-          text:
-            "We are going to guide you through the process. We apply positive psychology, identifying your strengths and cultivating them. When clients learn to bring their power to a challenge, it helps them tap into their intrinsic motivations and improve performance and find more satisfaction in the task accomplishment.",
-          image: require("../../assets/icons/coach.png"),
-          aos: "fade-down-left"
-        },
-        {
-          title: "100% Online",
-          text:
-            "We live in a technology-driven era, where everything is online. We will be there for you 24/7, motivating and supporting you!",
-          image: require("../../assets/icons/shopping-online.png"),
-          aos: "fade-up-right"
-        },
-        {
-          title: "Community",
-          text:
-            "Join our telegram group for more exclusive content! Tips from our own experience & get to know the journey of other members! Sharing is caring.",
-          image: require("../../assets/icons/information.png"),
-          aos: "fade-up-left"
-        }
-      ]
+      images: [
+        require("../../assets/icons/dumbbells.png"),
+        require("../../assets/icons/coach.png"),
+        require("../../assets/icons/shopping-online.png"),
+        require("../../assets/icons/information.png")
+      ],
+      pageContent: content,
+      doc: "workoutPlan"
     };
+  },
+  methods: {
+    ...mapActions("home", ["getText"])
+  },
+  created() {
+    this.getText(this.doc).then(response => {
+      this.pageContent = response;
+    });
   }
 };
 </script>
