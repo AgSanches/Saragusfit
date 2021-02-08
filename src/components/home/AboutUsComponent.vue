@@ -3,65 +3,25 @@
     <div class="content row">
       <div class="text col-12 col-md-8">
         <div class="title">
-          <h3 class="header text-primary">ABOUT US</h3>
-          <h4 class="subtitle">Your Body, the Way You Want it</h4>
+          <h3 class="header text-primary">{{ pageContent.title }}</h3>
+          <h4 class="subtitle">{{ pageContent.subtitle }}</h4>
         </div>
         <div class="content-wrapper">
-          <p class="content" data-aos="fade-up" data-aos-duration="1000">
-            The brand
-            <span class="font-weight-bold text-primary">SARAGUSFIT</span>
-            stemmed from the combination of our names, Sara and Agustina.
-          </p>
-          <p class="content" data-aos="fade-up" data-aos-duration="1000">
-            We started almost two years ago as a way for us to take our passion
-            and fitness knowledge and turn it into something that would help
-            others. We are certified personal trainers and sports professionals
-            with bachelor's degrees in Sports Studies from Hanze University,
-            Groningen, The Netherlands.
-          </p>
           <p
             class="content"
             data-aos="fade-up"
             data-aos-duration="1000"
-            data-aos-delay="25"
+            :data-aos-delay="idx * 25"
+            v-for="(paragraph, idx) in pageContent.paragraphs"
+            :key="idx"
           >
-            By making lifestyle changes, consistent motivation, and creating
-            sustainable behavioral changes will unconsciously teach you how to
-            work for you, by you. To be self-dependent and have the body you
-            want, the way you want it.
-          </p>
-          <p
-            class="content"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="50"
-          >
-            Doing what you enjoy is the best motivator for exercising - and it
-            works.
-          </p>
-          <p
-            class="content"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="75"
-          >
-            It is a learning process to find out what works best for you, and
-            this is what we want to help you achieve by customizing a workout
-            plan just for you!
-          </p>
-          <p
-            class="content"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="100"
-          >
-            The SARAGUS approach:
+            {{ paragraph }}
           </p>
 
           <div class="approachs row justify-content-start align-items-center">
             <div
               class="col-12 col-md-6 approach"
-              v-for="(approach, idx) in approachs"
+              v-for="(approach, idx) in pageContent.approachs"
               :key="idx"
               data-aos="fade-up"
               data-aos-duration="1500"
@@ -89,17 +49,24 @@
 </template>
 
 <script>
+import content from "../../texts/aboutUsTexts";
+import { mapActions } from "vuex";
+
 export default {
   name: "AboutUsComponent",
   data: () => {
     return {
-      approachs: [
-        "Learning process vs. Do-or-fail",
-        "Flexibility vs. Restriction",
-        "Empathy vs. Try harder",
-        "Well-being vs. Distress"
-      ]
+      pageContent: content,
+      doc: "aboutUs"
     };
+  },
+  methods: {
+    ...mapActions("home", ["getText"])
+  },
+  created() {
+    this.getText(this.doc).then(response => {
+      this.pageContent = response;
+    });
   }
 };
 </script>
