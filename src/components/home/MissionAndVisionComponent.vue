@@ -3,10 +3,14 @@
     <div class="separate"></div>
     <div class="container">
       <div class="row align-items-end p-3">
-        <div class="mission col-12" data-aos="fade-left" data-aos-duration="1500">
+        <div
+          class="mission col-12"
+          data-aos="fade-left"
+          data-aos-duration="1500"
+        >
           <h2 class="title">OUR MISSION</h2>
           <p class="content">
-            Promote physical activity & an active lifestyle to achieve your fitness goal.
+            {{ mission }}
           </p>
         </div>
 
@@ -18,7 +22,7 @@
         >
           <h2 class="title">OUR VISION</h2>
           <p class="content">
-            Be and make people happy and confident.
+            {{ vision }}
           </p>
         </div>
       </div>
@@ -32,8 +36,27 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  name: "MissionAndVisionComponent"
+  name: "MissionAndVisionComponent",
+  data: () => {
+    return {
+      doc: "ourMissionAndVision",
+      mission:
+        "Promote physical activity & an active lifestyle to achieve your fitness goal.",
+      vision: "Be and make people happy and confident."
+    };
+  },
+  methods: {
+    ...mapActions("home", ["getText"])
+  },
+  created() {
+    this.getText(this.doc).then(content => {
+      this.mission = content.mission;
+      this.vision = content.vision;
+    });
+  }
 };
 </script>
 
