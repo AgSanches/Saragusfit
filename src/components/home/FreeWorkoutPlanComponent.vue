@@ -17,7 +17,7 @@
       </div>
       <div class="text-wrapper text-white">
         <p class="text mx-auto" data-aos="fade-up" data-aos-duration="1200">
-          {{content.text}}
+          {{ content.text }}
         </p>
         <a
           href="/files/saragusfit-free-workout.pdf"
@@ -27,7 +27,7 @@
           data-aos-duration="1200"
           data-aos-delay="500"
         >
-          {{content.button}}
+          {{ content.button }}
         </a>
       </div>
     </div>

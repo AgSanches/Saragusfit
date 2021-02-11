@@ -26,9 +26,6 @@ export default {
   props: {
     coach: Object,
     image: String
-  },
-  created() {
-    console.log(this.coach)
   }
 };
 </script>
