@@ -27,11 +27,6 @@
         </div>
       </div>
     </div>
-
-    <div class="wrapper-reflejos">
-      <div class="reflejos"></div>
-      <div class="reflejos segundo"></div>
-    </div>
   </div>
 </template>
 
@@ -139,36 +134,6 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     transform: translateY(-50%);
-  }
-
-  .wrapper-reflejos {
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    .reflejos {
-      pointer-events: none;
-      position: absolute;
-      top: 0;
-      width: 300px;
-      height: 100%;
-      z-index: 0;
-      background: rgb(255, 255, 255);
-      background: linear-gradient(
-        20deg,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 70%
-      );
-      opacity: 0.1;
-      animation: reflejo 45s infinite;
-    }
-
-    .segundo {
-      animation-direction: reverse;
-    }
   }
 }
 
