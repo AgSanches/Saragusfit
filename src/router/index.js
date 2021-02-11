@@ -34,6 +34,21 @@ const routes = [
         path: "/login",
         name: "Login",
         component: Login
+      },
+      {
+        path: "/admin",
+        name: "AdminPanelLayout",
+        component: () => import("../layouts/AdminLayout"),
+        meta: {
+          requiresAuth: true
+        },
+        children: [
+          {
+            path: "",
+            name: "AdminDefaultPage",
+            component: () => import("../views/AdminPanel")
+          }
+        ]
       }
     ]
   }
@@ -49,6 +64,10 @@ router.beforeEach((to, from, next) => {
 
   if (to.name === "Login" && isAuth) {
     next({ name: "Homepage" });
+  }
+
+  if (to.matched.some(record => record.meta.requiresAuth) && !isAuth) {
+    next({ name: "Login" });
   }
 
   next();

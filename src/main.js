@@ -21,9 +21,18 @@ AOS.init({
   once: true
 });
 
+import VueSweetalert2 from "vue-sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+
+const options = {
+  confirmButtonColor: "#cf466f",
+  cancelButtonColor: "#ff7674"
+};
+
 const app = createApp(App);
 
 app
+  .use(VueSweetalert2, options)
   .use(store)
   .use(router)
   .mount("#app");
