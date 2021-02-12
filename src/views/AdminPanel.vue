@@ -5,6 +5,10 @@
         <h1 class="title">Change content from our mission and vision</h1>
         <ProccessMissionAndVisionComponent></ProccessMissionAndVisionComponent>
       </div>
+      <div class="col-12 col-md-7 section">
+        <h1 class="title">Change content from Free Workout Section</h1>
+        <ProccessFitnessChallengeComponent></ProccessFitnessChallengeComponent>
+      </div>
     </div>
   </div>
 </template>
@@ -12,11 +16,13 @@
 <script>
 import { mapState } from "vuex";
 import ProccessMissionAndVisionComponent from "../components/admin/ProccessMissionAndVisionComponent";
+import ProccessFitnessChallengeComponent from "../components/admin/ProccessFitnessChallengeComponent";
 
 export default {
   name: "AdminPanel",
   components: {
-    ProccessMissionAndVisionComponent
+    ProccessMissionAndVisionComponent,
+    ProccessFitnessChallengeComponent
   },
   computed: {
     ...mapState("admin", ["isOpenSidebar"])
@@ -38,8 +44,9 @@ export default {
 .section {
   background-color: #3b5998;
   border-radius: 10px;
-  padding: 0.8rem;
   color: white;
+  margin: 1rem;
+  padding: 1rem;
 
   .title {
     font-size: 1.4rem;
