@@ -43,9 +43,7 @@
           </div>
 
           <div class="form-group col-12 p-1">
-            <label :for="`inputAosMobile-${idx}`"
-              >Aos Mobile </label
-            >
+            <label :for="`inputAosMobile-${idx}`">Aos Mobile </label>
             <input
               type="text"
               class="form-control"
@@ -57,9 +55,7 @@
           </div>
 
           <div class="form-group col-12 p-1">
-            <label :for="`inputAosDesktop-${idx}`"
-              >Aos Desktop </label
-            >
+            <label :for="`inputAosDesktop-${idx}`">Aos Desktop </label>
             <input
               type="text"
               class="form-control"
@@ -114,9 +110,7 @@
           </div>
 
           <div class="form-group col-12 p-1">
-            <label :for="`2inputAosMobile-${idx}`"
-              >Aos Mobile </label
-            >
+            <label :for="`2inputAosMobile-${idx}`">Aos Mobile </label>
             <input
               type="text"
               class="form-control"
@@ -128,9 +122,7 @@
           </div>
 
           <div class="form-group col-12 p-1">
-            <label :for="`2inputAosDesktop-${idx}`"
-              >Aos Desktop </label
-            >
+            <label :for="`2inputAosDesktop-${idx}`">Aos Desktop </label>
             <input
               type="text"
               class="form-control"
@@ -191,11 +183,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-  .subsection {
-    border: 1px solid;
-    display: block;
-    margin: 0 auto;
-  }
-
+.subsection {
+  border: 1px solid;
+  display: block;
+  margin: 0 auto;
+}
 </style>
