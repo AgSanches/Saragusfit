@@ -13,6 +13,10 @@
         <h1 class="title">Change content from About Us Section</h1>
         <ProccessAboutUsComponent></ProccessAboutUsComponent>
       </div>
+      <div class="col-12 col-md-8 section">
+        <h1 class="title">Coachs</h1>
+        <ProccessCoachsComponent></ProccessCoachsComponent>
+      </div>
     </div>
   </div>
 </template>
@@ -22,13 +26,15 @@ import { mapState } from "vuex";
 import ProccessMissionAndVisionComponent from "../components/admin/ProccessMissionAndVisionComponent";
 import ProccessFitnessChallengeComponent from "../components/admin/ProccessFitnessChallengeComponent";
 import ProccessAboutUsComponent from "../components/admin/ProccessAboutUsComponent";
+import ProccessCoachsComponent from "../components/admin/ProccessCoachsComponent";
 
 export default {
   name: "AdminPanel",
   components: {
     ProccessMissionAndVisionComponent,
     ProccessFitnessChallengeComponent,
-    ProccessAboutUsComponent
+    ProccessAboutUsComponent,
+    ProccessCoachsComponent
   },
   computed: {
     ...mapState("admin", ["isOpenSidebar"])
