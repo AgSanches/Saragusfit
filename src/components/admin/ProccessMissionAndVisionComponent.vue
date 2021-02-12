@@ -1,5 +1,5 @@
 <template>
-  <div class="mission-and-vision-section">
+  <div class="mission-and-vision-sections">
     <form action="#" @submit.prevent="updateContent">
       <div class="form-group">
         <label for="inputMission">Our Mission</label>

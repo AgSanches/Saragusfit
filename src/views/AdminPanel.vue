@@ -1,25 +1,35 @@
 <template>
   <div class="app-content" :class="{ 'app-content-sidebar': isOpenSidebar }">
     <div class="p-1 row m-2">
-      <div class="col-12 col-md-6 col-xl-4 section">
-        <h1 class="title">Change content from our mission and vision</h1>
-        <ProccessMissionAndVisionComponent></ProccessMissionAndVisionComponent>
+      <div class="col-12 col-xl-4">
+        <div class="section">
+          <h1 class="title">Change content from our mission and vision</h1>
+          <ProccessMissionAndVisionComponent></ProccessMissionAndVisionComponent>
+        </div>
       </div>
-      <div class="col-12 col-md-7 section">
-        <h1 class="title">Change content from Free Workout Section</h1>
-        <ProccessFitnessChallengeComponent></ProccessFitnessChallengeComponent>
+      <div class="col-12 col-xl-8">
+        <div class="section">
+          <h1 class="title">Change content from Free Workout Section</h1>
+          <ProccessFitnessChallengeComponent></ProccessFitnessChallengeComponent>
+        </div>
       </div>
-      <div class="col-11 section">
-        <h1 class="title">Change content from About Us Section</h1>
-        <ProccessAboutUsComponent></ProccessAboutUsComponent>
+      <div class="col-12">
+        <div class="section">
+          <h1 class="title">Change content from About Us Section</h1>
+          <ProccessAboutUsComponent></ProccessAboutUsComponent>
+        </div>
       </div>
-      <div class="col-12 col-md-8 section">
-        <h1 class="title">Coachs</h1>
-        <ProccessCoachsComponent></ProccessCoachsComponent>
+      <div class="col-12 col-xl-6">
+        <div class="section">
+          <h1 class="title">Coachs</h1>
+          <ProccessCoachsComponent></ProccessCoachsComponent>
+        </div>
       </div>
-      <div class="col-12 col-md-8 section">
-        <h1 class="title">Plans</h1>
-        <ProccessPlanSectionComponent></ProccessPlanSectionComponent>
+      <div class="col-12 col-xl-6">
+        <div class="section">
+          <h1 class="title">Plans</h1>
+          <ProccessPlanSectionComponent></ProccessPlanSectionComponent>
+        </div>
       </div>
     </div>
   </div>
@@ -63,8 +73,8 @@ export default {
   background-color: #3b5998;
   border-radius: 10px;
   color: white;
-  margin: 1rem;
   padding: 1rem;
+  margin-bottom: 1rem;
 
   .title {
     font-size: 1.4rem;
