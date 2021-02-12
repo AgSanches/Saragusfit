@@ -17,6 +17,10 @@
         <h1 class="title">Coachs</h1>
         <ProccessCoachsComponent></ProccessCoachsComponent>
       </div>
+      <div class="col-12 col-md-8 section">
+        <h1 class="title">Plans</h1>
+        <ProccessPlanSectionComponent></ProccessPlanSectionComponent>
+      </div>
     </div>
   </div>
 </template>
@@ -27,6 +31,7 @@ import ProccessMissionAndVisionComponent from "../components/admin/ProccessMissi
 import ProccessFitnessChallengeComponent from "../components/admin/ProccessFitnessChallengeComponent";
 import ProccessAboutUsComponent from "../components/admin/ProccessAboutUsComponent";
 import ProccessCoachsComponent from "../components/admin/ProccessCoachsComponent";
+import ProccessPlanSectionComponent from "../components/admin/ProccessPlanSectionComponent";
 
 export default {
   name: "AdminPanel",
@@ -34,7 +39,8 @@ export default {
     ProccessMissionAndVisionComponent,
     ProccessFitnessChallengeComponent,
     ProccessAboutUsComponent,
-    ProccessCoachsComponent
+    ProccessCoachsComponent,
+    ProccessPlanSectionComponent
   },
   computed: {
     ...mapState("admin", ["isOpenSidebar"])
