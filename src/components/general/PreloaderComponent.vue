@@ -32,12 +32,16 @@ export default {
     ...mapState("general", ["isLoadingPage"])
   },
   mounted() {
+    document.body.style.position = "fixed";
     this.setTimeOutLoader();
   },
   methods: {
     ...mapMutations("general", ["setLoadingFalse"]),
     setTimeOutLoader() {
-      setTimeout(this.setLoadingFalse, 2000);
+      setTimeout(() => {
+        document.body.style.position = "";
+        this.setLoadingFalse();
+      }, 2000);
     }
   }
 };
