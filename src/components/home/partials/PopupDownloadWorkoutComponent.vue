@@ -46,16 +46,15 @@ export default {
   },
   methods: {
     checkFirstVisit() {
-      this.isFirstVisit = localStorage.getItem("isUserVisit");
+      this.isFirstVisit = localStorage.getItem("isUserVisit") == null;
 
-      if (!this.isFirstVisit) {
+      if (this.isFirstVisit) {
         localStorage.setItem("isUserVisit", "yes");
         window.addEventListener("scroll", this.handleScroll);
       }
     },
     handleScroll() {
-      this.canShowModal = window.scrollY > 1000;
-
+      this.canShowModal = window.scrollY > 1400;
       if (this.canShowModal) {
         window.removeEventListener("scroll", this.handleScroll);
         document.body.style.top = `-${window.scrollY}px`;
@@ -70,7 +69,7 @@ export default {
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
   },
-  created() {
+  mounted() {
     this.checkFirstVisit();
   },
   watch: {}
