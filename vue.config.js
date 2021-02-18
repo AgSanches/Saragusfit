@@ -5,7 +5,7 @@ module.exports = {
         prependData: `
             @import "~swiper/components/effect-cube/effect-cube.scss";          
             @import "~swiper/components/navigation/navigation.scss";          
-            @import "~swiper/components/navigation/pagination.scss";    
+            @import "~swiper/components/pagination/pagination.scss";    
             @import "~swiper/components/effect-coverflow/effect-coverflow.scss";          
             `
       }

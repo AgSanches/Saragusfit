@@ -1,9 +1,6 @@
 <template>
   <div>
-    <CookiesPolicy
-      v-if="!isLoadingPage && showCookies"
-      @emitCloseCookies="showCookies = false"
-    ></CookiesPolicy>
+    <CookiesPolicy v-if="!isLoadingPage && showCookies" @emitCloseCookies="showCookies = false"></CookiesPolicy>
     <HeaderComponent></HeaderComponent>
     <MissionAndVisionComponent></MissionAndVisionComponent>
     <AboutUsComponent></AboutUsComponent>
