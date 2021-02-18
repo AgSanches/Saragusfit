@@ -39,6 +39,7 @@ export default {
   background-color: white;
   z-index: 999999;
   width: 30%;
+  min-width: 20rem;
   padding: 1rem;
   -webkit-box-shadow: 4px -4px 5px 0px rgba(168, 168, 168, 1);
   -moz-box-shadow: 4px -4px 5px 0px rgba(168, 168, 168, 1);
