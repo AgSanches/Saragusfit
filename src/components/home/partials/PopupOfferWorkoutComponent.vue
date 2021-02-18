@@ -43,20 +43,13 @@ export default {
   methods: {
     setScrollBlock,
     allowScroll,
-    handleScroll() {
-      this.canShowModal = window.scrollY > 1400;
-      if (this.canShowModal) {
-        window.removeEventListener("scroll", this.handleScroll);
-        this.setScrollBlock();
-      }
-    },
     hideModal() {
       this.canShowModal = false;
       this.allowScroll();
     }
   },
   created() {
-    window.addEventListener("scroll", this.handleScroll);
+    this.setScrollBlock();
   }
 };
 </script>
