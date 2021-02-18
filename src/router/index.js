@@ -7,6 +7,8 @@ import BaseLayout from "../layouts/BaseLayout.vue";
 import Homepage from "../views/Homepage.vue";
 import Login from "../views/Login";
 
+import CookiesPolicy from "../views/CookiesPolicy";
+
 const routes = [
   {
     path: "/",
@@ -27,6 +29,11 @@ const routes = [
             path: "",
             name: "Homepage",
             component: Homepage
+          },
+          {
+            path: "cookies",
+            name: "Cookies",
+            component: CookiesPolicy
           }
         ]
       },

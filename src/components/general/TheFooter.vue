@@ -49,7 +49,7 @@
       </div>
 
       <div class="pages d-flex justify-content-around text-white">
-        <router-link to="" class="footer-link">
+        <router-link :to="{ name: 'Cookies' }" class="footer-link">
           Cookies
         </router-link>
       </div>
