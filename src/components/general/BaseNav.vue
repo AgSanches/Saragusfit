@@ -16,20 +16,39 @@
 
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active" v-for="(link, idx) in links" :key="idx">
-          <a v-if="!link.user" class="nav-link" :href="link.to">
+        <li
+          class="nav-item"
+          v-for="(link, idx) in links"
+          :key="`baselink-${idx}`"
+        >
+          <a v-if="link.to" class="nav-link" :href="link.to">
             {{ link.name }}
           </a>
-          <a
-            v-else
-            class="nav-link"
-            :href="link.to"
-            @click="emitSignOut"
-            :class="{ 'd-none': !user }"
-          >
+          <a v-else class="nav-link" v-scroll-to="{ element: link.scroll }">
             {{ link.name }}
           </a>
         </li>
+
+        <template v-if="user">
+          <li
+            class="nav-item"
+            v-for="(link, idx) in linksUser"
+            :key="`userlink-${idx}`"
+          >
+            <router-link v-if="link.to" class="nav-link" :to="link.to">
+              {{ link.name }}
+            </router-link>
+
+            <a
+              v-else
+              class="nav-link"
+              :href="link.to"
+              @click="emitSignOut"
+            >
+              {{ link.name }}
+            </a>
+          </li>
+        </template>
       </ul>
     </div>
   </nav>
@@ -41,7 +60,8 @@ import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   name: "BaseNav",
   props: {
-    links: Array
+    links: Array,
+    linksUser: Array
   },
   methods: {
     ...mapMutations("general", ["toggleNav"]),
@@ -79,6 +99,7 @@ export default {
     .nav-item {
       .nav-link {
         color: white;
+        cursor: pointer;
       }
     }
   }

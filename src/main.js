@@ -42,8 +42,18 @@ app.directive("observe-visibility", {
   unmounted: ObserveVisibility.unbind
 });
 
+import VueScrollTo from "vue-scrollto";
+const optionsScrollTo = {
+  container: "body",
+  duration: 1000,
+  lazy: false,
+  easing: "ease",
+  offset: -100
+};
+
 app
   .use(VueSweetalert2, options)
+  .use(VueScrollTo, optionsScrollTo)
   .use(store)
   .use(router)
   .mount("#app");

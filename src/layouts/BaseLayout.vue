@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
-    <BaseNav :links="links"></BaseNav>
-    <TheSidebar :links="links"></TheSidebar>
+    <BaseNav :links="links" :linksUser="linksUser"></BaseNav>
+    <TheSidebar :links="links" :linksUser="linksUser"></TheSidebar>
     <router-view></router-view>
     <TheFooter></TheFooter>
   </div>
@@ -29,24 +29,28 @@ export default {
         },
         {
           name: "About us",
-          to: "#about-us"
+          scroll: "#about-us"
         },
         {
           name: "What we offer",
-          to: "#personalized-workout-plan"
+          scroll: "#personalized-workout-plan"
         },
         {
           name: "Start now",
-          to: "#get-yours-now"
+          scroll: "#get-yours-now"
         },
         {
           name: "Success Stories",
-          to: "#success-stories"
+          scroll: "#success-stories"
+        }
+      ],
+      linksUser: [
+        {
+          name: "Admin",
+          to: { name: "AdminDefaultPage" }
         },
         {
-          name: "Sign Out",
-          to: "#signout",
-          user: true
+          name: "Sign Out"
         }
       ]
     };

@@ -2,20 +2,34 @@
   <transition name="fade">
     <nav class="sidebar bg-primary" v-if="isOpenNav">
       <ul class="navbar-list">
-        <li class="navbar-item" v-for="(link, idx) in links" :key="idx">
-          <a v-if="!link.user" class="nav-link" :href="link.to">
+        <li
+          class="navbar-item"
+          v-for="(link, idx) in links"
+          :key="`baselink-${idx}`"
+        >
+          <a v-if="link.to" class="nav-link" :href="link.to">
             {{ link.name }}
           </a>
-          <a
-            v-else
-            class="nav-link"
-            :href="link.to"
-            @click="emitSignOut"
-            :class="{ 'd-none': !user }"
-          >
+          <a v-else class="nav-link" v-scroll-to="{ element: link.scroll }">
             {{ link.name }}
           </a>
         </li>
+
+        <template v-if="user">
+          <li
+            class="navbar-item"
+            v-for="(link, idx) in linksUser"
+            :key="`userlink-${idx}`"
+          >
+            <router-link v-if="link.to" class="nav-link" :to="link.to">
+              {{ link.name }}
+            </router-link>
+
+            <a v-else class="nav-link" :href="link.to" @click="emitSignOut">
+              {{ link.name }}
+            </a>
+          </li>
+        </template>
       </ul>
     </nav>
   </transition>
@@ -27,10 +41,12 @@ import { mapActions, mapMutations, mapState } from "vuex";
 export default {
   name: "TheSidebar",
   props: {
-    links: Array
+    links: Array,
+    linksUser: Array
   },
   computed: {
-    ...mapState("general", ["isOpenNav"])
+    ...mapState("general", ["isOpenNav"]),
+    ...mapState("login", ["user"])
   },
   methods: {
     ...mapMutations("general", ["toggleNav"]),
@@ -67,10 +83,10 @@ export default {
     .navbar-item {
       margin-bottom: 0.3rem;
 
-      .navbar-link {
+      .nav-link {
         text-decoration: none;
         color: white;
-        font-size: 1.7rem;
+        font-size: 1.2rem;
       }
     }
   }
