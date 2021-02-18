@@ -29,6 +29,7 @@
 
 <script>
 import FreeWorkoutSectionContent from "./FreeWorkoutSectionContent";
+import { setScrollBlock, allowScroll } from "../../../scroll-extras/scroll-modal";
 
 export default {
   name: "PopupDownloadWorkoutComponent",
@@ -45,8 +46,10 @@ export default {
     };
   },
   methods: {
+    setScrollBlock,
+    allowScroll,
     checkFirstVisit() {
-      this.isFirstVisit = localStorage.getItem("isUserVisit") == null;
+      this.isFirstVisit = true || localStorage.getItem("isUserVisit") == null;
 
       if (this.isFirstVisit) {
         localStorage.setItem("isUserVisit", "yes");
@@ -57,16 +60,12 @@ export default {
       this.canShowModal = window.scrollY > 1400;
       if (this.canShowModal) {
         window.removeEventListener("scroll", this.handleScroll);
-        document.body.style.top = `-${window.scrollY}px`;
-        document.body.style.position = "fixed";
+        this.setScrollBlock();
       }
     },
     hideModal() {
       this.canShowModal = false;
-      const scrollY = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      this.allowScroll();
     }
   },
   mounted() {
@@ -81,6 +80,16 @@ export default {
   display: block;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 1;
+  animation: fadeInOpacity linear 1s;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 body {
@@ -115,11 +124,4 @@ body {
   }
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 2s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
 </style>
