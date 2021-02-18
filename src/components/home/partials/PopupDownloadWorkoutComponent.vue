@@ -49,7 +49,7 @@ export default {
     setScrollBlock,
     allowScroll,
     checkFirstVisit() {
-      this.isFirstVisit = true || localStorage.getItem("isUserVisit") == null;
+      this.isFirstVisit = localStorage.getItem("isUserVisit") == null;
 
       if (this.isFirstVisit) {
         localStorage.setItem("isUserVisit", "yes");
