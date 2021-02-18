@@ -83,7 +83,7 @@ export default {
       const isSafeCookies = localStorage.getItem("cookies") != null;
 
       if (!isSafeCookies) {
-        //this.setLocalStorageCookies();
+        this.setLocalStorageCookies();
         this.showCookies = true;
       }
     },
