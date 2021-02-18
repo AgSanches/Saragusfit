@@ -3,7 +3,7 @@
 node_modules
 /dist
 
-src/repository/firebaseCredentials.ts
+src/repository/firebaseCredentials.js
 src/repository/instagramCredentials.js
 
 
@@ -25,5 +25,3 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-/src/repository/firebaseCredentials.ts
-/src/repository/firebaseCredentials.ts
