@@ -6,11 +6,7 @@
       {{ plan.name }}
     </h4>
 
-    <img
-      :src="image"
-      alt="Icon of a plan"
-      class="plan-icon d-block mx-auto"
-    />
+    <img :src="image" alt="Icon of a plan" class="plan-icon d-block mx-auto" />
 
     <p class="plan-subtitle">
       {{ plan.subtitle }}
@@ -138,6 +134,7 @@ export default {
   .plan-btn {
     font-size: 1.4rem;
     transition: all 1s;
+    animation: animationScaleButton 5s 1s linear infinite;
   }
 
   &:hover {
@@ -146,6 +143,18 @@ export default {
     .plan-btn {
       font-size: 1.65rem;
     }
+  }
+}
+
+@keyframes animationScaleButton {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 </style>

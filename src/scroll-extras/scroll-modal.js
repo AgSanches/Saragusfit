@@ -6,7 +6,7 @@ const setScrollBlock = () => {
 const allowScroll = () => {
   const scrollY = document.body.style.top;
   document.body.style.position = "";
-  document.body.style.top = "";
+  document.body.style.top = `${window.scrollY}px`;
   window.scrollTo(0, parseInt(scrollY || "0") * -1);
 };
 

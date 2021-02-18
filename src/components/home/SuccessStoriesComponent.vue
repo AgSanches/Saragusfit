@@ -23,7 +23,7 @@
           :lazy="true"
           :pagination="{ clickable: true }"
           :loop="true"
-          :navigation="isMobile"
+          :navigation="isMobileView"
           :autoplay="{
             delay: 4000
           }"
@@ -140,10 +140,10 @@ export default {
       }
 
       return require("../../assets/home/saragusfit-success-stories.jpg");
+    },
+    isMobileView() {
+      return this.windowWidth < 599;
     }
-  },
-  isMobile() {
-    return this.windowWidth < 599;
   },
   methods: {
     ...mapActions("home", ["getText"])

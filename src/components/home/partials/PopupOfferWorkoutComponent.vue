@@ -1,11 +1,12 @@
 <template>
-  <div v-if="canShowModal" class="test">
+  <div v-if="canShowModal">
     <transition name="fade">
       <div class="modal" tabindex="-1" role="dialog" id="popupOffer">
         <div class="modal-dialog  modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="overlay overlay-black"></div>
             <div class="modal-header">
+              <p class="modal-title text-white">GET YOURS NOW</p>
               <button
                 type="button"
                 class="close text-white"
@@ -15,11 +16,7 @@
                 <span aria-hidden="true" @click="hideModal">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <FreeWorkoutSectionContent
-                :content="content"
-              ></FreeWorkoutSectionContent>
-            </div>
+            <div class="modal-body text-center"></div>
           </div>
         </div>
       </div>
@@ -28,7 +25,6 @@
 </template>
 
 <script>
-import FreeWorkoutSectionContent from "./FreeWorkoutSectionContent";
 import {
   setScrollBlock,
   allowScroll
@@ -36,29 +32,17 @@ import {
 
 export default {
   name: "PopupDownloadWorkoutComponent",
-  components: {
-    FreeWorkoutSectionContent
-  },
   props: {
     content: Object
   },
   data: () => {
     return {
-      isFirstVisit: false,
-      canShowModal: false
+      canShowModal: true
     };
   },
   methods: {
     setScrollBlock,
     allowScroll,
-    checkFirstVisit() {
-      this.isFirstVisit = localStorage.getItem("isUserVisit") == null;
-
-      if (this.isFirstVisit) {
-        localStorage.setItem("isUserVisit", "yes");
-        window.addEventListener("scroll", this.handleScroll);
-      }
-    },
     handleScroll() {
       this.canShowModal = window.scrollY > 1400;
       if (this.canShowModal) {
@@ -71,10 +55,9 @@ export default {
       this.allowScroll();
     }
   },
-  mounted() {
-    this.checkFirstVisit();
-  },
-  watch: {}
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
 };
 </script>
 
@@ -100,23 +83,15 @@ body {
   height: 100vh;
 }
 
-.test {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1040;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
 .modal-header {
   border-bottom: unset;
+
+  .modal-title {
+    font-size: 1.5rem;
+  }
 }
 .modal-content {
-  background-image: url("../../../assets/home/saragusfit-planning.jpg");
+  background-image: url("../../../assets/home/saragusfit-free-plan.jpg");
   background-size: cover;
   position: relative;
 
@@ -124,6 +99,10 @@ body {
   .modal-body {
     position: relative;
     z-index: 5;
+
+    .title {
+      font-size: 2rem;
+    }
   }
 }
 </style>

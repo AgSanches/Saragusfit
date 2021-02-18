@@ -31,6 +31,17 @@ const options = {
 
 const app = createApp(App);
 
+import { ObserveVisibility } from "vue-observe-visibility";
+
+app.directive("observe-visibility", {
+  beforeMount: (el, binding, vnode) => {
+    vnode.context = binding.instance;
+    ObserveVisibility.bind(el, binding, vnode);
+  },
+  update: ObserveVisibility.update,
+  unmounted: ObserveVisibility.unbind
+});
+
 app
   .use(VueSweetalert2, options)
   .use(store)

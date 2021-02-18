@@ -3,6 +3,19 @@
     <TitleComponent title="GET YOURS NOW"></TitleComponent>
 
     <ModalStartNowPlanComponent></ModalStartNowPlanComponent>
+    <div
+      v-if="showModal"
+      v-observe-visibility="{
+        callback: visibilityChanged,
+        once: true,
+        throttle: 600
+      }"
+    >
+      <PopupOfferWorkoutComponent
+        v-if="isAlreadyVisible"
+      ></PopupOfferWorkoutComponent>
+    </div>
+
     <div class="services row justify-content-center align-items-center mt-3">
       <div
         class="col-11 col-md-4 col-xl-3 p-1 mx-5"
@@ -24,6 +37,7 @@
 import TitleComponent from "./partials/TitleComponent";
 import PlanComponent from "./partials/PlanComponent";
 import ModalStartNowPlanComponent from "./partials/ModalStartNowPlanComponent";
+import PopupOfferWorkoutComponent from "./partials/PopupOfferWorkoutComponent";
 import { mapActions } from "vuex";
 
 export default {
@@ -31,7 +45,8 @@ export default {
   components: {
     TitleComponent,
     PlanComponent,
-    ModalStartNowPlanComponent
+    ModalStartNowPlanComponent,
+    PopupOfferWorkoutComponent
   },
   data: () => {
     return {
@@ -45,15 +60,25 @@ export default {
           price: 5,
           isOffer: true
         }
-      ]
+      ],
+      showModal: false,
+      isAlreadyVisible: false
     };
   },
   methods: {
-    ...mapActions("home", ["getText"])
+    ...mapActions("home", ["getText"]),
+    visibilityChanged(isVisible) {
+      if (this.isAlreadyVisible) return;
+
+      if (isVisible) {
+        this.isAlreadyVisible = true;
+      }
+    }
   },
   created() {
     this.getText(this.doc).then(response => {
       this.plans = response.plans;
+      this.showModal = response.showModal;
     });
   }
 };
