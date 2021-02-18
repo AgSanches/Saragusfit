@@ -34,4 +34,10 @@ export default {
   position: relative;
   cursor: pointer;
 }
+
+.img-wrapper {
+  max-width: 35rem;
+  display: block;
+  margin: 0 auto;
+}
 </style>

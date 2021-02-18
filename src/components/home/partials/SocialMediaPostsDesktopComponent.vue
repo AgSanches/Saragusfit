@@ -1,11 +1,10 @@
 <template>
   <swiper
-    :slides-per-view="2"
-    :space-between="50"
+    :slides-per-view="3"
+    :space-between="100"
     :loop="true"
-    :autoplay="{
-      delay: 2000
-    }"
+    navigation
+    :pagination="{ clickable: true }"
   >
     <swiper-slide v-for="(post, idx) in instagramPosts" :key="idx">
       <SocialMediaCardComponent :post="post"></SocialMediaCardComponent>
@@ -16,12 +15,14 @@
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import SocialMediaCardComponent from "./SocialMediaCardComponent";
-import SwiperCore, { Autoplay } from "swiper";
+import SwiperCore, { Navigation, Pagination } from "swiper";
 
-SwiperCore.use([Autoplay]);
+SwiperCore.use([Navigation, Pagination]);
 
 // Import Swiper styles
 import "swiper/swiper.scss";
+import "swiper/components/navigation/navigation.scss";
+import "swiper/components/pagination/pagination.scss";
 
 export default {
   name: "SocialMediaPostsDesktopComponent",

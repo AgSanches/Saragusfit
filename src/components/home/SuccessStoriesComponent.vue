@@ -12,7 +12,7 @@
     <div class="content mx-auto">
       <div class="success-stories-title text-center">
         <h5 class="title font-weight-bold">Success Stories</h5>
-        <p class="subtitle font-italic">
+        <p class="subtitle font-italic mb-4">
           We don’t just sell, we’re beloved too.
         </p>
       </div>
@@ -39,28 +39,16 @@
             <div
               class="col-12 row align-items-center justify-content-center mx-auto"
             >
-              <div
-                class="col-12 col-md-7 col-xl-5 row justify-content-center align-items-center"
-              >
-                <div class="col-6 p-1">
-                  <SuccessStoriesChangeComponent
-                    :image="images[0]"
-                    text="Before"
-                    data-aos="zoom-in"
-                    data-aos-duration="1000"
-                  ></SuccessStoriesChangeComponent>
-                </div>
+              <SuccessStoriesImageBasicComponent
+                v-if="review.imageBasic"
+                :image="imageBasic"
+              ></SuccessStoriesImageBasicComponent>
 
-                <div class="col-6 p-1 after-change">
-                  <SuccessStoriesChangeComponent
-                    :image="images[1]"
-                    text="After"
-                    data-aos="zoom-in"
-                    data-aos-duration="1000"
-                    data-aos-delay="150"
-                  ></SuccessStoriesChangeComponent>
-                </div>
-              </div>
+              <SuccessStoriesImageBeforeAndAfterComponent
+                v-else
+                :images="images"
+              ></SuccessStoriesImageBeforeAndAfterComponent>
+
               <div
                 class="col-12 col-md-5 col-xl-4 mt-2 mt-md-0"
                 data-aos="fade-up-left"
@@ -84,7 +72,9 @@
 </template>
 
 <script>
-import SuccessStoriesChangeComponent from "./partials/SuccessStorieChangeComponent";
+import SuccessStoriesImageBeforeAndAfterComponent from "./partials/SuccessStoriesImageBeforeAndAfterComponent";
+import SuccessStoriesImageBasicComponent from "./partials/SuccessStoriesImageBasicComponent";
+
 import SwiperCore, {
   EffectCoverflow,
   Lazy,
@@ -116,7 +106,8 @@ SwiperCore.use([
 export default {
   name: "SuccessStoriesComponent",
   components: {
-    SuccessStoriesChangeComponent,
+    SuccessStoriesImageBeforeAndAfterComponent,
+    SuccessStoriesImageBasicComponent,
     Swiper,
     SwiperSlide
   },
@@ -128,6 +119,7 @@ export default {
         require("../../assets/home/saragusfit-photo-sara.jpeg"),
         require("../../assets/home/saragusfit-photo-agustina.jpeg")
       ],
+      imageBasic: require("../../assets/home/saragusfit-feedback.jpg"),
       doc: "successStories"
     };
   },
@@ -225,7 +217,7 @@ export default {
     min-height: 34rem;
   }
 
-  min-height: 45rem;
+  min-height: 40rem;
   position: relative;
   margin-top: 2.5rem;
 

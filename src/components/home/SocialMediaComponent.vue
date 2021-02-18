@@ -2,7 +2,11 @@
   <div class="social-media mt-4">
     <TitleComponent title="FOLLOW US"></TitleComponent>
 
-    <div class="container mt-3" data-aos="zoom-in" data-aos-duration="1500">
+    <div
+      class="social-media-wrapper mt-3"
+      data-aos="zoom-in"
+      data-aos-duration="1500"
+    >
       <div v-if="isMobile">
         <transition name="fade">
           <SocialMediaPostMobileComponent
@@ -88,6 +92,12 @@ export default {
 <style scoped lang="scss">
 .swiper-wrapper {
   margin-bottom: 2rem;
+}
+
+.social-media-wrapper {
+  width: 95%;
+  display: block;
+  margin: 0 auto;
 }
 
 .social-links {

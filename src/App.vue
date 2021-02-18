@@ -88,10 +88,6 @@ html {
   background: #555;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 .swiper-button-prev,
 .swiper-button-next {
   color: $primary !important;

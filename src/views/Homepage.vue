@@ -1,10 +1,16 @@
 <template>
-  <div @scroll="handleScroll()">
+  <div>
     <HeaderComponent></HeaderComponent>
     <MissionAndVisionComponent></MissionAndVisionComponent>
     <AboutUsComponent></AboutUsComponent>
     <PersonalCardsSectionComponent></PersonalCardsSectionComponent>
-    <PersonalizedWorkoutPlanComponent></PersonalizedWorkoutPlanComponent>
+    <PersonalizedWorkoutPlanComponent
+      v-observe-visibility="{
+        callback: visibilityChanged,
+        once: true,
+        throttle: 200
+      }"
+    ></PersonalizedWorkoutPlanComponent>
     <TheProccessComponent></TheProccessComponent>
     <GetYoursNowComponent></GetYoursNowComponent>
     <SuccessStoriesComponent></SuccessStoriesComponent>
@@ -50,14 +56,18 @@ export default {
       showSocialMedia: false
     };
   },
-  created() {
-    document.addEventListener("scroll", this.handleScroll);
-  },
   methods: {
     handleScroll() {
       if (!this.showSocialMedia && window.scrollY > 500) {
         this.showSocialMedia = true;
         document.removeEventListener("scroll", this.handleScroll);
+      }
+    },
+    visibilityChanged(isVisible) {
+      if (this.isAlreadyVisible) return;
+
+      if (isVisible) {
+        this.showSocialMedia = true;
       }
     }
   }
