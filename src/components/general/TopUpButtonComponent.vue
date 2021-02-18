@@ -51,7 +51,7 @@ export default {
   position: fixed;
   bottom: 25px;
   left: 25px;
-  z-index: 9999;
+  z-index: 999;
   width: 48px;
   height: 48px;
   border-radius: 50%;

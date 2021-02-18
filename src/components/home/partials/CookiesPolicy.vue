@@ -37,7 +37,7 @@ export default {
   left: 25px;
   bottom: 25px;
   background-color: white;
-  z-index: 999999;
+  z-index: 1000;
   width: 30%;
   min-width: 20rem;
   padding: 1rem;
