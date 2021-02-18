@@ -1,5 +1,6 @@
 <template>
   <div>
+    <CookiesPolicy v-if="!isLoadingPage && showCookies" @emitCloseCookies="showCookies = false"></CookiesPolicy>
     <HeaderComponent></HeaderComponent>
     <MissionAndVisionComponent></MissionAndVisionComponent>
     <AboutUsComponent></AboutUsComponent>
@@ -34,6 +35,9 @@ import WhatsappComponent from "../components/general/WhatsappComponent";
 import TopUpButtonComponent from "../components/general/TopUpButtonComponent";
 import SocialMediaComponent from "../components/home/SocialMediaComponent";
 import FreeWorkoutPlanComponent from "../components/home/FreeWorkoutPlanComponent";
+import CookiesPolicy from "../components/home/partials/CookiesPolicy";
+
+import { mapState } from "vuex";
 
 export default {
   name: "Homepage",
@@ -49,12 +53,17 @@ export default {
     WhatsappComponent,
     TopUpButtonComponent,
     SocialMediaComponent,
-    FreeWorkoutPlanComponent
+    FreeWorkoutPlanComponent,
+    CookiesPolicy
   },
   data: () => {
     return {
-      showSocialMedia: false
+      showSocialMedia: false,
+      showCookies: false
     };
+  },
+  computed: {
+    ...mapState("general", ["isLoadingPage"])
   },
   methods: {
     handleScroll() {
@@ -69,7 +78,21 @@ export default {
       if (isVisible) {
         this.showSocialMedia = true;
       }
+    },
+    checkShowCookies() {
+      const isSafeCookies = localStorage.getItem("cookies") != null;
+
+      if (!isSafeCookies) {
+        //this.setLocalStorageCookies();
+        this.showCookies = true;
+      }
+    },
+    setLocalStorageCookies() {
+      localStorage.setItem("cookies", "shown");
     }
+  },
+  created() {
+    this.checkShowCookies();
   }
 };
 </script>
