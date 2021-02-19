@@ -2,6 +2,7 @@
   <div class="mission-and-vision-section p-1">
     <form action="#" @submit.prevent="updateContent">
       <div class="row justify-content-start align-items-center">
+
         <div class="row col-12">
           <div class="col-12 title-wrapper">
             <p class="title">General content</p>

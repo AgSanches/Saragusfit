@@ -2,66 +2,45 @@
   <div class="mission-and-vision-section p-1">
     <form action="#" @submit.prevent="updateContent">
       <div class="row justify-content-start align-items-center">
-        <div class="col-12">
-          <button class="btn btn-primary" @click="addCoach">
-            Add coach
-          </button>
+        <div class="row col-12">
+          <div class="col-12 title-wrapper">
+            <p class="title">
+              Coachs <AddElementButton @click="addModel"></AddElementButton>
+            </p>
+          </div>
         </div>
 
-        <div
-          class="col-12 row my-1"
-          v-for="(coach, idx) of content.coachs"
-          :key="`coach-${idx}`"
-        >
-          <div class="form-group col-12 p-1">
-            <label :for="`inputCoachName-${idx}`">Name {{ idx + 1 }}</label>
-            <input
-              type="text"
-              class="form-control"
-              :id="`inputCoachName-${idx}`"
-              placeholder="Enter name"
-              required
-              v-model="coach.name"
-            />
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <label :for="`inputCoachText-${idx}`"
-              >First Text {{ idx + 1 }}
-            </label>
-            <input
-              type="text"
-              class="form-control"
-              :id="`inputCoachText-${idx}`"
-              placeholder="Enter text"
-              required
-              v-model="coach.subtitle"
-            />
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <label :for="`inputCoachContent-${idx}`"
-              >Main Content{{ idx + 1 }}</label
-            >
-            <textarea
-              class="form-control"
-              :id="`inputCoachContent-${idx}`"
-              placeholder="Enter text"
-              required
-              v-model="coach.description"
-            ></textarea>
-          </div>
-
-          <button
-            class="btn btn-danger mt-1 ml-1"
-            @click="removeParagraph(idx)"
-            type="button"
+        <template v-if="content.coachs && content.coachs.length > 0">
+          <div
+            class="col-12 col-md-4 col-xl-3 p-2 mx-md-1 coach-wrapper"
+            v-for="(coach, idx) in content.coachs"
+            :key="idx"
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="1000"
+            data-aos-anchor-placement="top-bottom"
+            :data-aos-delay="200 * idx"
           >
-            Remove coach
-          </button>
-        </div>
+            <CardComponent
+              :coach="coach"
+              :image="images[idx]"
+              @click="showModelEdit(idx)"
+            ></CardComponent>
+            <RemoveElementButton
+              @click="removeContent(idx)"
+            ></RemoveElementButton>
+          </div>
+        </template>
+
+        <template v-if="showModal">
+          <ModalFormCoachComponent
+            :coach-prop="coachProp"
+            :coachIdx="coachIdx"
+            @closeModal="closeModal"
+            @saveModel="saveModel"
+          ></ModalFormCoachComponent>
+        </template>
       </div>
-      <button type="submit" class="btn btn-primary mt-2">Confirm</button>
     </form>
   </div>
 </template>
@@ -69,33 +48,62 @@
 <script>
 import { mapActions } from "vuex";
 import { displaySuccessSwal, displayErrorSwal } from "./partials/displaySwal";
+import CardComponent from "../home/partials/CardComponent";
+import AddElementButton from "./partials/AddElementButton";
+import RemoveElementButton from "./partials/RemoveElementButton";
+import ModalFormCoachComponent from "./partials/ModalFormCoachComponent";
 
 export default {
   name: "ProccessCoachsComponent",
+  components: {
+    CardComponent,
+    AddElementButton,
+    RemoveElementButton,
+    ModalFormCoachComponent
+  },
   data: () => {
     return {
       doc: "coach",
       content: {
         coachs: []
-      }
+      },
+      coachProp: null,
+      coachIdx: null,
+      images: [
+        require("../../assets/home/saragusfit-photo-sara.jpeg"),
+        require("../../assets/home/saragusfit-photo-agustina.jpeg")
+      ],
+      showModal: false
     };
   },
   methods: {
     ...mapActions("home", ["getText"]),
     ...mapActions("admin", ["updateDocGeneric"]),
-    addCoach() {
-      this.content.coachs.push("");
+    addModel() {
+      this.showModal = true;
     },
-    removeParagraph(idx) {
-      this.$swal({
-        title: "Are you sure?",
-        text: "You will delete this coach",
-        showCancelButton: true
-      }).then(value => {
-        if (value.isConfirmed) {
-          this.content.coachs.splice(idx, 1);
-        }
-      });
+    showModelEdit(idx) {
+      this.coachProp = this.content.coachs[idx];
+      this.coachIdx = idx;
+      this.showModal = true;
+    },
+    saveModel(model) {
+      if (this.coachIdx != null) this.editModel(model);
+      else this.createModel(model);
+
+      this.closeModal();
+      this.updateContent();
+    },
+    createModel(model) {
+      this.content.coachs.push(model);
+    },
+    editModel(model) {
+      this.content.coachs[this.coachIdx] = model;
+    },
+    closeModal() {
+      this.showModal = false;
+      this.coachProp = null;
+      this.coachIdx = null;
     },
     updateContent() {
       const dataToUpdate = {
@@ -110,6 +118,18 @@ export default {
         .catch(() => {
           this.$swal(displayErrorSwal);
         });
+    },
+    removeContent(idx) {
+      this.$swal({
+        title: "Are you sure?",
+        text: "You will delete this coach",
+        showCancelButton: true
+      }).then(value => {
+        if (value.isConfirmed) {
+          this.content.coachs.splice(idx, 1);
+          this.updateContent();
+        }
+      });
     }
   },
   created() {
@@ -120,4 +140,17 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.title-wrapper {
+  padding: 0;
+
+  .title {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+}
+
+.coach-wrapper {
+  cursor: pointer;
+}
+</style>

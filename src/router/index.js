@@ -59,6 +59,11 @@ const routes = [
             path: "about-us",
             name: "AdminAboutUsPage",
             component: () => import("../views/admin/AdminAboutUsPage")
+          },
+          {
+            path: "coachs",
+            name: "AdminCoachsPage",
+            component: () => import("../views/admin/AdminCoachsPage")
           }
         ]
       }

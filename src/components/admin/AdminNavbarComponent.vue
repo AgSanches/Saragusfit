@@ -42,7 +42,7 @@ export default {
         },
         {
           name: "Sara & Agus",
-          to: { name: "SaraAndAgusPage" }
+          to: { name: "AdminCoachsPage" }
         },
         {
           name: "Personalized Workout Plan",
