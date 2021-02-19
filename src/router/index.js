@@ -54,6 +54,11 @@ const routes = [
             path: "",
             name: "AdminDefaultPage",
             component: () => import("../views/AdminPanel")
+          },
+          {
+            path: "about-us",
+            name: "AdminAboutUsPage",
+            component: () => import("../views/admin/AdminAboutUsPage")
           }
         ]
       }

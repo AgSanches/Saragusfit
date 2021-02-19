@@ -33,8 +33,8 @@ export default {
     return {
       links: [
         {
-          name: "Mission and Vision",
-          to: { name: "MissionAndVisionPage" }
+          name: "General",
+          to: { name: "AdminDefaultPage" }
         },
         {
           name: "About us",
@@ -55,10 +55,6 @@ export default {
         {
           name: "Get Your now",
           to: { name: "GetYoursNowPage" }
-        },
-        {
-          name: "Fitness Challenges",
-          to: { name: "FitnessChallengesPage" }
         },
         {
           name: "Sign Out",

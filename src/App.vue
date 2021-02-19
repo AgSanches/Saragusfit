@@ -98,6 +98,10 @@ html {
   background: $primary !important;
 }
 
+.cursor {
+  cursor: pointer;
+}
+
 @import "styles/fonts";
 @import "~bootstrap/scss/bootstrap";
 </style>
