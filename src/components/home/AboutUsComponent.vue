@@ -20,19 +20,16 @@
 
           <div class="approachs row justify-content-start align-items-center">
             <div
-              class="col-12 col-md-6 approach"
+              class="col-12 col-md-6"
               v-for="(approach, idx) in pageContent.approachs"
               :key="idx"
               data-aos="fade-up"
               data-aos-duration="1500"
-              data-aos-delay="125"
+              :data-aos-delay="125 * idx"
             >
-              <img
-                src="../../assets/icons/check.png"
-                alt="Check icon approach"
-                class="check bg-primary"
-              />
-              <p class="content">{{ approach }}</p>
+              <AboutUsApproachComponent
+                :approach="approach"
+              ></AboutUsApproachComponent>
             </div>
           </div>
         </div>
@@ -50,10 +47,14 @@
 
 <script>
 import content from "../../texts/aboutUsTexts";
+import AboutUsApproachComponent from "./partials/AboutUsApproachComponent";
 import { mapActions } from "vuex";
 
 export default {
   name: "AboutUsComponent",
+  components: {
+    AboutUsApproachComponent
+  },
   data: () => {
     return {
       pageContent: content,
@@ -104,27 +105,6 @@ export default {
     margin-right: auto;
     margin-left: 2rem;
     margin-top: 1.5rem;
-
-    .approach {
-      margin-bottom: 0.5rem;
-
-      &:hover {
-        .check {
-          animation-name: rotate;
-          animation-duration: 1s;
-        }
-      }
-
-      .check {
-        padding: 0.3rem;
-        width: 24px;
-        margin-right: 0.5rem;
-      }
-
-      .content {
-        display: inline;
-      }
-    }
   }
 }
 
@@ -141,15 +121,6 @@ export default {
   @media screen and (min-width: 1920px) {
     max-width: 350px;
     margin: 0 auto;
-  }
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotateX(0deg);
-  }
-  100% {
-    transform: rotateX(360deg);
   }
 }
 </style>
