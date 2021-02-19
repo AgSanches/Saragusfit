@@ -51,7 +51,7 @@ export default {
 .preloader {
   height: 100vh;
   width: 100vw;
-  position: absolute;
+  position: fixed;
   z-index: 9999;
   overflow: hidden;
 
