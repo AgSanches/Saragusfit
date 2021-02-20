@@ -5,45 +5,45 @@
         <div class="form-group col-12 col-md-6 p-1">
           <label for="inputTitle">Title Section</label>
           <input
-                  type="text"
-                  class="form-control"
-                  id="inputTitle"
-                  placeholder="Enter title"
-                  required
-                  v-model="content.title"
+            type="text"
+            class="form-control"
+            id="inputTitle"
+            placeholder="Enter title"
+            required
+            v-model="content.title"
           />
         </div>
         <div class="form-group col-12 col-md-6 p-1">
           <label for="inputSubtitle">Subtitle Section</label>
           <input
-                  type="text"
-                  class="form-control"
-                  id="inputSubtitle"
-                  placeholder="Enter subtitle"
-                  required
-                  v-model="content.subtitle"
+            type="text"
+            class="form-control"
+            id="inputSubtitle"
+            placeholder="Enter subtitle"
+            required
+            v-model="content.subtitle"
           />
         </div>
         <div class="form-group col-12 p-1">
           <label for="inputText">Text Section</label>
           <input
-                  type="text"
-                  class="form-control"
-                  id="inputText"
-                  placeholder="Enter text"
-                  required
-                  v-model="content.text"
+            type="text"
+            class="form-control"
+            id="inputText"
+            placeholder="Enter text"
+            required
+            v-model="content.text"
           />
         </div>
         <div class="form-group col-12 col-md-3 p-1">
           <label for="inputButton">Button content</label>
           <input
-                  type="text"
-                  class="form-control"
-                  id="inputButton"
-                  placeholder="Enter text for button"
-                  required
-                  v-model="content.button"
+            type="text"
+            class="form-control"
+            id="inputButton"
+            placeholder="Enter text for button"
+            required
+            v-model="content.button"
           />
         </div>
       </div>
