@@ -2,10 +2,18 @@
   <div class="mission-and-vision-section p-1">
     <div class="row justify-content-start align-items-center">
       <div class="row col-12">
-        <div class="col-12 title-wrapper mb-3">
+        <div class="col-12 title-wrapper mb-3 d-flex">
           <p class="title">
             Plans <AddElementButton @click="addItem"></AddElementButton>
           </p>
+
+          <button
+            class="btn ml-3"
+            @click="toggleModalOffer"
+            :class="{ 'btn-primary': content.showModal, 'btn-danger': !content.showModal }"
+          >
+            Modal {{ content.showModal ? "Show" : "Hide" }}
+          </button>
         </div>
       </div>
 
@@ -55,7 +63,8 @@ export default {
     return {
       doc: "plansSection",
       content: {
-        plans: []
+        plans: [],
+        showModal: null
       },
       image: require("../../assets/icons/dumbell-plan.png"),
       showModal: false,
@@ -111,6 +120,10 @@ export default {
         .catch(() => {
           this.$swal(displayErrorSwal);
         });
+    },
+    toggleModalOffer() {
+      this.content.showModal = !this.content.showModal;
+      this.updateContent();
     }
   },
   created() {
