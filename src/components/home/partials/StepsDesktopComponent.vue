@@ -9,6 +9,7 @@
         :step="step"
         :data-aos="step.aosDesktop"
         data-aos-duration="1000"
+        @click="emitClickOnProccess(idx, true)"
       ></ProccessStepComponent>
     </div>
 
@@ -44,6 +45,7 @@
         :step="step"
         :data-aos="step.aosDesktop"
         data-aos-duration="1000"
+        @click="emitClickOnProccess(idx, true)"
       ></ProccessStepComponent>
     </div>
   </div>
@@ -62,6 +64,16 @@ export default {
   components: {
     ProccessStepComponent,
     CircleComponent
+  },
+  methods: {
+    emitClickOnProccess(idx, isUpper) {
+      const emit = {
+        idx,
+        isUpper
+      };
+
+      this.$emit("proccessClicked", emit);
+    }
   }
 };
 </script>

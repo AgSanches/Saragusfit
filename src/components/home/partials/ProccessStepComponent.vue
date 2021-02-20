@@ -1,5 +1,5 @@
 <template>
-  <div class="step-wrapper">
+  <div class="step-wrapper cursor">
     <div class="step text-center">
       <p class="day text-secondary font-italic">Day {{ step.day }}</p>
       <h4 class="title text-primary font-weight-bold">{{ step.name }}</h4>
