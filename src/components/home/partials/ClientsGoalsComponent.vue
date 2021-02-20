@@ -18,6 +18,7 @@ export default {
   font-size: 1.1rem;
   margin-bottom: 0.2rem;
   position: relative;
+  list-style: none;
 
   &::after {
     display: block;
