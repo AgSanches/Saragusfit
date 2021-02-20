@@ -45,7 +45,7 @@
         :step="step"
         :data-aos="step.aosDesktop"
         data-aos-duration="1000"
-        @click="emitClickOnProccess(idx, true)"
+        @click="emitClickOnProccess(idx, false)"
       ></ProccessStepComponent>
     </div>
   </div>
