@@ -78,15 +78,19 @@
       </div>
 
       <div
-        class="col-12 col-md-6 row align-items-center justify-content-center cursor"
+        class="col-12 col-md-6
+        row align-items-center justify-content-center
+        cursor"
         v-for="(section, idx) of content.sections"
         :key="`section-${idx}`"
         @click="modifySection(idx)"
       >
-        <WorkoutPlanSectionComponent
-          :content="section"
-          :image="images[idx]"
-        ></WorkoutPlanSectionComponent>
+        <div class="p-2">
+          <WorkoutPlanSectionComponent
+            :content="section"
+            :image="images[idx]"
+          ></WorkoutPlanSectionComponent>
+        </div>
       </div>
     </div>
     <template v-if="showModal">

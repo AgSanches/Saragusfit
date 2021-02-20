@@ -1,5 +1,5 @@
 <template>
-  <div class="section" :data-aos="content.aos" data-aos-duration="1500">
+  <div class="section bg-white" :data-aos="content.aos" data-aos-duration="1500">
     <img
       :src="image"
       :alt="`Image of ${content.title}`"
@@ -8,7 +8,7 @@
     <h4 class="section-title text-primary font-weight-bold">
       {{ content.title }}
     </h4>
-    <p class="section-content">{{ content.text }}</p>
+    <p class="section-content text-dark">{{ content.text }}</p>
   </div>
 </template>
 

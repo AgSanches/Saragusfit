@@ -8,11 +8,11 @@
 
     <img :src="image" alt="Icon of a plan" class="plan-icon d-block mx-auto" />
 
-    <p class="plan-subtitle">
+    <p class="plan-subtitle text-dark">
       {{ plan.subtitle }}
     </p>
 
-    <p class="plan-price font-weight-bold">
+    <p class="plan-price font-weight-bold text-dark">
       {{ plan.price }} €
       <span
         v-if="plan.isOffer"

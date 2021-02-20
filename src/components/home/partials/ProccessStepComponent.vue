@@ -31,6 +31,7 @@ export default {
   -moz-box-shadow: 0px 15px 13px 3px rgba(115, 103, 115, 0.52);
   box-shadow: 0px 15px 13px 3px rgba(115, 103, 115, 0.52);
   position: relative;
+  background-color: white;
 
   .content {
     position: absolute;
