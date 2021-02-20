@@ -56,30 +56,43 @@ const routes = [
             component: () => import("../views/AdminPanel")
           },
           {
-            path: "about-us",
-            name: "AdminAboutUsPage",
-            component: () => import("../views/admin/AdminAboutUsPage")
-          },
-          {
-            path: "coachs",
-            name: "AdminCoachsPage",
-            component: () => import("../views/admin/AdminCoachsPage")
-          },
-          {
-            path: "workout-plan",
-            name: "AdminWorkoutPlan",
-            component: () =>
-              import("../views/admin/AdminPersonalizedWorkoutPlanPage")
-          },
-          {
-            path: "the-proccess",
-            name: "AdminTheProccess",
-            component: () => import("../views/admin/AdminTheProccessPage")
-          },
-          {
-            path: "plans",
-            name: "AdminPlans",
-            component: () => import("../views/admin/AdminPlansPage")
+            path: "",
+            name: "AdminBasePage",
+            component: () => import("../views/admin/AdminBasePage"),
+            children: [
+              {
+                path: "about-us",
+                name: "AdminAboutUsPage",
+                component: () =>
+                  import("../components/admin/ProccessAboutUsComponent")
+              },
+              {
+                path: "coachs",
+                name: "AdminCoachsPage",
+                component: () =>
+                  import("../components/admin/ProccessCoachsComponent")
+              },
+              {
+                path: "workout-plan",
+                name: "AdminWorkoutPlan",
+                component: () =>
+                  import("../components/admin/ProccessWorkoutPlanComponent")
+              },
+              {
+                path: "the-proccess",
+                name: "AdminTheProccess",
+                component: () =>
+                  import(
+                    "../components/admin/ProccessTheProccessSectionComponent"
+                  )
+              },
+              {
+                path: "plans",
+                name: "AdminPlans",
+                component: () =>
+                  import("../components/admin/ProccessPlanSectionComponent")
+              }
+            ]
           }
         ]
       }
