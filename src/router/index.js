@@ -75,6 +75,11 @@ const routes = [
             path: "the-proccess",
             name: "AdminTheProccess",
             component: () => import("../views/admin/AdminTheProccessPage")
+          },
+          {
+            path: "plans",
+            name: "AdminPlans",
+            component: () => import("../views/admin/AdminPlansPage")
           }
         ]
       }

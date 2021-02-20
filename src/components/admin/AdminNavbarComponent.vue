@@ -60,6 +60,10 @@ export default {
           to: { name: "AdminTheProccess" }
         },
         {
+          name: "Plans",
+          to: { name: "AdminPlans" }
+        },
+        {
           name: "Sign Out",
           to: { name: "Login" }
         }

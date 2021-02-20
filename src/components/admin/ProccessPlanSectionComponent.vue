@@ -1,101 +1,90 @@
 <template>
   <div class="mission-and-vision-section p-1">
-    <form action="#" @submit.prevent="updateContent">
-      <div class="row justify-content-start align-items-center">
-        <div class="col-12">
-          <button class="btn btn-primary" @click="addItem">
-            Add plan
-          </button>
-        </div>
-
-        <div
-          class="col-12 row my-1"
-          v-for="(plan, idx) of content.plans"
-          :key="`plan-${idx}`"
-        >
-          <div class="form-group col-12 p-1">
-            <label :for="`inputPlanName-${idx}`">Name {{ idx + 1 }}</label>
-            <input
-              type="text"
-              class="form-control"
-              :id="`inputPlanName-${idx}`"
-              placeholder="Enter name"
-              required
-              v-model="plan.name"
-            />
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <label :for="`inputSubtitle-${idx}`">Subtitle {{ idx + 1 }}</label>
-            <input
-              type="text"
-              class="form-control"
-              :id="`inputSubtitle-${idx}`"
-              placeholder="Enter subtitle"
-              required
-              v-model="plan.subtitle"
-            />
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <label :for="`inputPrice-${idx}`">Price {{ idx + 1 }}</label>
-            <input
-              type="number"
-              class="form-control"
-              :id="`inputPrice-${idx}`"
-              placeholder="Enter Price"
-              required
-              v-model="plan.price"
-            />
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                v-model="plan.isOffer"
-                :id="`inputIsOffer-${idx}`"
-              />
-              <label class="form-check-label" :for="`inputIsOffer-${idx}`">
-                It's is on sale?
-              </label>
-            </div>
-          </div>
-
-          <button
-            class="btn btn-danger mt-1 ml-1"
-            @click="removeItem(idx)"
-            type="button"
-          >
-            Remove plan
-          </button>
+    <div class="row justify-content-start align-items-center">
+      <div class="row col-12">
+        <div class="col-12 title-wrapper mb-3">
+          <p class="title">
+            Plans <AddElementButton @click="addItem"></AddElementButton>
+          </p>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary mt-2">Confirm</button>
-    </form>
+
+      <div
+        class="col-12 col-md-4 my-1"
+        v-for="(plan, idx) of content.plans"
+        :key="`plan-${idx}`"
+      >
+        <PlanComponent
+          :image="image"
+          :plan="plan"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          @click="editItem(idx)"
+        ></PlanComponent>
+        <RemoveElementButton @click="removeItem(idx)"></RemoveElementButton>
+      </div>
+
+      <template v-if="showModal">
+        <ModalFormPlanComponent
+          :item-prop="content.plans[propIdx]"
+          @closeModal="closeModal"
+          @saveModel="saveModel"
+        ></ModalFormPlanComponent>
+      </template>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
 import { displaySuccessSwal, displayErrorSwal } from "./partials/displaySwal";
+import AddElementButton from "./partials/AddElementButton";
+import PlanComponent from "../home/partials/PlanComponent";
+import RemoveElementButton from "./partials/RemoveElementButton";
+import ModalFormPlanComponent from "./partials/ModalFormPlanComponent";
 
 export default {
   name: "ProccessPlanSectionComponent",
+  components: {
+    ModalFormPlanComponent,
+    RemoveElementButton,
+    PlanComponent,
+    AddElementButton
+  },
   data: () => {
     return {
       doc: "plansSection",
       content: {
         plans: []
-      }
+      },
+      image: require("../../assets/icons/dumbell-plan.png"),
+      showModal: false,
+      propIdx: null
     };
   },
   methods: {
     ...mapActions("home", ["getText"]),
     ...mapActions("admin", ["updateDocGeneric"]),
     addItem() {
-      this.content.plans.push("");
+      this.showModal = true;
+    },
+    editItem(idx) {
+      this.propIdx = idx;
+      this.addItem();
+    },
+    saveModel(item) {
+      if (!this.propIdx) {
+        this.content.plans.push(item);
+      } else {
+        this.content.plans[this.propIdx] = item;
+      }
+
+      this.closeModal();
+      this.updateContent();
+    },
+    closeModal() {
+      this.showModal = false;
+      this.propIdx = null;
     },
     removeItem(idx) {
       this.$swal({
@@ -104,7 +93,8 @@ export default {
         showCancelButton: true
       }).then(value => {
         if (value.isConfirmed) {
-          this.content.coachs.splice(idx, 1);
+          this.content.plans.splice(idx, 1);
+          this.updateContent();
         }
       });
     },
@@ -131,4 +121,13 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.title-wrapper {
+  padding: 0;
+
+  .title {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+}
+</style>
