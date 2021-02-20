@@ -68,27 +68,27 @@
             </div>
           </div>
         </div>
-
-        <div class="row col-12">
-          <div class="col-12 title-wrapper mb-2">
-            <p class="title">Sections</p>
-          </div>
-
-          <div
-            class="col-12 col-md-6 row align-items-center justify-content-center cursor"
-            v-for="(section, idx) of content.sections"
-            :key="`section-${idx}`"
-            @click="modifySection(idx)"
-          >
-            <WorkoutPlanSectionComponent
-              :content="section"
-              :image="images[idx]"
-            ></WorkoutPlanSectionComponent>
-          </div>
-        </div>
       </div>
       <button type="submit" class="btn btn-primary">Confirm</button>
     </form>
+
+    <div class="row col-12 mt-3">
+      <div class="col-12 title-wrapper mb-2">
+        <p class="title">Sections</p>
+      </div>
+
+      <div
+        class="col-12 col-md-6 row align-items-center justify-content-center cursor"
+        v-for="(section, idx) of content.sections"
+        :key="`section-${idx}`"
+        @click="modifySection(idx)"
+      >
+        <WorkoutPlanSectionComponent
+          :content="section"
+          :image="images[idx]"
+        ></WorkoutPlanSectionComponent>
+      </div>
+    </div>
     <template v-if="showModal">
       <ModalFormSectionWorkoutPlanComponent
         :item-prop="content.sections[sectionIdx]"
