@@ -56,6 +56,13 @@
                 </div>
 
                 <button class="btn btn-primary" type="submit">Save</button>
+                <button
+                  class="btn btn-secondary ml-2"
+                  type="button"
+                  @click="hideModal"
+                >
+                  Cancel
+                </button>
               </form>
             </div>
           </div>
