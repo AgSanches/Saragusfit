@@ -14,7 +14,7 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item" v-for="(link, idx) in links" :key="idx">
-            <router-link class="nav-link text-white" to="/admin">
+            <router-link class="nav-link text-white" :to="link.to">
               {{ link.name }}
             </router-link>
           </li>
@@ -33,12 +33,16 @@ export default {
     return {
       links: [
         {
+          name: "Homepage",
+          to: { name: "Homepage" }
+        },
+        {
           name: "General",
           to: { name: "AdminDefaultPage" }
         },
         {
           name: "About us",
-          to: { name: "AboutUsPage" }
+          to: { name: "AdminAboutUsPage" }
         },
         {
           name: "Sara & Agus",
@@ -46,19 +50,11 @@ export default {
         },
         {
           name: "Personalized Workout Plan",
-          to: { name: "WorkoutPlanPage" }
-        },
-        {
-          name: "The Process",
-          to: { name: "TheProcessPage" }
-        },
-        {
-          name: "Get Your now",
-          to: { name: "GetYoursNowPage" }
+          to: { name: "AdminWorkoutPlan" }
         },
         {
           name: "Sign Out",
-          to: { name: "" }
+          to: { name: "Login" }
         }
       ]
     };
