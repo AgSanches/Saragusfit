@@ -52,14 +52,17 @@ const routes = [
         children: [
           {
             path: "",
-            name: "AdminDefaultPage",
-            component: () => import("../views/AdminPanel")
-          },
-          {
-            path: "",
             name: "AdminBasePage",
             component: () => import("../views/admin/AdminBasePage"),
             children: [
+              {
+                path: "",
+                name: "AdminDefaultPage",
+                component: () =>
+                  import(
+                    "../components/admin/AdminProccessGeneralItemsComponent"
+                  )
+              },
               {
                 path: "about-us",
                 name: "AdminAboutUsPage",
@@ -91,6 +94,12 @@ const routes = [
                 name: "AdminPlans",
                 component: () =>
                   import("../components/admin/ProccessPlanSectionComponent")
+              },
+              {
+                path: "success-stories",
+                name: "AdminSuccessStories",
+                component: () =>
+                  import("../components/admin/ProccessSuccessStoriesComponent")
               }
             ]
           }

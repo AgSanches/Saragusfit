@@ -64,6 +64,10 @@ export default {
           to: { name: "AdminPlans" }
         },
         {
+          name: "Success Stories",
+          to: { name: "AdminSuccessStories" }
+        },
+        {
           name: "Sign Out",
           to: { name: "Login" }
         }
