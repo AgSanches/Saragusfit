@@ -25,13 +25,14 @@
         </p>
 
         <ul class="personalized-workout-plan-client-goals-list">
-          <li
-            class="client-goal"
+          <ClientsGoalsComponent
             v-for="(goal, idx) in pageContent.goals"
             :key="idx"
-          >
-            {{ goal }}
-          </li>
+            :goal="goal"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            :data-aos-delay="idx * 125"
+          ></ClientsGoalsComponent>
         </ul>
       </div>
     </div>
@@ -53,13 +54,15 @@
 
 <script>
 import WorkoutPlanSectionComponent from "./partials/WorkoutPlanSectionComponent";
+import ClientsGoalsComponent from "./partials/ClientsGoalsComponent";
 import content from "../../texts/personalizedWorkoutPlanTexts";
 import { mapActions } from "vuex";
 
 export default {
   name: "PersonalizedWorkoutPlanComponent",
   components: {
-    WorkoutPlanSectionComponent
+    WorkoutPlanSectionComponent,
+    ClientsGoalsComponent
   },
   data: () => {
     return {
@@ -123,21 +126,15 @@ export default {
           width: 2rem;
         }
 
-        &:nth-child(1) {
+        &:nth-child(odd) {
           &::after {
             animation: width-change 6s infinite linear;
           }
         }
 
-        &:nth-child(2) {
+        &:nth-child(even) {
           &::after {
             animation: width-change 7s infinite linear;
-          }
-        }
-
-        &:nth-child(3) {
-          &::after {
-            animation: width-change 8s infinite linear;
           }
         }
       }
