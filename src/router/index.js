@@ -64,6 +64,12 @@ const routes = [
             path: "coachs",
             name: "AdminCoachsPage",
             component: () => import("../views/admin/AdminCoachsPage")
+          },
+          {
+            path: "workout-plan",
+            name: "AdminWorkoutPlan",
+            component: () =>
+              import("../views/admin/AdminPersonalizedWorkoutPlanPage")
           }
         ]
       }
