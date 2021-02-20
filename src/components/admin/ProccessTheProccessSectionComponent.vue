@@ -1,159 +1,43 @@
 <template>
-  <div class="mission-and-vision-section p-1">
-    <form action="#" @submit.prevent="updateContent">
-      <div class="row justify-content-start align-items-center">
-        <div
-          class="col-12 row my-1 subsection"
-          v-for="(step, idx) of content.stepsUpper"
-          :key="`step-${idx}`"
-        >
-          <div class="form-group col-12 p-1">
-            <label :for="`inputStepName-${idx}`">Name </label>
-            <input
-              type="text"
-              class="form-control"
-              :id="`inputStepName-${idx}`"
-              placeholder="Enter name"
-              required
-              v-model="step.name"
-            />
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <label :for="`inputDay-${idx}`">Day </label>
-            <input
-              type="number"
-              class="form-control"
-              :id="`inputDay-${idx}`"
-              placeholder="Enter day"
-              required
-              v-model="step.day"
-            />
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <label :for="`inputContent-${idx}`">Content </label>
-            <textarea
-              class="form-control"
-              :id="`inputContent-${idx}`"
-              placeholder="Enter content"
-              required
-              v-model="step.content"
-            ></textarea>
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <label :for="`inputAosMobile-${idx}`">Aos Mobile </label>
-            <input
-              type="text"
-              class="form-control"
-              :id="`inputAosMobile-${idx}`"
-              placeholder="Enter aos mobile"
-              required
-              v-model="step.aosMobile"
-            />
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <label :for="`inputAosDesktop-${idx}`">Aos Desktop </label>
-            <input
-              type="text"
-              class="form-control"
-              :id="`inputAosDesktop-${idx}`"
-              placeholder="Enter aos desktop"
-              required
-              v-model="step.aosDesktop"
-            />
-          </div>
-
-          <hr />
-        </div>
-
-        <div
-          class="col-12 row my-1 subsection"
-          v-for="(step, idx) of content.stepsDown"
-          :key="`step-${idx}`"
-        >
-          <div class="form-group col-12 p-1">
-            <label :for="`2inputStepName-${idx}`">Name </label>
-            <input
-              type="text"
-              class="form-control"
-              :id="`2inputStepName-${idx}`"
-              placeholder="Enter name"
-              required
-              v-model="step.name"
-            />
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <label :for="`inputDay-${idx}`">Day </label>
-            <input
-              type="number"
-              class="form-control"
-              :id="`2inputDay-${idx}`"
-              placeholder="Enter day"
-              required
-              v-model="step.day"
-            />
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <label :for="`inputContent-${idx}`">Content </label>
-            <textarea
-              class="form-control"
-              :id="`2inputContent-${idx}`"
-              placeholder="Enter content"
-              required
-              v-model="step.content"
-            ></textarea>
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <label :for="`2inputAosMobile-${idx}`">Aos Mobile </label>
-            <input
-              type="text"
-              class="form-control"
-              :id="`2inputAosMobile-${idx}`"
-              placeholder="Enter aos mobile"
-              required
-              v-model="step.aosMobile"
-            />
-          </div>
-
-          <div class="form-group col-12 p-1">
-            <label :for="`2inputAosDesktop-${idx}`">Aos Desktop </label>
-            <input
-              type="text"
-              class="form-control"
-              :id="`2inputAosDesktop-${idx}`"
-              placeholder="Enter aos desktop"
-              required
-              v-model="step.aosDesktop"
-            />
-          </div>
-
-          <hr />
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary mt-2">Confirm</button>
-    </form>
+  <div class="section p-1 mx-auto">
+    <StepsDesktopComponent
+      :steps-upper="content.stepsUpper"
+      :steps-down="content.stepsDown"
+      @proccessClicked="openModalForEdit"
+    ></StepsDesktopComponent>
+    <template v-if="showModal">
+      <ModalFormProccess
+        :item-prop="stepModel"
+        @closeModal="closeModal"
+        @saveModel="saveModal"
+      ></ModalFormProccess>
+    </template>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
 import { displaySuccessSwal, displayErrorSwal } from "./partials/displaySwal";
+import StepsDesktopComponent from "../home/partials/StepsDesktopComponent";
+import ModalFormProccess from "./partials/ModalFormProccess";
 
 export default {
   name: "ProccessPlanSectionComponent",
+  components: {
+    StepsDesktopComponent,
+    ModalFormProccess
+  },
   data: () => {
     return {
       doc: "theProccess",
       content: {
-        stepsDown: [],
-        stepsUpper: []
-      }
+        stepsUpper: [],
+        stepsDown: []
+      },
+      showModal: false,
+      stepIdx: null,
+      isUpper: null,
+      stepModel: null
     };
   },
   methods: {
@@ -172,6 +56,34 @@ export default {
         .catch(() => {
           this.$swal(displayErrorSwal);
         });
+    },
+    openModalForEdit(event) {
+      this.isUpper = event.isUpper;
+      this.stepIdx = event.idx;
+
+      if (this.isUpper) {
+        this.stepModel = this.content.stepsUpper[this.stepIdx];
+      } else {
+        this.stepModel = this.content.stepsDown[this.stepIdx];
+      }
+
+      this.showModal = true;
+    },
+    saveModal(model) {
+      if (this.isUpper) {
+        this.content.stepsUpper[this.stepIdx] = model;
+      } else {
+        this.content.stepsDown[this.stepIdx] = model;
+      }
+
+      this.closeModal();
+      this.updateContent();
+    },
+    closeModal() {
+      this.showModal = false;
+      this.isUpper = null;
+      this.stepIdx = null;
+      this.stepModel = null;
     }
   },
   created() {
@@ -183,9 +95,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.subsection {
-  border: 1px solid;
-  display: block;
-  margin: 0 auto;
+.section {
+  width: 95vw;
+  max-width: 1600px;
 }
 </style>

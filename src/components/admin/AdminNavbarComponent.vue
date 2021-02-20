@@ -1,5 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" :class="{'open-sidebar': isOpenSidebar }">
+  <nav
+    class="navbar navbar-expand-lg navbar-dark bg-primary"
+    :class="{ 'open-sidebar': isOpenSidebar }"
+  >
     <div class="container-fluid">
       <div
         class="hamburguer-button"
@@ -51,6 +54,10 @@ export default {
         {
           name: "Personalized Workout Plan",
           to: { name: "AdminWorkoutPlan" }
+        },
+        {
+          name: "The Proccess",
+          to: { name: "AdminTheProccess" }
         },
         {
           name: "Sign Out",
