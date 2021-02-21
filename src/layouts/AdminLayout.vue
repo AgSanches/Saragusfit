@@ -32,7 +32,7 @@ export default {
   background-size: cover;
   background-position: left;
   position: relative;
-  min-height: 99vw;
+  min-height: 100vh;
   color: white;
 }
 
