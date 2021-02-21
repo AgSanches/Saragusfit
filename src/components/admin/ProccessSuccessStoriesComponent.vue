@@ -5,28 +5,32 @@
         <div class="col-12 title-wrapper mb-3 d-flex">
           <p class="title">
             Success Stories
-            <AddElementButton @click="addItem"></AddElementButton>
+            <AddElementButton @click="addItem" v-if="canAddMoreOpinions"></AddElementButton>
           </p>
         </div>
       </div>
 
       <div class="row col-12 section mx-auto">
         <div
-          class="col-12 my-1 wrapper"
+          class="col-12 col-md-6 my-1 wrapper"
           v-for="(review, idx) of content.opinions"
           :key="`review-${idx}`"
         >
-          <SuccessStoriesWrapper :review="review"></SuccessStoriesWrapper>
-          <RemoveElementButton @click="removeItem(idx)"></RemoveElementButton>
+          <SuccessStoriesAdminComponent
+            :review="review"
+            :idx="idx"
+            @deleteModel="removeItem"
+            @click="editItem(idx)"
+          ></SuccessStoriesAdminComponent>
         </div>
       </div>
 
       <template v-if="showModal">
-        <ModalFormPlanComponent
-          :item-prop="content.plans[propIdx]"
+        <ModalFormSuccessStoriesComponent
+          :item-prop="modelToEdit"
           @closeModal="closeModal"
           @saveModel="saveModel"
-        ></ModalFormPlanComponent>
+        ></ModalFormSuccessStoriesComponent>
       </template>
     </div>
   </div>
@@ -36,16 +40,14 @@
 import { mapActions } from "vuex";
 import { displaySuccessSwal, displayErrorSwal } from "./partials/displaySwal";
 import AddElementButton from "./partials/AddElementButton";
-import RemoveElementButton from "./partials/RemoveElementButton";
-import ModalFormPlanComponent from "./partials/ModalFormPlanComponent";
-import SuccessStoriesWrapper from "../home/partials/SuccessStoriesWrapperComponent";
+import ModalFormSuccessStoriesComponent from "./partials/ModalFormSuccessStoriesComponent";
+import SuccessStoriesAdminComponent from "./partials/SuccessStoriesAdminComponent";
 
 export default {
   name: "ProccessPlanSectionComponent",
   components: {
-    SuccessStoriesWrapper,
-    ModalFormPlanComponent,
-    RemoveElementButton,
+    SuccessStoriesAdminComponent,
+    ModalFormSuccessStoriesComponent,
     AddElementButton
   },
   data: () => {
@@ -55,8 +57,14 @@ export default {
         opinions: []
       },
       showModal: false,
-      propIdx: null
+      propIdx: null,
+      modelToEdit: null
     };
+  },
+  computed: {
+    canAddMoreOpinions() {
+      return this.content.opinions.length < 6;
+    }
   },
   methods: {
     ...mapActions("home", ["getText"]),
@@ -66,13 +74,14 @@ export default {
     },
     editItem(idx) {
       this.propIdx = idx;
+      this.modelToEdit = this.content.opinions[this.propIdx];
       this.addItem();
     },
     saveModel(item) {
-      if (!this.propIdx) {
-        this.content.plans.push(item);
+      if (this.propIdx != null) {
+        this.content.opinions[this.propIdx] = item;
       } else {
-        this.content.plans[this.propIdx] = item;
+        this.content.opinions.push(item);
       }
 
       this.closeModal();
@@ -81,15 +90,16 @@ export default {
     closeModal() {
       this.showModal = false;
       this.propIdx = null;
+      this.modelToEdit = null;
     },
-    removeItem(idx) {
+    removeItem({ idx }) {
       this.$swal({
         title: "Are you sure?",
         text: "You will delete this plan",
         showCancelButton: true
       }).then(value => {
         if (value.isConfirmed) {
-          this.content.plans.splice(idx, 1);
+          this.content.opinions.splice(idx, 1);
           this.updateContent();
         }
       });

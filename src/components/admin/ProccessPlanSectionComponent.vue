@@ -82,10 +82,10 @@ export default {
       this.addItem();
     },
     saveModel(item) {
-      if (!this.propIdx) {
-        this.content.plans.push(item);
-      } else {
+      if (this.propIdx != null) {
         this.content.plans[this.propIdx] = item;
+      } else {
+        this.content.plans.push(item);
       }
 
       this.closeModal();
