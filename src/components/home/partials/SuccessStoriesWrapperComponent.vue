@@ -1,13 +1,17 @@
 <template>
-  <div class="col-12 row align-items-center justify-content-center mx-auto">
+  <div
+    v-if="review"
+    class="col-12 row align-items-center justify-content-center my-2 mx-auto p-2"
+  >
     <SuccessStoriesImageBasicComponent
-      v-if="review.imageBasic"
-      :image="imageBasic"
+      v-if="review.imageBasic && review.image"
+      :image-name="review.image"
     ></SuccessStoriesImageBasicComponent>
 
     <SuccessStoriesImageBeforeAndAfterComponent
-      v-else
-      :images="images"
+      v-else-if="review.beforeImage && review.afterImage"
+      :image-before="review.beforeImage"
+      :image-after="review.afterImage"
     ></SuccessStoriesImageBeforeAndAfterComponent>
 
     <div
@@ -35,15 +39,6 @@ export default {
   name: "SuccessStoriesWrapper",
   props: {
     review: Object
-  },
-  data: () => {
-    return {
-      images: [
-        require("../../../assets/home/saragusfit-photo-sara.jpeg"),
-        require("../../../assets/home/saragusfit-photo-agustina.jpeg")
-      ],
-      imageBasic: require("../../../assets/home/saragusfit-feedback.jpg")
-    };
   },
   components: {
     SuccessStoriesImageBeforeAndAfterComponent,

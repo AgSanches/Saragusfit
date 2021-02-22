@@ -21,9 +21,9 @@
           :slides-per-view="1"
           effect="coverflow"
           :lazy="true"
-          :pagination="{ clickable: true }"
+          :pagination="{ clickable: isPc, type: 'fraction' }"
           :loop="true"
-          :navigation="isMobileView"
+          :navigation="isPc"
           :autoplay="{
             delay: 4000
           }"
@@ -101,8 +101,8 @@ export default {
 
       return require("../../assets/home/saragusfit-success-stories.jpg");
     },
-    isMobileView() {
-      return this.windowWidth < 599;
+    isPc() {
+      return this.windowWidth > 599;
     }
   },
   methods: {
@@ -117,6 +117,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .wrapper-reflejos {
   pointer-events: none;
   position: absolute;

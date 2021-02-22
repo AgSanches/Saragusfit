@@ -68,6 +68,10 @@ html {
   height: 6.5rem;
 }
 
+.swiper-pagination {
+  color: white !important;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

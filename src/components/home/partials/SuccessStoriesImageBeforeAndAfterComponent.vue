@@ -4,7 +4,7 @@
   >
     <div class="col-6 p-1">
       <SuccessStoriesChangeComponent
-        :image="images[0]"
+        :image="pathImageBefore"
         text="Before"
         data-aos="zoom-in"
         data-aos-duration="1000"
@@ -13,7 +13,7 @@
 
     <div class="col-6 p-1 after-change">
       <SuccessStoriesChangeComponent
-        :image="images[1]"
+        :image="pathImageAfter"
         text="After"
         data-aos="zoom-in"
         data-aos-duration="1000"
@@ -25,6 +25,7 @@
 
 <script>
 import SuccessStoriesChangeComponent from "./SuccessStorieChangeComponent";
+import { mapActions } from "vuex";
 
 export default {
   name: "SuccessStoriesImageBeforeAndAfterComponent",
@@ -32,7 +33,27 @@ export default {
     SuccessStoriesChangeComponent
   },
   props: {
-    images: Array
+    images: Array,
+    imageBefore: String,
+    imageAfter: String
+  },
+  data: () => {
+    return {
+      pathImageBefore: null,
+      pathImageAfter: null
+    };
+  },
+  methods: {
+    ...mapActions("admin", ["getFile"])
+  },
+  created() {
+    this.getFile(this.imageBefore).then(url => {
+      this.pathImageBefore = url.data;
+    });
+
+    this.getFile(this.imageAfter).then(url => {
+      this.pathImageAfter = url.data;
+    });
   }
 };
 </script>
