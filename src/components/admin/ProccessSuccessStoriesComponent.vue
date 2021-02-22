@@ -96,15 +96,15 @@ export default {
     },
     async manageFiles({ model, fileBasic, fileBefore, fileAfter }) {
       if (fileBasic) {
-        if (model.image) this.deleteFileByName(model.image);
-
+        this.deleteFilesInModel(model);
         model.image = await this.uploadFileAndGetName(fileBasic);
+        model.beforeImage = null;
+        model.afterImage = null;
       } else if (fileBefore && fileAfter) {
-        if (model.beforeImage) this.deleteFileByName(model.beforeImage);
-        if (model.afterImage) this.deleteFileByName(model.afterImage);
-
+        this.deleteFilesInModel(model);
         model.beforeImage = await this.uploadFileAndGetName(fileBefore);
         model.afterImage = await this.uploadFileAndGetName(fileAfter);
+        model.image = null;
       }
 
       return model;
@@ -113,6 +113,11 @@ export default {
       const name = this.getFileName(file.name);
       await this.uploadFile({ name: name, file: file });
       return name;
+    },
+    deleteFilesInModel(model) {
+      if (model.image) this.deleteFileByName(model.image);
+      if (model.beforeImage) this.deleteFileByName(model.beforeImage);
+      if (model.afterImage) this.deleteFileByName(model.afterImage);
     },
     deleteFileByName(name) {
       this.deleteFile(name)
