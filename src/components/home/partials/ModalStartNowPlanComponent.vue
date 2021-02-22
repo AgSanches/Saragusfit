@@ -7,7 +7,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
+      <div class="modal-content text-white">
         <div class="modal-header">
           <h5 class="modal-title">Start now</h5>
           <button
@@ -16,7 +16,7 @@
             data-dismiss="modal"
             aria-label="Close"
           >
-            <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true" class="text-white">&times;</span>
           </button>
         </div>
         <div class="modal-body mb-3">
@@ -118,6 +118,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.modal-content {
+  background-image: url("../../../assets/home/saragusfit_startnow_modal_background.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 .link {
   border-radius: 50%;
   padding: 0.75rem;
