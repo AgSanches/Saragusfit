@@ -1,19 +1,6 @@
 <template>
-  <nav
-    class="navbar navbar-expand-lg navbar-dark bg-primary"
-    :class="{ 'open-sidebar': isOpenSidebar }"
-  >
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <div
-        class="hamburguer-button"
-        :class="{ 'hamburguer-button-action': isOpenSidebar }"
-        @click="toggleSidebar()"
-      >
-        <div class="bar bar-first"></div>
-        <div class="bar bar-second"></div>
-        <div class="bar bar-third"></div>
-      </div>
-
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item" v-for="(link, idx) in links" :key="idx">
@@ -28,8 +15,6 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
-
 export default {
   name: "AdminNavbarComponent",
   data: () => {
@@ -73,12 +58,6 @@ export default {
         }
       ]
     };
-  },
-  computed: {
-    ...mapState("admin", ["isOpenSidebar"])
-  },
-  methods: {
-    ...mapMutations("admin", ["toggleSidebar"])
   }
 };
 </script>

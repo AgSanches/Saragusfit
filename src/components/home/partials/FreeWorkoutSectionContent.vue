@@ -11,8 +11,9 @@
         {{ content.text }}
       </p>
       <a
-        href="/files/saragusfit-free-workout.pdf"
-        download=""
+        :href="filePath"
+        target="_blank"
+        rel="noopener noreferrer"
         class="btn btn-gradient"
         data-aos="fade-up"
         data-aos-duration="1200"
@@ -28,7 +29,8 @@
 export default {
   name: "FreeWorkoutSectionContent",
   props: {
-    content: Object
+    content: Object,
+    filePath: String
   }
 };
 </script>

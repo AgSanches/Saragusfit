@@ -2,8 +2,7 @@
   <div class="admin-wrapper">
     <div class="overlay overlay-black"></div>
     <AdminNavbarComponent></AdminNavbarComponent>
-    <AdminSidebarComponent></AdminSidebarComponent>
-    <div class="app-content" :class="{ 'app-content-sidebar': isOpenSidebar }">
+    <div class="app-content">
       <router-view></router-view>
     </div>
   </div>
@@ -11,14 +10,12 @@
 
 <script>
 import AdminNavbarComponent from "../components/admin/AdminNavbarComponent";
-import AdminSidebarComponent from "../components/admin/AdminSidebarComponent";
 import { mapState } from "vuex";
 
 export default {
   name: "AdminLayout",
   components: {
-    AdminNavbarComponent,
-    AdminSidebarComponent
+    AdminNavbarComponent
   },
   computed: {
     ...mapState("admin", ["isOpenSidebar"])
@@ -43,7 +40,4 @@ export default {
   z-index: 5;
 }
 
-.app-content-sidebar {
-  padding-left: 225px;
-}
 </style>

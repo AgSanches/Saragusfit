@@ -100,7 +100,7 @@ export default {
   -moz-box-shadow: 0px 0px 5px 3px rgba(215, 100, 135, 1);
   box-shadow: 0px 0px 5px 3px rgba(215, 100, 135, 1);
   background-image: url("../../../assets/icons/cloud-computing.svg");
-  background-size: 8%;
+  background-size: 2rem;
   background-position: top 10px center;
   background-repeat: no-repeat;
   position: relative;

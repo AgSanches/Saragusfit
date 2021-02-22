@@ -200,7 +200,6 @@ export default {
       this.fileBasic = null;
     },
     changeFile({ file, helper }) {
-      console.log(file, helper)
       switch (helper) {
         case 0:
           // Before Photo

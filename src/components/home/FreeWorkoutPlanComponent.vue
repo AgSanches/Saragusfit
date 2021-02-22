@@ -8,9 +8,13 @@
       <div class="reflejos"></div>
       <div class="reflejos segundo"></div>
     </div>
-    <FreeWorkoutSectionContent :content="content"></FreeWorkoutSectionContent>
+    <FreeWorkoutSectionContent
+      :content="content"
+      :file-path="filePath"
+    ></FreeWorkoutSectionContent>
     <PopupDownloadWorkoutComponent
       :content="content"
+      :file-path="filePath"
     ></PopupDownloadWorkoutComponent>
   </div>
 </template>
@@ -34,16 +38,25 @@ export default {
         subtitle: "Complimentary service and completely FREE.",
         text:
           "Join our fitness challenges, and let us help you achieve your fitness goals and improve your performance in no time.",
-        button: "FREE WORKOUT"
-      }
+        button: "FREE WORKOUT",
+        name: ""
+      },
+      filePath: ""
     };
   },
   methods: {
-    ...mapActions("home", ["getText"])
+    ...mapActions("home", ["getText"]),
+    ...mapActions("admin", ["getFile"]),
+    downloadFile() {
+      this.getFile(this.content.name).then(response => {
+        this.filePath = response.data;
+      });
+    }
   },
   created() {
     this.getText(this.doc).then(response => {
       this.content = response;
+      this.downloadFile();
     });
   }
 };

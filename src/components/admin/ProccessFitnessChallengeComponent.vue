@@ -46,6 +46,16 @@
             v-model="content.button"
           />
         </div>
+
+        <div class="form-group col-12 p-1">
+          <InputFileComponent
+            :accept="acceptsFile"
+            :helper="2"
+            @changeFile="changeFile"
+            label="Free workout"
+            :current-file="content.name"
+          ></InputFileComponent>
+        </div>
       </div>
       <button type="submit" class="btn btn-primary">Confirm</button>
     </form>
@@ -55,9 +65,13 @@
 <script>
 import { mapActions } from "vuex";
 import { displaySuccessSwal, displayErrorSwal } from "./partials/displaySwal";
+import InputFileComponent from "./partials/InputFileComponent";
+import { pdf_files } from "./helpers/file_accepts";
+import { getFileName } from "./helpers/manage_files";
 
 export default {
   name: "ProccessFitnessChallengeComponent",
+  components: { InputFileComponent },
   data: () => {
     return {
       doc: "fitnessChallenge",
@@ -65,13 +79,21 @@ export default {
         title: "",
         subtitle: "",
         text: "",
-        button: ""
-      }
+        button: "",
+        name: ""
+      },
+      acceptsFile: pdf_files,
+      filePath: ""
     };
   },
   methods: {
     ...mapActions("home", ["getText"]),
-    ...mapActions("admin", ["updateDocGeneric"]),
+    ...mapActions("admin", [
+      "updateDocGeneric",
+      "uploadFile",
+      "deleteFile"
+    ]),
+    getFileName,
     updateContent() {
       const dataToUpdate = {
         content: this.content,
@@ -85,7 +107,16 @@ export default {
         .catch(() => {
           this.$swal(displayErrorSwal);
         });
-    }
+    },
+    async changeFile({ file }) {
+      const name = this.getFileName(file.name);
+      await this.deleteFileFromFirebase();
+      await this.uploadFile({ name: name, file: file });
+      this.content.name = name;
+    },
+    async deleteFileFromFirebase() {
+      await this.deleteFile(this.content.name);
+    },
   },
   created() {
     this.getText(this.doc).then(content => {

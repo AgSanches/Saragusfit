@@ -18,6 +18,7 @@
             <div class="modal-body">
               <FreeWorkoutSectionContent
                 :content="content"
+                :file-path="filePath"
               ></FreeWorkoutSectionContent>
             </div>
           </div>
@@ -40,7 +41,8 @@ export default {
     FreeWorkoutSectionContent
   },
   props: {
-    content: Object
+    content: Object,
+    filePath: String
   },
   data: () => {
     return {
