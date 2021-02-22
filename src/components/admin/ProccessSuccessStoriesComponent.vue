@@ -5,7 +5,10 @@
         <div class="col-12 title-wrapper mb-3 d-flex">
           <p class="title">
             Success Stories
-            <AddElementButton @click="addItem" v-if="canAddMoreOpinions"></AddElementButton>
+            <AddElementButton
+              @click="addItem"
+              v-if="canAddMoreOpinions"
+            ></AddElementButton>
           </p>
         </div>
       </div>
@@ -38,10 +41,11 @@
 
 <script>
 import { mapActions } from "vuex";
-import { displaySuccessSwal, displayErrorSwal } from "./partials/displaySwal";
+import { displayErrorSwal, displaySuccessSwal } from "./partials/displaySwal";
 import AddElementButton from "./partials/AddElementButton";
 import ModalFormSuccessStoriesComponent from "./partials/ModalFormSuccessStoriesComponent";
 import SuccessStoriesAdminComponent from "./partials/SuccessStoriesAdminComponent";
+import { getFileName } from "./helpers/manage_files";
 
 export default {
   name: "ProccessPlanSectionComponent",
@@ -68,7 +72,8 @@ export default {
   },
   methods: {
     ...mapActions("home", ["getText"]),
-    ...mapActions("admin", ["updateDocGeneric"]),
+    ...mapActions("admin", ["updateDocGeneric", "uploadFile", "deleteFile"]),
+    getFileName,
     addItem() {
       this.showModal = true;
     },
@@ -77,15 +82,42 @@ export default {
       this.modelToEdit = this.content.opinions[this.propIdx];
       this.addItem();
     },
-    saveModel(item) {
+    async saveModel(items) {
+      const model = await this.manageFiles(items);
+
       if (this.propIdx != null) {
-        this.content.opinions[this.propIdx] = item;
+        this.content.opinions[this.propIdx] = model;
       } else {
-        this.content.opinions.push(item);
+        this.content.opinions.push(model);
       }
 
       this.closeModal();
       this.updateContent();
+    },
+    async manageFiles({ model, fileBasic, fileBefore, fileAfter }) {
+      if (fileBasic) {
+        if (model.image) this.deleteFileByName(model.image);
+
+        model.image = await this.uploadFileAndGetName(fileBasic);
+      } else if (fileBefore && fileAfter) {
+        if (model.beforeImage) this.deleteFileByName(model.beforeImage);
+        if (model.afterImage) this.deleteFileByName(model.afterImage);
+
+        model.beforeImage = await this.uploadFileAndGetName(fileBefore);
+        model.afterImage = await this.uploadFileAndGetName(fileAfter);
+      }
+
+      return model;
+    },
+    async uploadFileAndGetName(file) {
+      const name = this.getFileName(file.name);
+      await this.uploadFile({ name: name, file: file });
+      return name;
+    },
+    deleteFileByName(name) {
+      this.deleteFile(name)
+        .then(() => {})
+        .catch(() => {});
     },
     closeModal() {
       this.showModal = false;

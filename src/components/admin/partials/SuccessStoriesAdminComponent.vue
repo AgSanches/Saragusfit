@@ -7,12 +7,12 @@
     <p class="content">{{ review.text }}</p>
 
     <div class="wrapper-img">
-      <div v-if="review.imageBasic" class="basic">
-        <img :src="imageBasic" alt="Basic image" class="w-100" />
+      <div v-if="review.imageBasic" class="basic d-flex">
+        <img :src="imagePath" alt="Basic image" class="col-12" />
       </div>
       <div v-else class="before-and-after d-flex">
-        <img :src="images[0]" alt="Basic image" class="col-12 col-md-6" />
-        <img :src="images[1]" alt="Basic image" class="col-12 col-md-6" />
+        <img :src="imageBefore" alt="Basic image" class="col-12 col-md-6" />
+        <img :src="imageAfter" alt="Basic image" class="col-12 col-md-6" />
       </div>
     </div>
 
@@ -22,6 +22,7 @@
 
 <script>
 import RemoveElementButton from "./RemoveElementButton";
+import { mapActions } from "vuex";
 
 export default {
   name: "SuccessStoriesAdminComponent",
@@ -34,16 +35,50 @@ export default {
   },
   data: () => {
     return {
-      images: [
-        require("../../../assets/home/saragusfit-photo-sara.jpeg"),
-        require("../../../assets/home/saragusfit-photo-agustina.jpeg")
-      ],
-      imageBasic: require("../../../assets/home/saragusfit-feedback.jpg")
+      imagePath: "",
+      imageBefore: "",
+      imageAfter: ""
     };
   },
   methods: {
     deleteModel() {
       this.$emit("deleteModel", { idx: this.idx });
+    },
+    ...mapActions("admin", ["getFile"]),
+    getFilePath(imageName, attr) {
+      this.getFile(imageName).then(url => {
+        this.assignItem(attr, url.data);
+      });
+    },
+    assignItem(attr, data) {
+      switch (attr) {
+        case 0:
+          this.imagePath = data;
+          break;
+        case 1:
+          this.imageBefore = data;
+          break;
+        case 2:
+          this.imageAfter = data;
+          break;
+      }
+    },
+    evaluatedImages() {
+      if (this.review.imageBasic) {
+        this.getFilePath(this.review.image, 0);
+      } else {
+        this.getFilePath(this.review.beforeImage, 1);
+        this.getFilePath(this.review.afterImage, 2);
+      }
+    }
+  },
+  created() {
+    this.evaluatedImages();
+  },
+  watch: {
+    // eslint-disable-next-line no-unused-vars
+    review: function(newValue, oldValue) {
+      this.evaluatedImages();
     }
   }
 };

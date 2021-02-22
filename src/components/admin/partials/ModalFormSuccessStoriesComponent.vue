@@ -6,7 +6,7 @@
           <div class="modal-content">
             <div class="overlay overlay-black"></div>
             <div class="modal-header">
-              <p class="modal-title text-white">Plan</p>
+              <p class="modal-title text-white">Feedback from client</p>
               <button
                 type="button"
                 class="close text-white"
@@ -43,6 +43,40 @@
                   ></textarea>
                 </div>
 
+                <div
+                  v-if="!item.imageBasic"
+                  class="form-group col-12 p-1 justify-content-center"
+                >
+                  <InputFileComponent
+                    :accept="acceptsFile"
+                    label="Before photo"
+                    :helper="0"
+                    @changeFile="changeFile"
+                    :current-file="item.beforeImage"
+                  ></InputFileComponent>
+
+                  <InputFileComponent
+                    :accept="acceptsFile"
+                    label="After photo"
+                    :helper="1"
+                    @changeFile="changeFile"
+                    :current-file="item.afterImage"
+                  ></InputFileComponent>
+                </div>
+
+                <div
+                  v-else
+                  class="form-group col-12 p-1 justify-content-center"
+                >
+                  <InputFileComponent
+                    :accept="acceptsFile"
+                    label="Feedback photo"
+                    :helper="2"
+                    @changeFile="changeFile"
+                    :current-file="item.image"
+                  ></InputFileComponent>
+                </div>
+
                 <div class="form-group col-12 p-1">
                   <div class="form-check">
                     <input
@@ -50,14 +84,16 @@
                       type="checkbox"
                       v-model="item.imageBasic"
                       id="inputImageBasic"
+                      @change="resetFile"
                     />
                     <label class="form-check-label" for="inputImageBasic">
-                      Have two photos?
+                      Have one photo?
                     </label>
                   </div>
                 </div>
 
                 <button class="btn btn-primary" type="submit">Save</button>
+
                 <button
                   class="btn btn-secondary ml-2"
                   type="button"
@@ -75,8 +111,13 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import InputFileComponent from "./InputFileComponent";
+import { images } from "../helpers/file_accepts";
+
 export default {
   name: "ModalFormSuccessStoriesComponent",
+  components: { InputFileComponent },
   props: {
     itemProp: Object
   },
@@ -86,23 +127,93 @@ export default {
       item: {
         text: "",
         user: "",
-        imageBasic: false
-      }
+        imageBasic: false,
+        image: "",
+        beforeImage: "",
+        afterImage: ""
+      },
+      acceptsFile: images,
+      fileBefore: null,
+      fileAfter: null,
+      fileBasic: null
     };
   },
   methods: {
+    ...mapActions("admin", ["uploadFile", "getFile"]),
     hideModal() {
       this.canShowModal = false;
       this.$emit("closeModal");
     },
+    checkFileBeforeAndAfter() {
+      return this.fileAfter && this.fileBefore;
+    },
+    checkFileBasic() {
+      return this.fileBasic != null;
+    },
+    checkFiles() {
+      let status = false;
+
+      if (this.item.imageBasic) {
+        status = this.checkFileBasic();
+      } else {
+        status = this.checkFileBeforeAndAfter();
+      }
+
+      if (!status) {
+        throw "You need to add all the files before create the feedback";
+      }
+    },
+    handleCatch(error) {
+      this.$swal({
+        text: error
+      });
+    },
     saveModel() {
-      this.$emit("saveModel", this.item);
+      if (this.itemProp == null) {
+        try {
+          this.checkFiles();
+        } catch (e) {
+          this.handleCatch(e);
+          return;
+        }
+      }
+
+      const emitter = {
+        model: this.item,
+        fileBefore: this.fileBefore,
+        fileAfter: this.fileAfter,
+        fileBasic: this.fileBasic
+      };
+
+      this.$emit("saveModel", emitter);
     },
     setPropToModel() {
       if (this.itemProp) {
         this.item = {
           ...this.itemProp
         };
+      }
+    },
+    resetFile() {
+      this.fileBefore = null;
+      this.fileAfter = null;
+      this.fileBasic = null;
+    },
+    changeFile({ file, helper }) {
+      console.log(file, helper)
+      switch (helper) {
+        case 0:
+          // Before Photo
+          this.fileBefore = file;
+          return;
+        case 1:
+          // After Photo
+          this.fileAfter = file;
+          return;
+        case 2:
+          // Basic Photo
+          this.fileBasic = file;
+          return;
       }
     }
   },
