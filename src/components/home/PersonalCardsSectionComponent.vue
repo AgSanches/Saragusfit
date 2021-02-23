@@ -14,7 +14,7 @@
         data-aos-anchor-placement="top-bottom"
         :data-aos-delay="200 * idx"
       >
-        <CardComponent :coach="coach" :image="images[idx]"></CardComponent>
+        <CardComponent :coach="coach"></CardComponent>
       </div>
     </div>
   </div>
@@ -31,10 +31,6 @@ export default {
   },
   data: () => {
     return {
-      images: [
-        require("../../assets/home/saragusfit-photo-sara.jpeg"),
-        require("../../assets/home/saragusfit-photo-agustina.jpeg")
-      ],
       coachs: null,
       doc: "coach"
     };

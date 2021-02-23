@@ -54,6 +54,16 @@
                   ></textarea>
                 </div>
 
+                <div class="form-group col-12 p-1">
+                  <InputFileComponent
+                    label="Image"
+                    :accept="accepts"
+                    :helper="2"
+                    @changeFile="changeFile"
+                    :current-file="coach.image"
+                  ></InputFileComponent>
+                </div>
+
                 <button class="btn btn-primary" type="submit">Save</button>
                 <button
                   class="btn btn-secondary ml-2"
@@ -72,8 +82,12 @@
 </template>
 
 <script>
+import InputFileComponent from "./InputFileComponent";
+import { images } from "../helpers/file_accepts";
+
 export default {
   name: "ModalFormCoachComponent",
+  components: { InputFileComponent },
   props: {
     coachProp: Object
   },
@@ -83,8 +97,11 @@ export default {
       coach: {
         description: "",
         subtitle: "",
-        name: ""
-      }
+        name: "",
+        image: ""
+      },
+      accepts: images,
+      coachImage: null
     };
   },
   methods: {
@@ -93,7 +110,12 @@ export default {
       this.$emit("closeModal");
     },
     saveModel() {
-      this.$emit("saveModel", this.coach);
+      const model = {
+        model: this.coach,
+        image: this.coachImage
+      };
+
+      this.$emit("saveModel", model);
     },
     setPropToModel() {
       if (this.coachProp) {
@@ -101,6 +123,9 @@ export default {
           ...this.coachProp
         };
       }
+    },
+    changeFile({ file }) {
+      this.coachImage = file;
     }
   },
   mounted() {

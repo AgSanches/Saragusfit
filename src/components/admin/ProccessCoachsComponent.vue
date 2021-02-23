@@ -23,7 +23,6 @@
           >
             <CardComponent
               :coach="coach"
-              :image="images[idx]"
               @click="showModelEdit(idx)"
             ></CardComponent>
             <RemoveElementButton
@@ -47,11 +46,12 @@
 
 <script>
 import { mapActions } from "vuex";
-import { displaySuccessSwal, displayErrorSwal } from "./partials/displaySwal";
+import { displayErrorSwal, displaySuccessSwal } from "./partials/displaySwal";
 import CardComponent from "../home/partials/CardComponent";
 import AddElementButton from "./partials/AddElementButton";
 import RemoveElementButton from "./partials/RemoveElementButton";
 import ModalFormCoachComponent from "./partials/ModalFormCoachComponent";
+import { getFileName } from "./helpers/manage_files";
 
 export default {
   name: "ProccessCoachsComponent",
@@ -69,16 +69,18 @@ export default {
       },
       coachProp: null,
       coachIdx: null,
-      images: [
-        require("../../assets/home/saragusfit-photo-sara.jpeg"),
-        require("../../assets/home/saragusfit-photo-agustina.jpeg")
-      ],
       showModal: false
     };
   },
   methods: {
     ...mapActions("home", ["getText"]),
-    ...mapActions("admin", ["updateDocGeneric"]),
+    ...mapActions("admin", [
+      "updateDocGeneric",
+      "deleteFile",
+      "getFile",
+      "uploadFile"
+    ]),
+    getFileName,
     addModel() {
       this.showModal = true;
     },
@@ -87,18 +89,33 @@ export default {
       this.coachIdx = idx;
       this.showModal = true;
     },
-    saveModel(model) {
-      if (this.coachIdx != null) this.editModel(model);
-      else this.createModel(model);
+    async saveModel(model) {
+      if (this.coachIdx != null) {
+        await this.editModel(model);
+      } else {
+        await this.createModel(model);
+      }
 
       this.closeModal();
       this.updateContent();
     },
-    createModel(model) {
+    async createModel({ model, image }) {
+      model.image = await this.upload(image);
       this.content.coachs.push(model);
     },
-    editModel(model) {
+    async editModel({ model, image }) {
+      if (image) {
+        const name = await this.upload(image);
+        this.deleteFile(model.image);
+        model.image = name;
+      }
+
       this.content.coachs[this.coachIdx] = model;
+    },
+    async upload(image) {
+      const name = this.getFileName(image.name);
+      await this.uploadFile({ name: name, file: image });
+      return name;
     },
     closeModal() {
       this.showModal = false;

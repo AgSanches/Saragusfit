@@ -1,7 +1,7 @@
 <template>
   <div
     class="card-coach d-flex justify-content-center align-items-center"
-    :style="{ 'background-image': `url(${image})` }"
+    :style="{ 'background-image': `url(${coachImage})` }"
     v-if="coach"
   >
     <div
@@ -21,11 +21,33 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "CardComponent",
   props: {
-    coach: Object,
-    image: String
+    coach: Object
+  },
+  data: () => {
+    return {
+      coachImage: ""
+    };
+  },
+  methods: {
+    ...mapActions("admin", ["getFile"]),
+    getImage() {
+      this.getFile(this.coach.image).then(response => {
+        this.coachImage = response.data;
+      });
+    }
+  },
+  created() {
+    this.getImage();
+  },
+  watch: {
+    // eslint-disable-next-line no-unused-vars
+    coach: function(newValue, oldValue) {
+      this.getImage();
+    }
   }
 };
 </script>
