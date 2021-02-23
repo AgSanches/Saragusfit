@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import $ from "jquery";
 
 export default {
   name: "PlanComponent",
@@ -38,7 +37,7 @@ export default {
   },
   methods: {
     startNowPlan() {
-      $("#modalStartNowPlanComponent").modal("show");
+      this.$emit("openModal");
     }
   }
 };

@@ -2,7 +2,10 @@
   <div class="get-yours-now mx-auto" id="get-yours-now">
     <TitleComponent title="GET YOURS NOW"></TitleComponent>
 
-    <ModalStartNowPlanComponent></ModalStartNowPlanComponent>
+    <template v-if="showModalGetYoursNow">
+      <ModalStartNowPlanComponent @closeModal="closeModalGetYoursNow"></ModalStartNowPlanComponent>
+    </template>
+
     <div
       v-if="showModal"
       v-observe-visibility="{
@@ -27,6 +30,7 @@
           :plan="plan"
           data-aos="fade-up"
           data-aos-duration="1000"
+          @openModal="openModalGetYoursNow"
         ></PlanComponent>
       </div>
     </div>
@@ -62,7 +66,8 @@ export default {
         }
       ],
       showModal: false,
-      isAlreadyVisible: false
+      isAlreadyVisible: false,
+      showModalGetYoursNow: false
     };
   },
   methods: {
@@ -73,6 +78,12 @@ export default {
       if (isVisible) {
         this.isAlreadyVisible = true;
       }
+    },
+    openModalGetYoursNow() {
+      this.showModalGetYoursNow = true;
+    },
+    closeModalGetYoursNow() {
+      this.showModalGetYoursNow = false;
     }
   },
   created() {

@@ -16,93 +16,43 @@
             data-dismiss="modal"
             aria-label="Close"
           >
-            <span aria-hidden="true" class="text-white">&times;</span>
+            <span aria-hidden="true" class="text-white" @click="closeModal"
+              >&times;</span
+            >
           </button>
         </div>
         <div class="modal-body mb-3">
           <p class="content">
-            Contact with us, using one of the following methods!.
+            Contact with us, using one of the following methods!
           </p>
           <div class="container">
-            <div class="d-flex justify-content-center">
-              <div class="link" data-aos="fade-up" data-aos-duration="1200">
-                <a
-                  href="https://www.instagram.com/saragusfit/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src="../../../assets/icons/instagram.png"
-                    alt="Instagram logo"
-                    class="logo"
-                  />
-                </a>
-              </div>
-              <div class="link" data-aos="fade-up" data-aos-duration="1200">
-                <a
-                  href="https://www.facebook.com/saragusfit/?ref=page_internal"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src="../../../assets/icons/facebook.png"
-                    alt="Facebook logo"
-                    class="logo"
-                  />
-                </a>
-              </div>
-              <div class="link" data-aos="fade-up" data-aos-duration="1200">
-                <a
-                  href="mailto:saragusfit@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src="../../../assets/icons/email.png"
-                    alt="Email logo"
-                    class="logo"
-                  />
-                </a>
-              </div>
-              <div class="link" data-aos="fade-up" data-aos-duration="1200">
-                <span class="whatsapp-name">Agustina</span>
-                <a
-                  href="https://wa.link/t5ug6i"
-                  target="_blank"
-                  rel="noreferrer"
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  title="Agustina"
-                >
-                  <img
-                    src="../../../assets/icons/whatsapp-start-now.png"
-                    alt="Whatsapp icon"
-                    class="logo"
-                  />
-                </a>
-              </div>
-              <div class="link" data-aos="fade-up" data-aos-duration="1200">
-                <span class="whatsapp-name">Sara</span>
-                <a
-                  href="https://wa.link/4elvg4"
-                  target="_blank"
-                  rel="noreferrer"
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  title="Sara"
-                >
-                  <img
-                    src="../../../assets/icons/whatsapp-start-now.png"
-                    alt="Whatsapp icon"
-                    class="logo"
-                  />
-                </a>
-              </div>
+            <div class="row justify-content-center align-items-center">
+              <a
+                v-for="(link, idx) in links"
+                :key="idx"
+                :href="link.url"
+                class="col-12 col-md-7 p-2 contact
+                d-flex align-items-center justify-content-center"
+                :class="link.class"
+                target="_blank"
+                rel="noopener noreferrer"
+                :data-aos="link.aos"
+                data-aos-duration="1500"
+                :data-aos-delay="150 * (idx + 1)"
+              >
+                <div class="img"></div>
+                <span class="text-white">{{ link.content }}</span>
+              </a>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-dismiss="modal"
+            @click="closeModal"
+          >
             Close
           </button>
         </div>
@@ -113,36 +63,171 @@
 
 <script>
 export default {
-  name: "ModalStartNowPlanComponent"
+  name: "ModalStartNowPlanComponent",
+  methods: {
+    closeModal() {
+      this.$emit("closeModal");
+    }
+  },
+  data: () => {
+    return {
+      links: [
+        {
+          url: "https://www.instagram.com/saragusfit/",
+          content: "@saragusfit",
+          class: "contact-instagram",
+          aos: "fade-right"
+        },
+        {
+          url: "https://www.facebook.com/saragusfit/?ref=page_internal",
+          content: "@saragusfit",
+          class: "contact-facebook",
+          aos: "fade-left"
+        },
+        {
+          url: "mailto:saragusfit@gmail.com",
+          content: "saragusfit@gmail.com",
+          class: "contact-email",
+          aos: "fade-right"
+        },
+        {
+          url: "https://wa.link/t5ug6i",
+          content: "Agustina",
+          class: "contact-whatsapp",
+          aos: "fade-left"
+        },
+        {
+          url: "https://wa.link/4elvg4",
+          content: "Sara",
+          class: "contact-whatsapp",
+          aos: "fade-right"
+        }
+      ]
+    };
+  }
 };
 </script>
 
 <style scoped lang="scss">
+.modal {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  animation: fadeInOpacity linear 1.3s;
+
+  .modal-header {
+    border: unset;
+  }
+
+  .modal-footer {
+    border: unset;
+  }
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .modal-content {
   background-image: url("../../../assets/home/saragusfit_startnow_modal_background.jpg");
   background-size: cover;
   background-position: center;
 }
 
-.link {
-  border-radius: 50%;
-  padding: 0.75rem;
-  background: #de93c1;
-  margin-right: 1rem;
-  position: relative;
-  text-align: center;
 
-  .logo {
-    width: 24px;
+
+.contact {
+  border-radius: 5px;
+  background-size: 400%;
+  animation: gradient 15s ease infinite;
+  cursor: pointer;
+  position: relative;
+  transition: all 1s;
+  text-decoration: unset;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    box-shadow: 5px 5px 35px 0px rgba(255, 255, 255, 0.3);
+  }
+
+  .img {
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    margin-right: 0.3rem;
+  }
+
+  &-instagram {
+    background: linear-gradient(
+      45deg,
+      #405de6,
+      #5851db,
+      #833ab4,
+      #c13584,
+      #e1306c,
+      #fd1d1d
+    );
+
+    .img {
+      background-image: url("../../../assets/svg/social-medias/logotipo-de-instagram.svg");
+    }
+
+    background-size: 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  &-facebook {
+    background: linear-gradient(45deg, #00BFFF, #007CFF, #0077FF );
+
+    .img {
+      background-image: url("../../../assets/svg/social-medias/facebook.svg");
+    }
+
+    background-size: 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  &-email {
+    background: linear-gradient(
+      45deg,
+      rgba(222, 147, 193, 1) 45%,
+      rgba(25, 79, 146, 1) 100%
+    );
+
+    .img {
+      background-image: url("../../../assets/svg/social-medias/email.svg");
+    }
+
+    background-size: 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  &-whatsapp {
+    background: linear-gradient(45deg, #b5ff8a, #1ebea5, #00e676);
+
+    .img {
+      background-image: url("../../../assets/svg/social-medias/whatsapp.svg");
+    }
+
+    background-size: 400%;
+    animation: gradient 15s ease infinite;
   }
 }
 
-.whatsapp-name {
-  position: absolute;
-  transform: translateY(40px);
-  text-align: center;
-  width: 100%;
-  margin: 0 auto;
-  left: 0;
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 </style>
