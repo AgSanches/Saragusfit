@@ -16,7 +16,7 @@
                 <span aria-hidden="true" @click="hideModal">&times;</span>
               </button>
             </div>
-            <div class="modal-body text-white">
+            <div class="modal-body text-white modal-height">
               <form action="" @submit.prevent="saveModel">
                 <div class="form-group col-12 p-1">
                   <label for="inputCoachName">Name</label>

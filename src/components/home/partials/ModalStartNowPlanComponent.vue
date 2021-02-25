@@ -73,18 +73,6 @@ export default {
     return {
       links: [
         {
-          url: "https://www.instagram.com/saragusfit/",
-          content: "@saragusfit",
-          class: "contact-instagram",
-          aos: "fade-right"
-        },
-        {
-          url: "https://www.facebook.com/saragusfit/?ref=page_internal",
-          content: "@saragusfit",
-          class: "contact-facebook",
-          aos: "fade-left"
-        },
-        {
           url: "mailto:saragusfit@gmail.com",
           content: "saragusfit@gmail.com",
           class: "contact-email",
@@ -139,8 +127,6 @@ export default {
   background-position: center;
 }
 
-
-
 .contact {
   border-radius: 5px;
   background-size: 400%;
@@ -160,36 +146,6 @@ export default {
     height: 20px;
     background-size: cover;
     margin-right: 0.3rem;
-  }
-
-  &-instagram {
-    background: linear-gradient(
-      45deg,
-      #405de6,
-      #5851db,
-      #833ab4,
-      #c13584,
-      #e1306c,
-      #fd1d1d
-    );
-
-    .img {
-      background-image: url("../../../assets/svg/social-medias/logotipo-de-instagram.svg");
-    }
-
-    background-size: 400%;
-    animation: gradient 15s ease infinite;
-  }
-
-  &-facebook {
-    background: linear-gradient(45deg, #00BFFF, #007CFF, #0077FF );
-
-    .img {
-      background-image: url("../../../assets/svg/social-medias/facebook.svg");
-    }
-
-    background-size: 400%;
-    animation: gradient 15s ease infinite;
   }
 
   &-email {

@@ -44,7 +44,7 @@ export default {
   },
   data: () => {
     return {
-      maxSizeAllow: 250000,
+      maxSizeAllow: 650000,
       file: null,
       uniqueId: null
     };
