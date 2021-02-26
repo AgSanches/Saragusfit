@@ -46,7 +46,6 @@ export default {
   },
   data: () => {
     return {
-      isFirstVisit: false,
       canShowModal: false
     };
   },
@@ -54,12 +53,24 @@ export default {
     setScrollBlock,
     allowScroll,
     checkFirstVisit() {
-      this.isFirstVisit = localStorage.getItem("isUserVisit") == null;
+      let item = JSON.parse(localStorage.getItem("isUserVisit"));
 
-      if (this.isFirstVisit) {
-        localStorage.setItem("isUserVisit", "yes");
-        window.addEventListener("scroll", this.handleScroll);
+      console.log(item);
+
+      if (item === null) {
+        item = {
+          qty: 1
+        };
+
+        this.setStorageAndListener(item);
+      } else if (item.qty && item.qty === 1) {
+        item.qty = item.qty + 1;
+        this.setStorageAndListener(item);
       }
+    },
+    setStorageAndListener(item) {
+      localStorage.setItem("isUserVisit", JSON.stringify(item));
+      window.addEventListener("scroll", this.handleScroll);
     },
     handleScroll() {
       this.canShowModal = window.scrollY > 1400;
