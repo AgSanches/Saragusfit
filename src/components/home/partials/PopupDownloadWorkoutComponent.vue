@@ -52,10 +52,8 @@ export default {
   methods: {
     setScrollBlock,
     allowScroll,
-    checkFirstVisit() {
-      let item = JSON.parse(localStorage.getItem("isUserVisit"));
-
-      console.log(item);
+    checkVisits() {
+      let item = JSON.parse(localStorage.getItem("userVisit"));
 
       if (item === null) {
         item = {
@@ -69,7 +67,7 @@ export default {
       }
     },
     setStorageAndListener(item) {
-      localStorage.setItem("isUserVisit", JSON.stringify(item));
+      localStorage.setItem("userVisit", JSON.stringify(item));
       window.addEventListener("scroll", this.handleScroll);
     },
     handleScroll() {
@@ -85,7 +83,7 @@ export default {
     }
   },
   mounted() {
-    this.checkFirstVisit();
+    this.checkVisits();
   },
   watch: {}
 };
