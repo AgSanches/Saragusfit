@@ -3,21 +3,10 @@
     <TitleComponent title="GET YOURS NOW"></TitleComponent>
 
     <template v-if="showModalGetYoursNow">
-      <ModalStartNowPlanComponent @closeModal="closeModalGetYoursNow"></ModalStartNowPlanComponent>
+      <ModalStartNowPlanComponent
+        @closeModal="closeModalGetYoursNow"
+      ></ModalStartNowPlanComponent>
     </template>
-
-    <div
-      v-if="showModal"
-      v-observe-visibility="{
-        callback: visibilityChanged,
-        once: true,
-        throttle: 600
-      }"
-    >
-      <PopupOfferWorkoutComponent
-        v-if="isAlreadyVisible"
-      ></PopupOfferWorkoutComponent>
-    </div>
 
     <div class="services row justify-content-center align-items-center mt-3">
       <div
@@ -41,16 +30,14 @@
 import TitleComponent from "./partials/TitleComponent";
 import PlanComponent from "./partials/PlanComponent";
 import ModalStartNowPlanComponent from "./partials/ModalStartNowPlanComponent";
-import PopupOfferWorkoutComponent from "./partials/PopupOfferWorkoutComponent";
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 
 export default {
   name: "GetYoursNowComponent",
   components: {
     TitleComponent,
     PlanComponent,
-    ModalStartNowPlanComponent,
-    PopupOfferWorkoutComponent
+    ModalStartNowPlanComponent
   },
   data: () => {
     return {
@@ -65,13 +52,17 @@ export default {
           isOffer: true
         }
       ],
-      showModal: false,
+      popupContent: null,
       isAlreadyVisible: false,
       showModalGetYoursNow: false
     };
   },
   methods: {
     ...mapActions("home", ["getText"]),
+    ...mapMutations("home", [
+      "setPopupLimitedOffer",
+      "setShowPopupLimitedOffer"
+    ]),
     visibilityChanged(isVisible) {
       if (this.isAlreadyVisible) return;
 
@@ -89,7 +80,8 @@ export default {
   created() {
     this.getText(this.doc).then(response => {
       this.plans = response.plans;
-      this.showModal = response.showModal;
+      this.setPopupLimitedOffer(response.popup);
+      this.setShowPopupLimitedOffer(response.showModal);
     });
   }
 };

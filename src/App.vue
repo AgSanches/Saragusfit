@@ -31,8 +31,7 @@ $primary: #d76487;
 $secondary: #1f2b3a;
 $tertiary: #194f92;
 
-body,
-html {
+body {
   width: 100vw;
   overflow-x: hidden;
 }

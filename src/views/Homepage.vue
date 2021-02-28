@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <CookiesPolicy v-if="!isLoadingPage && showCookies" @emitCloseCookies="showCookies = false"></CookiesPolicy>
+  <section>
+    <CookiesPolicy
+      v-if="!isLoadingPage && showCookies"
+      @emitCloseCookies="showCookies = false"
+    ></CookiesPolicy>
     <HeaderComponent></HeaderComponent>
     <MissionAndVisionComponent></MissionAndVisionComponent>
     <AboutUsComponent></AboutUsComponent>
@@ -12,14 +15,26 @@
         throttle: 200
       }"
     ></PersonalizedWorkoutPlanComponent>
-    <TheProccessComponent></TheProccessComponent>
+    <TheProccessComponent
+      v-observe-visibility="{
+        callback: reachVisibilityPopupLimitedOffer,
+        once: true,
+        throttle: 200
+      }"
+    ></TheProccessComponent>
     <GetYoursNowComponent></GetYoursNowComponent>
     <SuccessStoriesComponent></SuccessStoriesComponent>
     <SocialMediaComponent v-if="showSocialMedia"></SocialMediaComponent>
     <WhatsappComponent></WhatsappComponent>
     <TopUpButtonComponent></TopUpButtonComponent>
     <FreeWorkoutPlanComponent></FreeWorkoutPlanComponent>
-  </div>
+
+    <div v-if="canShowPopup" class="wrapper-workout-plan mb-3">
+      <PopupOfferWorkoutComponent
+        :content="popupLimitedOfferContent"
+      ></PopupOfferWorkoutComponent>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -38,10 +53,12 @@ import FreeWorkoutPlanComponent from "../components/home/FreeWorkoutPlanComponen
 import CookiesPolicy from "../components/home/partials/CookiesPolicy";
 
 import { mapState } from "vuex";
+import PopupOfferWorkoutComponent from "../components/home/partials/PopupOfferWorkoutComponent";
 
 export default {
   name: "Homepage",
   components: {
+    PopupOfferWorkoutComponent,
     HeaderComponent,
     MissionAndVisionComponent,
     AboutUsComponent,
@@ -59,11 +76,24 @@ export default {
   data: () => {
     return {
       showSocialMedia: false,
-      showCookies: false
+      showCookies: false,
+      showPopupLimitedOffer: false
     };
   },
   computed: {
-    ...mapState("general", ["isLoadingPage"])
+    ...mapState("general", ["isLoadingPage"]),
+    ...mapState("home", [
+      "canShowPopupLimitedOffer",
+      "popupLimitedOfferContent",
+      "hidePopupLimitedOffer"
+    ]),
+    canShowPopup() {
+      return (
+        this.canShowPopupLimitedOffer &&
+        this.popupLimitedOfferContent != null &&
+        this.showPopupLimitedOffer
+      );
+    }
   },
   methods: {
     handleScroll() {
@@ -89,6 +119,9 @@ export default {
     },
     setLocalStorageCookies() {
       localStorage.setItem("cookies", "shown");
+    },
+    reachVisibilityPopupLimitedOffer(isVisible) {
+      this.showPopupLimitedOffer = isVisible;
     }
   },
   created() {
@@ -101,5 +134,37 @@ export default {
 .about-us,
 .personal-information {
   width: 75vw;
+}
+
+.wrapper-workout-plan {
+  position: sticky;
+  position: -webkit-sticky;
+  bottom: 0;
+  z-index: 99;
+  width: 100vw;
+  animation: fadeInOpacity 1s linear, gradient 10s ease infinite;
+  background: linear-gradient(45deg, #de93c1 50%, #194f92 85%);
+  background-size: 200%;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>
