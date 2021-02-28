@@ -11,6 +11,8 @@
 
     <div
       class="popup-limited-offer d-flex text-white flex-wrap justify-content-center"
+      data-aos="fade-left"
+      data-aos-duration="1500"
     >
       <div class="col-12 col-md-8 content" v-if="!hideDescription">
         <p class="title">{{ content.title }}</p>
@@ -19,6 +21,9 @@
       <div
         class="col-12 col-md-4 timer text-center
         d-flex flex-column align-items-center justify-content-center content"
+        data-aos="fade-right"
+        data-aos-duration="1500"
+        data-aos-delay="250"
       >
         <p class="title" v-if="hideDescription">{{ content.title }}</p>
         <div class="time">
