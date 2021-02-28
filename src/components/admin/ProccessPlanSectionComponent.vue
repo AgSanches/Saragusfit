@@ -6,14 +6,6 @@
           <p class="title">
             Plans <AddElementButton @click="addItem"></AddElementButton>
           </p>
-
-          <button
-            class="btn ml-3"
-            @click="toggleModalOffer"
-            :class="{ 'btn-primary': content.showModal, 'btn-danger': !content.showModal }"
-          >
-            Modal {{ content.showModal ? "Show" : "Hide" }}
-          </button>
         </div>
       </div>
 
@@ -30,15 +22,67 @@
           @click="editItem(idx)"
         ></PlanComponent>
         <RemoveElementButton @click="removeItem(idx)"></RemoveElementButton>
+        <template v-if="showModal">
+          <ModalFormPlanComponent
+            :item-prop="content.plans[propIdx]"
+            @closeModal="closeModal"
+            @saveModel="saveModel"
+          ></ModalFormPlanComponent>
+        </template>
       </div>
 
-      <template v-if="showModal">
-        <ModalFormPlanComponent
-          :item-prop="content.plans[propIdx]"
-          @closeModal="closeModal"
-          @saveModel="saveModel"
-        ></ModalFormPlanComponent>
-      </template>
+      <div class="col-12 mt-4 modal-wrapper bg-secondary py-3 container">
+        <p class="title">
+          Popup Limited Offer
+          <button
+            class="btn ml-3"
+            @click="toggleModalOffer"
+            :class="{
+              'btn-primary': content.showModal,
+              'btn-danger': !content.showModal
+            }"
+          >
+            Modal {{ content.showModal ? "Show" : "Hide" }}
+          </button>
+        </p>
+        <form action="#" @submit.prevent="updateContent" class="container">
+          <div class="row justify-content-start align-items-center">
+            <div class="form-group col-12 col-md-6 p-1">
+              <label for="inputTitle">Title Modal</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputTitle"
+                placeholder="Enter title"
+                required
+                v-model="content.popup.title"
+              />
+            </div>
+            <div class="form-group col-12 col-md-6 p-1">
+              <label for="inputTime">Time (in minutes)</label>
+              <input
+                type="number"
+                class="form-control"
+                id="inputTime"
+                placeholder="Enter time"
+                required
+                v-model="content.popup.time"
+              />
+            </div>
+            <div class="form-group col-12 p-1">
+              <label for="inputText">Text Section</label>
+              <textarea
+                class="form-control"
+                id="inputText"
+                placeholder="Enter text"
+                required
+                v-model="content.popup.text"
+              ></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -64,7 +108,12 @@ export default {
       doc: "plansSection",
       content: {
         plans: [],
-        showModal: null
+        showModal: null,
+        popup: {
+          text: "",
+          time: 0,
+          title: ""
+        }
       },
       image: require("../../assets/icons/dumbell-plan.png"),
       showModal: false,
@@ -137,10 +186,10 @@ export default {
 <style scoped lang="scss">
 .title-wrapper {
   padding: 0;
+}
 
-  .title {
-    font-size: 1.4rem;
-    margin: 0;
-  }
+.title {
+  font-size: 1.4rem;
+  margin: 0;
 }
 </style>
