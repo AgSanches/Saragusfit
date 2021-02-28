@@ -3,9 +3,7 @@
     <TitleComponent title="GET YOURS NOW"></TitleComponent>
 
     <template v-if="showModalGetYoursNow">
-      <ModalStartNowPlanComponent
-        @closeModal="closeModalGetYoursNow"
-      ></ModalStartNowPlanComponent>
+      <ModalStartNowPlanComponent></ModalStartNowPlanComponent>
     </template>
 
     <div class="services row justify-content-center align-items-center mt-3">
@@ -19,7 +17,7 @@
           :plan="plan"
           data-aos="fade-up"
           data-aos-duration="1000"
-          @openModal="openModalGetYoursNow"
+          @openModal="setShowModalGetYoursNow(true)"
         ></PlanComponent>
       </div>
     </div>
@@ -30,7 +28,7 @@
 import TitleComponent from "./partials/TitleComponent";
 import PlanComponent from "./partials/PlanComponent";
 import ModalStartNowPlanComponent from "./partials/ModalStartNowPlanComponent";
-import { mapActions, mapMutations } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 
 export default {
   name: "GetYoursNowComponent",
@@ -38,6 +36,9 @@ export default {
     TitleComponent,
     PlanComponent,
     ModalStartNowPlanComponent
+  },
+  computed: {
+    ...mapState("home", ["showModalGetYoursNow"])
   },
   data: () => {
     return {
@@ -53,15 +54,15 @@ export default {
         }
       ],
       popupContent: null,
-      isAlreadyVisible: false,
-      showModalGetYoursNow: false
+      isAlreadyVisible: false
     };
   },
   methods: {
     ...mapActions("home", ["getText"]),
     ...mapMutations("home", [
       "setPopupLimitedOffer",
-      "setShowPopupLimitedOffer"
+      "setShowPopupLimitedOffer",
+      "setShowModalGetYoursNow"
     ]),
     visibilityChanged(isVisible) {
       if (this.isAlreadyVisible) return;
@@ -69,12 +70,6 @@ export default {
       if (isVisible) {
         this.isAlreadyVisible = true;
       }
-    },
-    openModalGetYoursNow() {
-      this.showModalGetYoursNow = true;
-    },
-    closeModalGetYoursNow() {
-      this.showModalGetYoursNow = false;
     }
   },
   created() {

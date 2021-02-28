@@ -29,7 +29,9 @@
         <div class="time">
           {{ timer.hours }}:{{ timer.minutes }}:{{ timer.seconds }}
         </div>
-        <button class="btn btn-primary">Start now</button>
+        <button class="btn btn-primary" @click="openModalStartNow">
+          Start now
+        </button>
       </div>
     </div>
   </div>
@@ -56,7 +58,11 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("home", ["setShowPopupLimitedOffer"]),
+    ...mapMutations("home", [
+      "setShowPopupLimitedOffer",
+      "setShowModalGetYoursNow",
+      "setActivateLinksOffer"
+    ]),
     createTimeout() {
       setTimeout(this.modifyTimer, 1000);
     },
@@ -100,6 +106,10 @@ export default {
     },
     getTrailingZero(number) {
       return `0${number}`.slice(-2);
+    },
+    openModalStartNow() {
+      this.setShowModalGetYoursNow(true);
+      this.setActivateLinksOffer(true);
     }
   },
   created() {

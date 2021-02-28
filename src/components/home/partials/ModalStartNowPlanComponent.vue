@@ -16,7 +16,10 @@
             data-dismiss="modal"
             aria-label="Close"
           >
-            <span aria-hidden="true" class="text-white" @click="closeModal"
+            <span
+              aria-hidden="true"
+              class="text-white"
+              @click="setShowModalGetYoursNow(false)"
               >&times;</span
             >
           </button>
@@ -30,7 +33,7 @@
               <a
                 v-for="(link, idx) in links"
                 :key="idx"
-                :href="link.url"
+                :href="canShowPopupLimitedOffer ? link.altUrl : link.url"
                 class="col-12 col-md-7 p-2 contact
                 d-flex align-items-center justify-content-center"
                 :class="link.class"
@@ -51,7 +54,7 @@
             type="button"
             class="btn btn-primary"
             data-dismiss="modal"
-            @click="closeModal"
+            @click="setShowModalGetYoursNow(false)"
           >
             Close
           </button>
@@ -62,30 +65,35 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "ModalStartNowPlanComponent",
+  computed: {
+    ...mapState("home", ["canShowPopupLimitedOffer"])
+  },
   methods: {
-    closeModal() {
-      this.$emit("closeModal");
-    }
+    ...mapMutations("home", ["setShowModalGetYoursNow"])
   },
   data: () => {
     return {
       links: [
         {
           url: "mailto:saragusfit@gmail.com",
+          altUrl: "mailto:saragusfit@gmail.com",
           content: "saragusfit@gmail.com",
           class: "contact-email",
           aos: "fade-right"
         },
         {
           url: "https://wa.link/t5ug6i",
+          altUrl: "https://wa.link/tanzpx",
           content: "Agustina",
           class: "contact-whatsapp",
           aos: "fade-left"
         },
         {
           url: "https://wa.link/4elvg4",
+          altUrl: "https://wa.link/yuo9tn",
           content: "Sara",
           class: "contact-whatsapp",
           aos: "fade-right"

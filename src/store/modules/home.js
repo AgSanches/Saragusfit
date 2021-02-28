@@ -5,7 +5,9 @@ export default {
   state: {
     pageContent: {},
     popupLimitedOfferContent: null,
-    canShowPopupLimitedOffer: false
+    canShowPopupLimitedOffer: false,
+    showModalGetYoursNow: false,
+    activateLinksOffer: false
   },
   mutations: {
     setPopupLimitedOffer(state, payload) {
@@ -13,6 +15,12 @@ export default {
     },
     setShowPopupLimitedOffer(state, payload) {
       state.canShowPopupLimitedOffer = payload;
+    },
+    setShowModalGetYoursNow(state, payload) {
+      state.showModalGetYoursNow = payload;
+    },
+    setActivateLinksOffer(state, payload) {
+      state.activateLinksOffer = payload;
     }
   },
   actions: {
