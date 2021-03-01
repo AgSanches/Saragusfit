@@ -26,10 +26,10 @@
         data-aos-delay="250"
       >
         <p class="title" v-if="hideDescription">{{ content.title }}</p>
-        <div class="time">
+        <div class="time" v-if="!hideDescription">
           {{ timer.hours }}:{{ timer.minutes }}:{{ timer.seconds }}
         </div>
-        <button class="btn btn-primary" @click="openModalStartNow">
+        <button v-if="!hideDescription" class="btn btn-primary" @click="openModalStartNow">
           Start now
         </button>
       </div>
@@ -122,7 +122,7 @@ export default {
 <style scoped lang="scss">
 .popup-limited-offer {
   @media screen and (max-width: 768px) {
-    width: 100%;
+    width: 95%;
   }
 
   width: 75%;
@@ -159,6 +159,15 @@ export default {
   img {
     width: 24px;
     transition: all 1s;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .hideOffer {
+    right: 85px;
+    img {
+      width: 20px;
+    }
   }
 }
 

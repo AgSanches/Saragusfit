@@ -36,6 +36,13 @@ body {
   overflow-x: hidden;
 }
 
+@media screen and (max-width: 599px) {
+  html {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
 .overlay {
   position: absolute;
   height: 100%;

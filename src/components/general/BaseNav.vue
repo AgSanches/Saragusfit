@@ -87,7 +87,7 @@ export default {
 .navbar {
   position: fixed;
   z-index: 10;
-  width: 100%;
+  width: 100vw;
 
   .navbar-brand {
     .logo {

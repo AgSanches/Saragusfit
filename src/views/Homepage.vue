@@ -5,7 +5,13 @@
       @emitCloseCookies="showCookies = false"
     ></CookiesPolicy>
     <HeaderComponent></HeaderComponent>
-    <MissionAndVisionComponent></MissionAndVisionComponent>
+    <MissionAndVisionComponent
+      v-observe-visibility="{
+        callback: reachVisibilityPopupLimitedOffer,
+        once: true,
+        throttle: 200
+      }"
+    ></MissionAndVisionComponent>
     <AboutUsComponent></AboutUsComponent>
     <PersonalCardsSectionComponent></PersonalCardsSectionComponent>
     <PersonalizedWorkoutPlanComponent
@@ -15,13 +21,7 @@
         throttle: 200
       }"
     ></PersonalizedWorkoutPlanComponent>
-    <TheProccessComponent
-      v-observe-visibility="{
-        callback: reachVisibilityPopupLimitedOffer,
-        once: true,
-        throttle: 200
-      }"
-    ></TheProccessComponent>
+    <TheProccessComponent></TheProccessComponent>
     <GetYoursNowComponent></GetYoursNowComponent>
     <SuccessStoriesComponent></SuccessStoriesComponent>
     <SocialMediaComponent v-if="showSocialMedia"></SocialMediaComponent>
@@ -29,7 +29,7 @@
     <TopUpButtonComponent></TopUpButtonComponent>
     <FreeWorkoutPlanComponent></FreeWorkoutPlanComponent>
 
-    <div v-if="canShowPopup" class="wrapper-workout-plan mb-3">
+    <div v-if="canShowPopup && !showCookies" class="wrapper-workout-plan mb-md-3">
       <PopupOfferWorkoutComponent
         :content="popupLimitedOfferContent"
       ></PopupOfferWorkoutComponent>
@@ -139,6 +139,11 @@ export default {
 .wrapper-workout-plan {
   position: sticky;
   position: -webkit-sticky;
+
+  @media screen and (max-width: 599px) {
+    position: fixed;
+  }
+
   bottom: 0;
   z-index: 99;
   width: 100vw;
