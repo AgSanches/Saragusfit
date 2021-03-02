@@ -29,7 +29,11 @@
         <div class="time" v-if="!hideDescription">
           {{ timer.hours }}:{{ timer.minutes }}:{{ timer.seconds }}
         </div>
-        <button v-if="!hideDescription" class="btn btn-primary" @click="openModalStartNow">
+        <button
+          v-if="!hideDescription"
+          class="btn btn-primary"
+          @click="openModalStartNow"
+        >
           Start now
         </button>
       </div>
@@ -54,6 +58,7 @@ export default {
         seconds: 0
       },
       maximumTime: null,
+      dateCreated: null,
       hideDescription: screen.width < 599
     };
   },
@@ -63,7 +68,27 @@ export default {
       "setShowModalGetYoursNow",
       "setActivateLinksOffer"
     ]),
+    checkIfResetDate() {
+      const currentDateInTime = new Date();
+
+      if (this.maximumTime > currentDateInTime.getTime()) {
+        return false;
+      }
+
+      const millisecondsInOneWeek = 24 * 7 * 3600 * 1000;
+      const dateCreatedModal = new Date(this.dateCreated);
+
+      const weekAfter = new Date(
+        dateCreatedModal.getTime() + millisecondsInOneWeek
+      ).getTime();
+
+      return currentDateInTime >= weekAfter;
+    },
     createTimeout() {
+      if (this.checkIfResetDate()) {
+        this.createTimerDefault();
+      }
+
       setTimeout(this.modifyTimer, 1000);
     },
     getLocalStorage() {
@@ -71,8 +96,10 @@ export default {
     },
     createTimer() {
       const timeLocalStorage = this.getLocalStorage();
-      if (timeLocalStorage) {
+
+      if (timeLocalStorage && timeLocalStorage.modalTime) {
         this.maximumTime = timeLocalStorage.time;
+        this.dateCreated = timeLocalStorage.modalTime;
       } else {
         this.createTimerDefault();
       }
@@ -85,7 +112,8 @@ export default {
     },
     initializeLocalStorageWithTime(time) {
       const timer = {
-        time
+        time,
+        modalTime: new Date()
       };
 
       localStorage.setItem("limitedOfferTime", JSON.stringify(timer));
