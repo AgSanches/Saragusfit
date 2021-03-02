@@ -12,7 +12,7 @@
           <span></span>
           <span></span>
           <span>
-            <img src="../../../assets/icons/instagram.png" alt="" width="48" />
+            <img src="../../../assets/icons/instagram.png" alt="Instagram icon" width="48" />
           </span>
         </a>
       </li>
@@ -27,7 +27,7 @@
           <span></span>
           <span></span>
           <span>
-            <img src="../../../assets/icons/facebook.png" alt="" width="48" />
+            <img src="../../../assets/icons/facebook.png" alt="Facebook icon" width="48" />
           </span>
         </a>
       </li>
@@ -42,7 +42,22 @@
           <span></span>
           <span></span>
           <span>
-            <img src="../../../assets/icons/tik-tok.png" alt="" width="48" />
+            <img src="../../../assets/icons/tik-tok.png" alt="Tiktok icon" width="48" />
+          </span>
+        </a>
+      </li>
+      <li data-aos="fade-down" data-aos-duration="2000" data-aos-delay="500">
+        <a
+          href="https://www.youtube.com/channel/UCxYI-2bB9Bri9jKA0hl_P5Q"
+          target="_blank"
+          rel="nofollow noreferrer noopener"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span>
+            <img src="../../../assets/icons/youtube.png" alt="Youtube icon" width="56" />
           </span>
         </a>
       </li>
@@ -81,7 +96,7 @@ ul {
   justify-content: center;
   transform: translate(-50%, -50%);
   transform-style: preserve-3d;
-  max-width: 95vw;
+  max-width: 85vw;
 }
 
 ul li {
@@ -190,6 +205,13 @@ li:nth-of-type(2):hover span {
 li:nth-of-type(3):hover span {
   background-color: #ee1d52;
   background-image: linear-gradient(270deg, #69c9d0, #ee1d52);
+  background-size: 400% 400%;
+  animation: gradient 6s ease infinite;
+}
+
+li:nth-of-type(4):hover span {
+  background-color: #ee1d52;
+  background-image: linear-gradient(270deg, #ff0000, #282828);
   background-size: 400% 400%;
   animation: gradient 6s ease infinite;
 }
