@@ -9,19 +9,16 @@
       data-aos-duration="1500"
     >
       <h3 class="personalized-workout-plan-title font-weight-bold text-primary">
-        Your Personalized Workout Plan
+        {{pageContent.title}}
       </h3>
 
       <div class="personalized-workout-plan-addition">
         <p class="personalized-workout-plan-subtitle">
-          It is not simply a workout plan. We will guide you to stick to new
-          behavioral changes and habits contributing to achieving your goals. It
-          is a learning process with ups and downs, where we will facilitate the
-          path to a consistent wellness journey.
+          {{pageContent.paragraph}}
         </p>
 
         <p class="personalized-workout-plan-client-goals-title">
-          Past client´s goals:
+          {{pageContent.clientTitle}}
         </p>
 
         <ul class="personalized-workout-plan-client-goals-list">
