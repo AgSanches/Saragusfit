@@ -1,6 +1,6 @@
 <template>
   <div id="the-process" class="the-proccess mx-auto">
-    <TitleComponent title="THE PROCESS"></TitleComponent>
+    <TitleComponent :title="title"></TitleComponent>
     <StepsDesktopComponent
       v-if="!isViewResize"
       :steps-upper="stepsUpper"
@@ -33,7 +33,8 @@ export default {
       stepsUpper: content.stepsUpper,
       stepsDown: content.stepsDown,
       windowWidth: window.innerWidth,
-      doc: "theProccess"
+      doc: "theProccess",
+      title: "THE PROCESS"
     };
   },
   computed: {
@@ -48,6 +49,7 @@ export default {
     this.getText(this.doc).then(content => {
       this.stepsUpper = content.stepsUpper;
       this.stepsDown = content.stepsDown;
+      this.title = content.title;
     });
   }
 };

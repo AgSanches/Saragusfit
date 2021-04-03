@@ -36,6 +36,7 @@ export default {
 
   .section-content {
     font-size: 0.95rem;
+    white-space: break-spaces;
   }
 
   &:hover {

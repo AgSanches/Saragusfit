@@ -1,10 +1,31 @@
 <template>
-  <div class="section p-1 mx-auto">
+  <div class="section p-1 mx-auto mt-3">
+    <TitleComponent :title="content.title"></TitleComponent>
     <StepsDesktopComponent
       :steps-upper="content.stepsUpper"
       :steps-down="content.stepsDown"
       @proccessClicked="openModalForEdit"
     ></StepsDesktopComponent>
+
+    <form action="#" @submit.prevent="updateContent" class="container">
+      <div class="row justify-content-start align-items-center">
+        <div class="form-group col-12 col-md-9 p-1">
+          <label for="inputTitle">Title Modal</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputTitle"
+            placeholder="Enter title"
+            required
+            v-model="content.title"
+          />
+        </div>
+        <div class="col-3">
+          <button type="submit" class="btn btn-primary mt-3">Confirm</button>
+        </div>
+      </div>
+    </form>
+
     <template v-if="showModal">
       <ModalFormProccess
         :item-prop="stepModel"
@@ -20,19 +41,22 @@ import { mapActions } from "vuex";
 import { displaySuccessSwal, displayErrorSwal } from "./partials/displaySwal";
 import StepsDesktopComponent from "../home/partials/StepsDesktopComponent";
 import ModalFormProccess from "./partials/ModalFormProccess";
+import TitleComponent from "../home/partials/TitleComponent";
 
 export default {
   name: "ProccessPlanSectionComponent",
   components: {
     StepsDesktopComponent,
-    ModalFormProccess
+    ModalFormProccess,
+    TitleComponent
   },
   data: () => {
     return {
       doc: "theProccess",
       content: {
         stepsUpper: [],
-        stepsDown: []
+        stepsDown: [],
+        title: ""
       },
       showModal: false,
       stepIdx: null,

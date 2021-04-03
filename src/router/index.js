@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import App from "../App.vue";
-import InConstructionLayout from "../layouts/InConstructionLayout";
 
 import BaseLayout from "../layouts/BaseLayout.vue";
 
@@ -17,11 +16,6 @@ const routes = [
     children: [
       {
         path: "/",
-        name: "InConstructionLayout",
-        component: InConstructionLayout
-      },
-      {
-        path: "/oli",
         name: "BaseLayout",
         component: BaseLayout,
         children: [
